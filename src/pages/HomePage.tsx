@@ -1,14 +1,15 @@
 import React from 'react';
 import SiteHeader from '../components/SiteHeader/SiteHeader';
-import { getAllStores } from '../services/store';
+import { getAllStalls } from '../services/stall';
 
 const HomePage: React.FunctionComponent = () => {
-  getAllStores().then(response => {
+  getAllStalls().then(response => {
     console.log(response.data);
   });
   return (
     <>
       <SiteHeader></SiteHeader>
+      Hello World!
     </>
   );
 };
