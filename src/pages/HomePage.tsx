@@ -1,8 +1,11 @@
 import React from 'react';
+import SiteHeader from '../components/SiteHeader/SiteHeader';
 
 const HomePage: React.FunctionComponent = () => {
   return (
-    <p>This is the home page!</p>
+    <>
+      <SiteHeader></SiteHeader>
+    </>
   );
 };
 
