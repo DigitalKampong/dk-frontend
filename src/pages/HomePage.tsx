@@ -1,15 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import FoodGrid from '../components/FoodGrid/FoodGrid';
 import SiteHeader from '../components/SiteHeader/SiteHeader';
-import { getAllStalls } from '../services/stall';
+import { getAllProducts } from '../services/product';
+import './HomePage.css';
 
 const HomePage: React.FunctionComponent = () => {
-  getAllStalls().then(response => {
-    console.log(response.data);
-  });
+  const [products, setProducts] = useState([]);
+  
+  useEffect(() => {
+    getAllProducts().then(response => {
+      setProducts(response.data);
+    });
+  } ,[]);
+
   return (
     <>
       <SiteHeader></SiteHeader>
-      Hello World!
+      <div className="site-content">
+        <FoodGrid foodList={products} />
+      </div>
     </>
   );
 };
