@@ -1,0 +1,5 @@
+.price-tag {
+  float: right;
+  transform: translateY(-12px);
+  height: 5px;
+}
