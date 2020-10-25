@@ -15,7 +15,7 @@ const FoodGrid: React.FunctionComponent<Props> = (props: Props) => {
     <Grid stackable columns={5} className="food-grid">
       {foodList.map(x => {
         return (
-          <Grid.Column key={x.name}>
+          <Grid.Column key={x.id}>
             <FoodCard food={x}/>
           </Grid.Column>
         );

@@ -1,5 +1,6 @@
-import { Action } from 'redux';
-
-export interface TestActionRequest {
-    type: 'test';
+interface GetAddCountType {
+    type: string,
+    count: number,
 }
+
+export type AddCount = GetAddCountType;

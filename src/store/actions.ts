@@ -1,7 +1,8 @@
-//Actions
-import { TestActionRequest } from './types';
+import { AddCount } from './types';
 
-export const testAction = (): TestActionRequest => ({
-    type: 'test',
-});
-
+export const addCount = (payload: number): AddCount => {
+    return {
+        type: "ADD_COUNT",
+        count: payload,
+    }
+}
