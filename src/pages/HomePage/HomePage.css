@@ -1,0 +1,62 @@
+.site-content {
+  margin: 0 12%;
+}
+
+.section-header-row {
+  display: flex;
+  justify-content: space-between;
+  height: 24px;
+  margin-top: 58px;
+  align-items: baseline;
+  margin-bottom: 46px;
+}
+
+.section-header {
+  font-family: 'Montserrat';
+  font-size: 48px;
+}
+
+.section-header-button {
+  font-family: 'Montserrat';
+  font-weight: 800;
+  color: #ffb444;
+  font-size: 24px;
+  text-transform: uppercase;
+}
+
+.category-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.location-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+
+.directory-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.category-grid-cell {
+  background: url("https://react.semantic-ui.com/images/wireframe/image.png");
+  background-size: cover;
+  background-position: center;
+  height: 238px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+  box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.2);
+}
+
+.category-grid-label {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: bold;
+  font-size: 48px;
+  line-height: 24px;
+  color: white;
+}
