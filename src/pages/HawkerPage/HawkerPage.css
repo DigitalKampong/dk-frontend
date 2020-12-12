@@ -29,8 +29,10 @@
 }
 
 .location-filters-row{
+    display:flex;
     padding-top: 50px;
-    justify-content: space-between;
+    align-items: baseline;
+
 }
 
 .location-filters-header{

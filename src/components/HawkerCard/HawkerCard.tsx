@@ -9,9 +9,11 @@ interface Props{
 const HawkerCard : React.FunctionComponent<Props> = (props: Props) => {
     const{hawker} = props;
     return(
-        <div>
-            Airport Road Food Centre
-        </div>
+        <Card className = "hawker-card">
+            <Card.Content>
+                Airport Road Food Centre
+            </Card.Content>
+        </Card>
     )
 }
 

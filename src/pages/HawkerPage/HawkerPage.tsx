@@ -3,8 +3,8 @@ import React, { useEffect, useState } from 'react';
 import SiteHeader from '../../components/SiteHeader/SiteHeader';
 import { getAllProducts } from '../../services/product';
 import './HawkerPage.css';
-import HawkerLocationButton from '../../components/HawkerLocationButton';
 import HawkerGrid from '../../components/HawkerGrid/HawkerGrid';
+import { Button } from 'semantic-ui-react';
 
 
 const HawkerPage: React.FunctionComponent = () => {
@@ -31,10 +31,24 @@ const HawkerPage: React.FunctionComponent = () => {
                  <div className = "location-filters-row">
                     <div className = "location-filters-header">Hawker centers
                     </div> 
-                    <div> <HawkerLocationButton/> </div>
-                    <div className = "hawker-list">
-                    <HawkerGrid hawkerList = {products}/>
+                    <div>
+                        <Button basic> East </Button>
                     </div>
+                    <div>
+                        <Button basic> West </Button>
+                    </div>
+                    <div>
+                        <Button basic> Central </Button>
+                    </div>
+                    <div>
+                        <Button basic> North </Button>
+                    </div>
+                    <div>
+                        <Button basic> NorthEast</Button>
+                    </div>
+                 </div>
+                 <div className = "hawker-list">
+                    <HawkerGrid hawkerList = {products}/>
                  </div>
 
             </div>
