@@ -29,10 +29,8 @@
 }
 
 .location-filters-row{
-    display:flex;
     padding-top: 50px;
-    align-items: baseline;
-
+    justify-content: space-between;
 }
 
 .location-filters-header{
