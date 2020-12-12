@@ -10,7 +10,7 @@ const SearchHeader: React.FunctionComponent<SearchProps> = ({searchInput}) => {
 
   return (
     <>
-      <div className="site-header">
+      <div className="search-header">
         <Link
           style={{textDecoration: 'none', color: "black"}}
           to={{
@@ -46,7 +46,7 @@ const SearchHeader: React.FunctionComponent<SearchProps> = ({searchInput}) => {
           <Button basic className="search-button">Filters</Button>
         </div>
       </div>
-      <div className="site-header-filler"></div>
+      <div className="search-header-filler"></div>
     </>
   );
 };

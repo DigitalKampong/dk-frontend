@@ -1,4 +1,4 @@
-.site-header {
+.search-header {
     background-color: #f7e577;
     position: fixed;
     width: 100%;
@@ -9,7 +9,7 @@
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2);
   }
   
-  .site-header-filler {
+  .search-header-filler {
     height: 347px;
   }
   
