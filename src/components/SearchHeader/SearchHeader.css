@@ -1,0 +1,92 @@
+.site-header {
+    background-color: #f7e577;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    height: 347px;
+    z-index: 1;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2);
+  }
+  
+  .site-header-filler {
+    height: 347px;
+  }
+  
+  .digital-kampong-icon {
+    position: absolute;
+    font-size: 36px;
+    font-family: 'Raleway';
+    left: 70px;
+    top: 36px;
+  }
+  
+  .header-button-group {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    margin-top: 35px;
+    padding-right: 54px;
+  }
+  
+  .header-button {
+    text-transform: uppercase !important;
+    font-size: 18px !important;
+    font-family: 'Montserrat' !important;
+    font-weight: 800 !important;
+    box-shadow: none !important;
+  }
+  
+  .header-button-primary {
+    text-transform: uppercase !important;
+    font-size: 18px !important;
+    font-family: 'Montserrat' !important;
+    font-weight: 800 !important;
+    box-shadow: none !important;
+    background: #ff5c38 !important;
+    color: white !important;
+  }
+  
+  .slogan-text {
+    width: 100%;
+    text-align: center;
+    font-size: 36px;
+    font-weight: 400;
+    font-family: 'Raleway';
+    position: fixed;
+    top: 165px;
+  }
+  
+  .search-bar {
+    position: fixed;
+    top: 243px;
+    display: flex;
+    width: 100%;
+    padding: 0 320px;
+    font-size: 24px;
+    font-family: 'Raleway';
+  }
+  
+  .search-bar-input {
+    width: 100%;
+    height: 50px;
+  }
+  
+  .search-button {
+    margin-left: 12px !important;
+    text-transform: uppercase !important;
+    font-size: 18px !important;
+    font-family: 'Montserrat' !important;
+    font-weight: 800 !important;
+  }
+  
+  .search-button-primary {
+    margin-left: 12px !important;
+    text-transform: uppercase !important;
+    font-size: 18px !important;
+    font-family: 'Montserrat' !important;
+    font-weight: 800 !important;
+    background: #ff5c38 !important;
+    color: white !important;
+  }
+  
