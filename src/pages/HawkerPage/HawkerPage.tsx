@@ -5,6 +5,7 @@ import { getAllProducts } from '../../services/product';
 import './HawkerPage.css';
 import HawkerGrid from '../../components/HawkerGrid/HawkerGrid';
 import { Button } from 'semantic-ui-react';
+import {Link} from 'react-router-dom';
 
 
 const HawkerPage: React.FunctionComponent = () => {
@@ -48,7 +49,9 @@ const HawkerPage: React.FunctionComponent = () => {
                     </div>
                  </div>
                  <div className = "hawker-list">
-                    <HawkerGrid hawkerList = {products}/>
+                     <Link to = "/individualhawker">
+                        <HawkerGrid hawkerList = {products}/>
+                    </Link>
                  </div>
 
             </div>

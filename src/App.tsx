@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import HomePage from "./pages/HomePage/HomePage";
 import SearchPage from "./pages/SearchPage";
 import HawkerPage from "./pages/HawkerPage/HawkerPage";
+import IndividualHawker from "./pages/IndividualHawker/IndividualHawker";
 import './App.css';
 import 'semantic-ui-css/semantic.min.css'
 
@@ -10,6 +11,9 @@ function App() {
   return (
     <Router>
       <Switch>
+        <Route path="/individualHawker">
+          <IndividualHawker />
+        </Route>
         <Route path="/hawker">
           <HawkerPage />
         </Route>
