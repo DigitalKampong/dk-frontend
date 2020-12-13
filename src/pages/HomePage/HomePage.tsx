@@ -15,7 +15,7 @@ const HomePage: React.FunctionComponent = () => {
 
   return (
     <>
-      <SiteHeader></SiteHeader>
+      <SiteHeader searchInput=""></SiteHeader>
       <div className="site-content">
         <div className="section-header-row">
           <div className="section-header"><b>Featured</b> merchants</div>

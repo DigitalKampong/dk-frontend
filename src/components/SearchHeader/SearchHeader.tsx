@@ -2,15 +2,15 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Input } from 'semantic-ui-react';
 import { SearchProps } from '../../types/Search';
-import './SiteHeader.css';
+import './SearchHeader.css';
 
-const SiteHeader: React.FunctionComponent<SearchProps> = ({searchInput}) => {
+const SearchHeader: React.FunctionComponent<SearchProps> = ({searchInput}) => {
 
   const [currentSearchInput, setCurrentSearchInput] = useState(searchInput);
 
   return (
     <>
-      <div className="site-header">
+      <div className="search-header">
         <Link
           style={{textDecoration: 'none', color: "black"}}
           to={{
@@ -28,21 +28,27 @@ const SiteHeader: React.FunctionComponent<SearchProps> = ({searchInput}) => {
           Find your favourite Hawker!
         </div>
         <div className="search-bar">
-          <Input fluid className="search-bar-input" placeholder='search for hawker centre / food' value={currentSearchInput} onChange={e => setCurrentSearchInput(e.target.value)}/>
+          <Input 
+            fluid 
+            className="search-bar-input" 
+            placeholder='search for hawker centre / food' 
+            value={currentSearchInput} 
+            onChange={e => setCurrentSearchInput(e.target.value)}
+          />
           <Link to={{
             pathname: "/search",
             state: {
               searchInput: currentSearchInput,
             }
           }}>
-            <Button className="search-button-primary">Search</Button>
+            <Button id="search" className="search-button-primary">Search</Button>
           </Link>
           <Button basic className="search-button">Filters</Button>
         </div>
       </div>
-      <div className="site-header-filler"></div>
+      <div className="search-header-filler"></div>
     </>
   );
 };
 
-export default SiteHeader;
+export default SearchHeader;
