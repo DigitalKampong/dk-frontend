@@ -20,12 +20,22 @@
 
 .location-filters-row{
   padding-top: 50px;
-  justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+
 }
 
 .location-filters-header{
+  padding-top: 10px;
   font-family: 'Montserrat';
   font-size: 20px;
+  padding-right: 100px;
+}
+
+.hawker-list{
+  padding-top: 40px;
+  display:flex;
+  flex-direction: row;
 }
 
 

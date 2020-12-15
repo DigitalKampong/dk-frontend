@@ -2,12 +2,15 @@ import React, { useEffect, useState } from 'react';
 import SiteHeader from '../../components/SiteHeader/SiteHeader';
 import { getAllHawkers } from '../../services/hawker';
 import './HawkersPage.css';
+import { Button } from 'semantic-ui-react'
+import HawkerGrid from '../../components/HawkerGrid/HawkerGrid';
+import {Link} from 'react-router-dom';
 
 const HawkerLocationPage: React.FunctionComponent = () => {
   const[hawkers, setHawkers] = useState([]);
 
   useEffect(() => {
-    getAllHawkers().then( response => {
+    getAllHawkers().then(response => {
       setHawkers(response.data);
     });
   },[]);
@@ -21,9 +24,18 @@ const HawkerLocationPage: React.FunctionComponent = () => {
       </div>
       <div className = "map-content"></div>
       <div className = "location-filters-row">
-        <div className = "location-filters-header"> Hawker Centers </div>
-
+      <div className = "location-filters-header"> Hawker Centers </div>
+        <Button basic> East </Button>
+        <Button basic> West </Button>
+        <Button basic> Central </Button>
+        <Button basic> North </Button>
+        <Button basic> NorthEast </Button>
       </div>
+      <Link to = '/individualhawker'>
+      <div className = "hawker-list">
+        <HawkerGrid hawkerList={hawkers} />
+      </div>
+      </Link>
     </div>
     </>
 
