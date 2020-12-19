@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Input } from 'semantic-ui-react';
 import { SearchProps } from '../../types/Search';

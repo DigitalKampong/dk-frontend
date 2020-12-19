@@ -12,22 +12,31 @@ const SearchPage: React.FunctionComponent = () => {
   const state = location.state as SearchProps;
   const [stalls, setStalls] = useState([]);
   const [query, setQuery] = useState(state.searchInput);
+  const [filters, setFilters] = useState("");
 
   useEffect(() => {
     if (!query || query.length === 0) {
       getAllStalls().then(response => {
-        setStalls(response.data);
+        setStalls(filterStalls(response.data));
       })
     } else {
       searchStall(query).then(response => {
-        setStalls(response.data);
+        setStalls(filterStalls(response.data));
       })
     }
-  }, [query]);
+  }, [query, filters]);
+
+  function filterStalls(stalls: any[]): any {
+    if (filters === "") {
+      return stalls;
+    }
+    return stalls.filter((s: any) => s[filters] > 1);
+  }
   
   return (
     <>
       <SearchHeader searchInput={query} handleChange={(q: string) => setQuery(q)}></SearchHeader>
+      <button onClick={() => {setFilters("rating"); console.log(filters);}}>Filter by rating</button>
       <div className="site-content">
         <div className="section-search-header-row">
           <div className="section-search-header">
