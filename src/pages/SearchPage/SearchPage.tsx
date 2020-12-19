@@ -17,7 +17,7 @@ const SearchPage: React.FunctionComponent = () => {
     getAllStalls().then(response => {
       setStalls(response.data);
     })
-  })
+  }, []);
 
   function searchStalls(): void {
     getAllStalls().then(response => {
