@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Input } from 'semantic-ui-react';
-import { SearchProps } from '../../types/Search';
+import { MainSiteSearchProps } from '../../types/Search';
 import './SiteHeader.css';
 
-const SiteHeader: React.FunctionComponent<SearchProps> = ({searchInput}) => {
+const SiteHeader: React.FunctionComponent<MainSiteSearchProps> = ({searchInput}) => {
 
   const [currentSearchInput, setCurrentSearchInput] = useState(searchInput);
 

@@ -4,9 +4,9 @@ import { Button, Input } from 'semantic-ui-react';
 import { SearchProps } from '../../types/Search';
 import './SearchHeader.css';
 
-const SearchHeader: React.FunctionComponent<SearchProps> = ({searchInput}) => {
+const SearchHeader: React.FunctionComponent<SearchProps> = (props) => {
 
-  const [currentSearchInput, setCurrentSearchInput] = useState(searchInput);
+  const {searchInput, handleChange} = props;
 
   return (
     <>
@@ -32,17 +32,10 @@ const SearchHeader: React.FunctionComponent<SearchProps> = ({searchInput}) => {
             fluid 
             className="search-bar-input" 
             placeholder='search for hawker centre / food' 
-            value={currentSearchInput} 
-            onChange={e => setCurrentSearchInput(e.target.value)}
+            value={searchInput} 
+            onChange={e => handleChange(e.target.value)}
           />
-          <Link to={{
-            pathname: "/search",
-            state: {
-              searchInput: currentSearchInput,
-            }
-          }}>
-            <Button id="search" className="search-button-primary">Search</Button>
-          </Link>
+          <Button id="search" className="search-button-primary">Search</Button>
           <Button basic className="search-button">Filters</Button>
         </div>
       </div>

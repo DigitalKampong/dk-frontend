@@ -23,7 +23,7 @@ const StallCard: React.FunctionComponent<Props> = (props: Props) => {
                 </Card.Meta>
                 <Card.Meta>
                     <span>
-                        {stall.HawkerCentre.name}
+                        {stall.HawkerCentre ? stall.HawkerCentre.name : undefined}
                     </span>
                     <span className="view-map-link">
                         View Map
