@@ -1,0 +1,41 @@
+.site-content{
+  margin: 0 12%;
+}
+
+.site-content-header{
+  font-family : "Montserrat";
+  font-size: 48px;
+  margin-top: 58px;
+  height: 24px;
+  margin-bottom: 46px;
+}
+
+.map-content{
+  background: url('https://react.semantic-ui.com/images/wireframe/image.png');
+  height:600px;
+  background-size:cover;
+  background-position: center;
+  display: grid;
+}
+
+.location-filters-row{
+  padding-top: 50px;
+  display: flex;
+  flex-direction: row;
+
+}
+
+.location-filters-header{
+  padding-top: 10px;
+  font-family: 'Montserrat';
+  font-size: 20px;
+  padding-right: 100px;
+}
+
+.hawker-list{
+  padding-top: 40px;
+  display:flex;
+  flex-direction: row;
+}
+
+
