@@ -3,6 +3,7 @@ import FoodGrid from '../../components/FoodGrid/FoodGrid';
 import SiteHeader from '../../components/SiteHeader/SiteHeader';
 import { getAllProducts } from '../../services/product';
 import './HomePage.css';
+import {Link} from 'react-router-dom';
 
 const HomePage: React.FunctionComponent = () => {
   const [products, setProducts] = useState([]);
@@ -80,9 +81,11 @@ const HomePage: React.FunctionComponent = () => {
           <div className="category-grid-cell">
             <div className="category-grid-label">View all stalls</div>
           </div>
-          <div className="category-grid-cell">
-            <div className="category-grid-label">View all Hawker centres</div>
-          </div>
+          <Link to= "/hawkers">
+            <div className="category-grid-cell">
+              <div className="category-grid-label">View all Hawker centres</div>
+            </div>
+          </Link>
         </div>
       </div>
     </>
