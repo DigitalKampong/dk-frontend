@@ -9,7 +9,7 @@ import API  from '../types/api';
  * @access Public
  */
 export const getAllHawkers = async () => {
-    return await Axios.get(ENDPOINTS.BASE + ENDPOINTS.PRODUCTS)
+    return await Axios.get(ENDPOINTS.BASE + ENDPOINTS.HAWKERS)
     .catch(error => {
         throw error;
     });
@@ -20,10 +20,10 @@ export const getAllHawkers = async () => {
  * 
  * @method GET
  * @access Public
- * @param id Product ID
+ * @param id Hawker ID
  */
 export const getHawker = async (id:number) => {
-    return await Axios.get(ENDPOINTS.BASE + ENDPOINTS.PRODUCTS + id + "/")
+    return await Axios.get(ENDPOINTS.BASE + ENDPOINTS.HAWKERS + id + "/")
     .catch(error => {
         throw error;
     })
@@ -34,10 +34,10 @@ export const getHawker = async (id:number) => {
  * 
  * @method POST
  * @access Public
- * @param data Data object containing details of the product
+ * @param data Data object containing details of the hawker
  */
 export const createHawker= async (data: API) => {
-    return await Axios.post(ENDPOINTS.BASE + ENDPOINTS.PRODUCTS, data["data"])
+    return await Axios.post(ENDPOINTS.BASE + ENDPOINTS.HAWKERS, data["data"])
       .catch(error => {
         throw error;
       })
@@ -49,10 +49,10 @@ export const createHawker= async (data: API) => {
  * 
  * @method DELETE
  * @access Public
- * @param id Product ID
+ * @param id Hawker ID
  */
 export const deleteHawker= async (id: number) => {
-    return await Axios.delete(ENDPOINTS.BASE + ENDPOINTS.PRODUCTS + id + "/")
+    return await Axios.delete(ENDPOINTS.BASE + ENDPOINTS.HAWKERS + id + "/")
       .catch(error => {
         throw error;
       })
@@ -63,11 +63,11 @@ export const deleteHawker= async (id: number) => {
  * 
  * @method PUT
  * @access Public
- * @param id Product ID
- * @param data Data object containing details of the product
+ * @param id Hawker ID
+ * @param data Data object containing details of the hawker
  */
 export const updateHawker = async (id: number, data: API) => {
-    return await Axios.put(ENDPOINTS.BASE + ENDPOINTS + id + "/", data["data"])
+    return await Axios.put(ENDPOINTS.BASE + ENDPOINTS.HAWKERS + id + "/", data["data"])
       .catch(error => {
         throw error;
       })

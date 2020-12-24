@@ -4,7 +4,6 @@ import { getAllHawkers } from '../../services/hawker';
 import './HawkersPage.css';
 import { Button } from 'semantic-ui-react'
 import HawkerGrid from '../../components/HawkerGrid/HawkerGrid';
-import {Link} from 'react-router-dom';
 
 const HawkerLocationPage: React.FunctionComponent = () => {
   const[hawkers, setHawkers] = useState([]);
@@ -31,11 +30,9 @@ const HawkerLocationPage: React.FunctionComponent = () => {
         <Button basic> North </Button>
         <Button basic> NorthEast </Button>
       </div>
-      <Link to = '/individualhawker'>
       <div className = "hawker-list">
         <HawkerGrid hawkerList={hawkers} />
       </div>
-      </Link>
     </div>
     </>
 

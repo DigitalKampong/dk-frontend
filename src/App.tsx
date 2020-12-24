@@ -11,18 +11,10 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route path="/individualhawker">
-          <IndividualHawker/>
-        </Route>
-        <Route path="/hawkers">
-          <HawkersPage/>
-        </Route>
-        <Route path="/search">
-          <SearchPage />
-        </Route>
-        <Route path="/">
-          <HomePage />
-        </Route>
+        <Route path="/hawkers/:id" component={IndividualHawker}/>
+        <Route path="/hawkers" component={HawkersPage}/>
+        <Route path="/search" component={SearchPage} />
+        <Route path="/" component={HomePage}/>
       </Switch>
     </Router>
   );
