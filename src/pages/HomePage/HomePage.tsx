@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import FoodGrid from '../../components/FoodGrid/FoodGrid';
 import SiteHeader from '../../components/SiteHeader/SiteHeader';
-import { getAllProducts } from '../../services/product';
 import './HomePage.css';
 import {Link} from 'react-router-dom';
+import { getAllStalls } from '../../services/stall';
+import StallGrid from '../../components/StallGrid/StallGrid';
 
 const HomePage: React.FunctionComponent = () => {
-  const [products, setProducts] = useState([]);
   
+  const [stalls, setStalls] = useState([]);
+
   useEffect(() => {
-    getAllProducts().then(response => {
-      setProducts(response.data);
-    });
-  } ,[]);
+    getAllStalls().then(response => {
+      setStalls(response.data)
+    })
+  }, [])
 
   return (
     <>
@@ -22,8 +23,7 @@ const HomePage: React.FunctionComponent = () => {
           <div className="section-header"><b>Featured</b> merchants</div>
           <div className="section-header-button">View more</div>
         </div>
-        <FoodGrid foodList={products} />
-
+        <StallGrid stallList={stalls} />
         <div className="section-header-row">
           <div className="section-header"><b>Explore</b> by Categories</div>
           <div className="section-header-button">View more</div>
