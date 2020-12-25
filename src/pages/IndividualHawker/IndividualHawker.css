@@ -1,0 +1,23 @@
+.site-content{
+ margin: 0 12%;
+}
+
+
+.hawker-item{
+  padding-top: 50px;
+}
+
+.hawker-content{
+  padding-left: 60px;
+}
+
+.hawker-header{
+  font-family: 'Montserrat';
+  font-size: 50px;
+}
+
+.hawker-description{
+  padding-top: 50px;
+  font-family: 'Montserrat';
+  font-size: 50px;
+}
