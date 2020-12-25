@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, Icon, Image } from 'semantic-ui-react';
 import Food from '../../types/Food';
-import './FoodCard.css';
+import styles from './FoodCard.module.css';
 
 interface Props {
   food: Food;
@@ -21,7 +21,7 @@ const FoodCard: React.FunctionComponent<Props> = (props: Props) => {
         <Card.Meta>
           800m
         </Card.Meta>
-        <Card.Header className='price-tag'>${food.price ? food.price.toFixed(2) : "N/A"}</Card.Header>
+        <Card.Header className={styles['price-tag']}>${food.price ? food.price.toFixed(2) : "N/A"}</Card.Header>
       </Card.Content>
       <Card.Content extra>
         <Icon name='star'/>

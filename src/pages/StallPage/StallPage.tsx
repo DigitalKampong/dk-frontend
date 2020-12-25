@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Button, Grid, GridColumn, Rating } from 'semantic-ui-react';
 import FoodGrid from '../../components/FoodGrid/FoodGrid';
-import SiteHeader from '../../components/SiteHeader/SiteHeader';
+import SearchHeader from '../../components/SearchHeader/SearchHeader';
 import { getStall } from '../../services/stall';
 import Stall from '../../types/Stall';
 import './StallPage.css';
@@ -20,7 +20,7 @@ const StallPage: React.FunctionComponent = () => {
 
   return (
     <>
-      <SiteHeader searchInput=''></SiteHeader>
+      <SearchHeader handleChange={() => {}} searchInput=''></SearchHeader>
       <div className="site-content">
         <Grid>
           <Grid.Column width={6}>

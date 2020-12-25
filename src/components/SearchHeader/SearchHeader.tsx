@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Input } from 'semantic-ui-react';
 import { SearchProps } from '../../types/Search';
-import './SearchHeader.css';
+import styles from './SearchHeader.module.css';
 
 const SearchHeader: React.FunctionComponent<SearchProps> = (props) => {
 
@@ -10,36 +10,33 @@ const SearchHeader: React.FunctionComponent<SearchProps> = (props) => {
 
   return (
     <>
-      <div className="search-header">
+      <div className={styles["search-header"]}>
         <Link
           style={{textDecoration: 'none', color: "black"}}
           to={{
             pathname: "/"
           }}
         >
-          <div className="digital-kampong-icon">Digital Kampong</div>
+          <div className={styles["digital-kampong-icon"]}>Digital Kampong</div>
         </Link>
-        <div className="header-button-group">
-          <Button basic className="header-button">Kampong Centre</Button>
-          <Button basic className="header-button">Sign up</Button>
-          <Button className="header-button-primary">Log in</Button>
+        <div className={styles["header-button-group"]}>
+          <Button basic className={styles["header-button"]}>Kampong Centre</Button>
+          <Button basic className={styles["header-button"]}>Sign up</Button>
+          <Button className={styles["header-button-primary"]}>Log in</Button>
         </div>
-        <div className="slogan-text">
-          Find your favourite Hawker!
-        </div>
-        <div className="search-bar">
+        <div className={styles["search-bar"]}>
           <Input 
             fluid 
-            className="search-bar-input" 
+            className={styles["search-bar-input"]} 
             placeholder='search for hawker centre / food' 
             value={searchInput} 
             onChange={e => handleChange(e.target.value)}
           />
-          <Button id="search" className="search-button-primary">Search</Button>
-          <Button basic className="search-button">Filters</Button>
+          <Button id="search" className={styles["search-button-primary"]}>Search</Button>
+          <Button basic className={styles["search-button"]}>Filters</Button>
         </div>
       </div>
-      <div className="search-header-filler"></div>
+      <div className={styles["search-header-filler"]}></div>
     </>
   );
 };

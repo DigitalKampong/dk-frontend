@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card, Image, Rating } from 'semantic-ui-react';
 import Stall from '../../types/Stall';
-import './StallCard.css';
+import styles from './StallCard.module.css';
 
 interface Props {
     stall: Stall
@@ -29,7 +29,7 @@ const StallCard: React.FunctionComponent<Props> = (props: Props) => {
             <span>
               {stall.HawkerCentre ? stall.HawkerCentre.name : undefined}
             </span>
-            <span className="view-map-link">
+            <span className={styles["view-map-link"]}>
               View Map
             </span>
           </Card.Meta>
