@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Item } from 'semantic-ui-react';
-import SiteHeader from '../../components/SiteHeader/SiteHeader';
+import SearchHeader from '../../components/SearchHeader/SearchHeader';
 import { getHawker } from '../../services/hawker';
 import HawkerCentre from '../../types/HawkerCentre';
-import './IndividualHawker.css';
+import styles from './IndividualHawker.module.css';
 
 interface HawkerProps {
   selectedHawker: number;
@@ -25,28 +25,28 @@ const IndividualHawker : React.FunctionComponent = () => {
 
   return (
     <>
-    <SiteHeader searchInput = ""></SiteHeader>
-    <div className = 'site-content'>
-      <div className = "hawker-item">
-        <Item.Group>
-          <Item>
-            <Item.Image size = 'large' src = "https://react.semantic-ui.com/images/wireframe/image.png">
-            </Item.Image>
-            <Item.Content className = 'hawker-content'>
-              <Item.Header className = 'hawker-header'>
-              </Item.Header>
-              <Item.Meta>
-                {hawkerData.name}<br/>
-                {hawkerData.address}
-              </Item.Meta>
-              <Item.Description className = 'hawker-description'>
-                Getting there:
-              </Item.Description>
-            </Item.Content>
-          </Item>
-        </Item.Group>
+      <SearchHeader searchInput="" handleChange={() => {}}></SearchHeader>
+      <div className={styles['site-content']}>
+        <div className={styles["hawker-item"]}>
+          <Item.Group>
+            <Item>
+              <Item.Image size='large' src="https://react.semantic-ui.com/images/wireframe/image.png">
+              </Item.Image>
+              <Item.Content className={styles['hawker-content']}>
+                <Item.Header className={styles['hawker-header']}>
+                </Item.Header>
+                <Item.Meta>
+                  {hawkerData.name}<br/>
+                  {hawkerData.address}
+                </Item.Meta>
+                <Item.Description className={styles['hawker-description']}>
+                  Getting there:
+                </Item.Description>
+              </Item.Content>
+            </Item>
+          </Item.Group>
+        </div>
       </div>
-    </div>
     </>
 
   )

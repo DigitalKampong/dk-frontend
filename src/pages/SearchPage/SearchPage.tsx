@@ -4,7 +4,7 @@ import StallGrid from '../../components/StallGrid/StallGrid';
 import SearchHeader from '../../components/SearchHeader/SearchHeader';
 import { getAllStalls, searchStall } from '../../services/stall';
 import { SearchProps } from '../../types/Search';
-import './SearchPage.css';
+import styles from './SearchPage.module.css';
 
 const SearchPage: React.FunctionComponent = () => {
 
@@ -37,9 +37,9 @@ const SearchPage: React.FunctionComponent = () => {
     <>
       <SearchHeader searchInput={query} handleChange={(q: string) => setQuery(q)}></SearchHeader>
       <button onClick={() => {setFilters("rating"); console.log(filters);}}>Filter by rating</button>
-      <div className="site-content">
-        <div className="section-search-header-row">
-          <div className="section-search-header">
+      <div className={styles["site-content"]}>
+        <div className={styles["section-search-header-row"]}>
+          <div className={styles["section-search-header"]}>
             <b>
               {query !== "" 
               ? "Search result for " + query
