@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import HomePage from "./pages/HomePage/HomePage";
 import SearchPage from "./pages/SearchPage/SearchPage";
+import StallPage from "./pages/StallPage/StallPage";
 import HawkersPage from "./pages/HawkersPage/HawkersPage";
 import IndividualHawker from "./pages/IndividualHawker/IndividualHawker";
 import './App.css';
@@ -12,6 +13,7 @@ function App() {
     <Router>
       <Switch>
         <Route path="/hawkers/:id" component={IndividualHawker}/>
+        <Route path="/stalls/:id" component={StallPage}/>
         <Route path="/hawkers" component={HawkersPage}/>
         <Route path="/search" component={SearchPage} />
         <Route path="/" component={HomePage}/>
