@@ -7,14 +7,14 @@ import { Checkbox, Rating } from 'semantic-ui-react';
 import SearchPageHeader from '../../components/SearchPageHeader/SearchPageHeader';
 import Stall from '../../types/Stall';
 
-interface SearchProps {
+interface StateProps {
   searchInput: string;
 }
 
 const SearchPage: React.FunctionComponent = () => {
 
   const location = useLocation();
-  const state = location.state as SearchProps;
+  const state = location.state as StateProps;
 
   const [stalls, setStalls] = useState<Stall[]>([]);
   const [originalStalls, setOriginalStalls] = useState<Stall[]>([]);

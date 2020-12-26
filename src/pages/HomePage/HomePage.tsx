@@ -4,10 +4,11 @@ import styles from './HomePage.module.css';
 import {Link} from 'react-router-dom';
 import { getAllStalls } from '../../services/stall';
 import StallGrid from '../../components/StallGrid/StallGrid';
+import Stall from '../../types/Stall';
 
 const HomePage: React.FunctionComponent = () => {
   
-  const [stalls, setStalls] = useState([]);
+  const [stalls, setStalls] = useState<Stall[]>([]);
 
   useEffect(() => {
     getAllStalls().then(response => {

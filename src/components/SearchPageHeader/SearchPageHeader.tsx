@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 import { Button, Input } from 'semantic-ui-react';
 import styles from './SearchPageHeader.module.css';
 
-interface SearchPageHeaderProps {
+interface Props {
   searchInput: string;
   handleSearch: Function;
 }
 
-const SearchPageHeader: React.FunctionComponent<SearchPageHeaderProps> = (props) => {
+const SearchPageHeader: React.FunctionComponent<Props> = (props) => {
 
   const {searchInput, handleSearch} = props;
   const [input, setInput] = useState<string>(searchInput);

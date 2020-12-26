@@ -6,7 +6,7 @@ import { getHawker } from '../../services/hawker';
 import HawkerCentre from '../../types/HawkerCentre';
 import styles from './IndividualHawker.module.css';
 
-interface HawkerProps {
+interface StateProps {
   selectedHawker: number;
 }
 
@@ -14,7 +14,7 @@ const IndividualHawker : React.FunctionComponent = () => {
 
   const hawkerObject = {} as HawkerCentre;
   const location = useLocation();
-  const state = location.state as HawkerProps;
+  const state = location.state as StateProps;
   const [hawkerData, setHawkerData] = useState(hawkerObject);
 
   useEffect(() => {

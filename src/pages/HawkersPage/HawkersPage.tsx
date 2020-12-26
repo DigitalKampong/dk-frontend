@@ -4,9 +4,11 @@ import styles from './HawkersPage.module.css';
 import { Button } from 'semantic-ui-react'
 import HawkerGrid from '../../components/HawkerGrid/HawkerGrid';
 import SearchHeader from '../../components/SearchHeader/SearchHeader';
+import HawkerCentre from '../../types/HawkerCentre';
 
 const HawkerLocationPage: React.FunctionComponent = () => {
-  const[hawkers, setHawkers] = useState([]);
+
+  const[hawkers, setHawkers] = useState<HawkerCentre[]>([]);
 
   useEffect(() => {
     getAllHawkers().then(response => {
