@@ -12,6 +12,7 @@ const SearchPageHeader: React.FunctionComponent<SearchPageHeaderProps> = (props)
 
   const {searchInput, handleSearch} = props;
   const [input, setInput] = useState<string>(searchInput);
+  
 
   function handleEnter(e: any): void {
     if (e.key === 'Enter') {

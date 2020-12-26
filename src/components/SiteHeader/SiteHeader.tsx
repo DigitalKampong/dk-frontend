@@ -1,11 +1,18 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { Button, Input } from 'semantic-ui-react';
 import styles from './SiteHeader.module.css';
 
 const SiteHeader: React.FunctionComponent = () => {
 
+  const history: any = useHistory();
   const [input, setInput] = useState("");
+
+  function handleEnter(e: any): void {
+    if (e.key === 'Enter') {
+      history.push('/search', {searchInput: input})
+    }
+  }
 
   return (
     <>
@@ -27,7 +34,14 @@ const SiteHeader: React.FunctionComponent = () => {
           Craving for some hawker food?
         </div>
         <div className={styles["search-bar"]}>
-          <Input fluid className={styles["search-bar-input"]} placeholder='Search for hawker centre / food' value={input} onChange={e => setInput(e.target.value)}/>
+          <Input 
+            fluid 
+            className={styles["search-bar-input"]} 
+            placeholder='Search for hawker centre / food' 
+            value={input} 
+            onChange={e => setInput(e.target.value)}
+            onKeyPress={handleEnter}
+          />
           <Link to={{
             pathname: "/search",
             state: {

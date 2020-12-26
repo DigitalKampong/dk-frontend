@@ -1,11 +1,18 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { Button, Input } from 'semantic-ui-react';
 import styles from './SearchHeader.module.css';
 
 const SearchHeader: React.FunctionComponent = () => {
 
+  const history: any = useHistory();
   const [input, setInput] = useState<string>("");
+
+  function handleEnter(e: any): void {
+    if (e.key === 'Enter') {
+      history.push('/search', {searchInput: input})
+    }
+  }
 
   return (
     <>
@@ -30,6 +37,7 @@ const SearchHeader: React.FunctionComponent = () => {
             placeholder='search for hawker centre / food' 
             value={input} 
             onChange={e => setInput(e.target.value)}
+            onKeyPress={handleEnter}
           />
           <Link to={{
             pathname: "/search",
