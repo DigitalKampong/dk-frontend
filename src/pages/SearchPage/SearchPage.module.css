@@ -1,5 +1,5 @@
 .site-content {
-  margin: 0 12%;
+  margin: 5% 5%;
 }
 
 .section-search-header-row {
@@ -14,4 +14,29 @@
 .section-search-header {
   font-family: 'Montserrat';
   font-size: 30px;
+}
+
+.search-div {
+  display: flex;
+  width: inherit;
+}
+
+.filter-div {
+  width: 15%;
+  height: inherit;
+}
+
+.result-div {
+  width: 70%;
+}
+
+.checkbox-div {
+  margin: 20% 20%;
+  width: 50%;
+  display: grid;
+}
+
+#checkbox * {
+  display: block;
+  margin: 30px;
 }

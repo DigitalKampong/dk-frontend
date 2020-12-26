@@ -33,7 +33,6 @@ const SearchHeader: React.FunctionComponent<SearchProps> = (props) => {
             onChange={e => handleChange(e.target.value)}
           />
           <Button id="search" className={styles["search-button-primary"]}>Search</Button>
-          <Button basic className={styles["search-button"]}>Filters</Button>
         </div>
       </div>
       <div className={styles["search-header-filler"]}></div>
