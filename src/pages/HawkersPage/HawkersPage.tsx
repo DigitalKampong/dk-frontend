@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import SiteHeader from '../../components/SiteHeader/SiteHeader';
 import { getAllHawkers } from '../../services/hawker';
 import styles from './HawkersPage.module.css';
 import { Button } from 'semantic-ui-react'
 import HawkerGrid from '../../components/HawkerGrid/HawkerGrid';
+import SearchHeader from '../../components/SearchHeader/SearchHeader';
 
 const HawkerLocationPage: React.FunctionComponent = () => {
   const[hawkers, setHawkers] = useState([]);
@@ -16,7 +16,7 @@ const HawkerLocationPage: React.FunctionComponent = () => {
 
   return(
     <>
-      <SiteHeader searchInput= ""></SiteHeader>
+      <SearchHeader></SearchHeader>
       <div className={styles["site-content"]}>
         <div className={styles["site-content-header"]}>
           <b> Directory </b> of Hawker Centres:

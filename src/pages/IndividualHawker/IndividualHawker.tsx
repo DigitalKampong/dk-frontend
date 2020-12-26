@@ -25,7 +25,7 @@ const IndividualHawker : React.FunctionComponent = () => {
 
   return (
     <>
-      <SearchHeader searchInput="" handleChange={() => {}}></SearchHeader>
+      <SearchHeader></SearchHeader>
       <div className={styles['site-content']}>
         <div className={styles["hawker-item"]}>
           <Item.Group>

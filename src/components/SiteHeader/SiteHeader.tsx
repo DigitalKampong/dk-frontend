@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Input } from 'semantic-ui-react';
-import { MainSiteSearchProps } from '../../types/Search';
 import styles from './SiteHeader.module.css';
 
-const SiteHeader: React.FunctionComponent<MainSiteSearchProps> = ({searchInput}) => {
+const SiteHeader: React.FunctionComponent = () => {
 
-  const [currentSearchInput, setCurrentSearchInput] = useState(searchInput);
+  const [input, setInput] = useState("");
 
   return (
     <>
@@ -28,11 +27,11 @@ const SiteHeader: React.FunctionComponent<MainSiteSearchProps> = ({searchInput})
           Craving for some hawker food?
         </div>
         <div className={styles["search-bar"]}>
-          <Input fluid className={styles["search-bar-input"]} placeholder='Search for hawker centre / food' value={currentSearchInput} onChange={e => setCurrentSearchInput(e.target.value)}/>
+          <Input fluid className={styles["search-bar-input"]} placeholder='Search for hawker centre / food' value={input} onChange={e => setInput(e.target.value)}/>
           <Link to={{
             pathname: "/search",
             state: {
-              searchInput: currentSearchInput,
+              searchInput: input,
             }
           }}>
             <Button className={styles["search-button-primary"]}>Search</Button>

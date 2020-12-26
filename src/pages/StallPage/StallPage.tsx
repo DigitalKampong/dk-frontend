@@ -20,7 +20,7 @@ const StallPage: React.FunctionComponent = () => {
 
   return (
     <>
-      <SearchHeader handleChange={() => {}} searchInput=''></SearchHeader>
+      <SearchHeader></SearchHeader>
       <div className={styles["site-content"]}>
         <Grid>
           <Grid.Column width={6}>
