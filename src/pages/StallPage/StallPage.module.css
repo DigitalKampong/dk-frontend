@@ -1,0 +1,133 @@
+.site-content {
+  margin: 0 12%;
+}
+
+.stall-image {
+  width: 418px;
+  height: 264px;
+  margin-top: 38px;
+  background: url("https://react.semantic-ui.com/images/wireframe/image.png");
+  background-size: cover;
+  background-position: center;
+}
+
+.stall-title {
+  margin-top: 38px;
+  font-size: 36px;
+  font-family: 'Raleway';
+  font-weight: 700;
+  line-height: 42px;
+}
+
+.category-container {
+  display: flex;
+  align-items: center;
+  margin-top: 9px;
+  flex-wrap: wrap;
+}
+
+.category-tag {
+  border: solid;
+  border-width: 1px;
+  border-radius: 13px;
+  font-size: 14px;
+  min-width: 80px;
+  text-align: center;
+  margin-bottom: 9px;
+  margin-right: 32px;
+}
+
+.location-primary {
+  font-size: 18px;
+  font-weight: 700;
+  font-family: 'Raleway';
+  margin-top: 10px;
+}
+
+.location-secondary {
+  font-size: 18px;
+  font-weight: 400;
+  font-family: 'Raleway';
+  margin-top: 6px;
+}
+
+.ratings-container {
+  margin-top: 26px;
+  display: flex;
+  align-items: center;
+}
+
+.ratings-component {
+  margin-right: 48px;
+}
+
+.ratings-count {
+  font-size: 18px;
+  font-weight: 400;
+  font-family: 'Raleway';
+}
+
+.price-label {
+  font-size: 36px;
+  font-family: 'Raleway';
+  font-weight: 400;
+  line-height: 42px;
+  margin-top: 9px;
+}
+
+.price-append {
+  font-family: 'Raleway';
+  font-weight: 400;
+  line-height: 14px;
+}
+
+.opening-hours-title {
+  font-size: 14px;
+  margin-top: 14px;
+  margin-bottom: 2px;
+  font-weight: 700;
+  font-family: 'Raleway';
+  line-height: 24px;
+}
+
+.opening-hours-label {
+  font-size: 14px;
+  font-family: 'Raleway';
+  line-height: 24px;
+}
+
+.stall-button-container {
+  margin-top: 93px;
+}
+
+.button-secondary {
+  text-transform: uppercase !important;
+  font-size: 18px !important;
+  font-family: 'Montserrat' !important;
+  font-weight: 800 !important;
+  margin-left: 50px !important;
+}
+
+.button-primary {
+  text-transform: uppercase !important;
+  font-size: 18px !important;
+  font-family: 'Montserrat' !important;
+  font-weight: 800 !important;
+  background: #ff5c38 !important;
+  color: white !important;
+}
+
+.separator {
+  background: black;
+  height: 1px;
+  width: 100%;
+  margin-top: 45px;
+}
+
+.product-section-header {
+  font-size: 36px;
+  font-family: 'Raleway';
+  font-weight: 700;
+  line-height: 42px;
+  margin-top: 15px;
+}

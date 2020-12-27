@@ -1,16 +1,22 @@
 import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Button, Input } from 'semantic-ui-react';
-import styles from './SearchHeader.module.css';
+import styles from './SearchPageHeader.module.css';
 
-const SearchHeader: React.FunctionComponent = () => {
+interface Props {
+  searchInput: string;
+  handleSearch: Function;
+}
 
-  const history: any = useHistory();
-  const [input, setInput] = useState<string>("");
+const SearchPageHeader: React.FunctionComponent<Props> = (props) => {
+
+  const {searchInput, handleSearch} = props;
+  const [input, setInput] = useState<string>(searchInput);
+  
 
   function handleEnter(e: any): void {
     if (e.key === 'Enter') {
-      history.push('/search', {searchInput: input})
+      handleSearch(input);
     }
   }
 
@@ -31,22 +37,21 @@ const SearchHeader: React.FunctionComponent = () => {
           <Button className={styles["header-button-primary"]}>Log in</Button>
         </div>
         <div className={styles["search-bar"]}>
-          <Input 
+          <Input
             fluid 
             className={styles["search-bar-input"]} 
-            placeholder='search for hawker centre / food' 
-            value={input} 
-            onChange={e => setInput(e.target.value)}
+            placeholder='search for hawker centre / food'
+            value={input}
+            onChange={(e: any) => setInput(e.target.value)}
             onKeyPress={handleEnter}
           />
-          <Link to={{
-            pathname: "/search",
-            state: {
-              searchInput: input,
-            }
-          }}>
-            <Button id="search" className={styles["search-button-primary"]}>Search</Button>
-          </Link>
+          <Button
+            id="search" 
+            className={styles["search-button-primary"]}
+            onClick={() => handleSearch(input)}
+          >
+            Search
+          </Button>
         </div>
       </div>
       <div className={styles["search-header-filler"]}></div>
@@ -54,4 +59,4 @@ const SearchHeader: React.FunctionComponent = () => {
   );
 };
 
-export default SearchHeader;
+export default SearchPageHeader;

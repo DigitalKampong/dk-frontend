@@ -1,46 +1,58 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { Button, Input } from 'semantic-ui-react';
-import { SearchProps } from '../../types/Search';
-import './SiteHeader.css';
+import styles from './SiteHeader.module.css';
 
-const SiteHeader: React.FunctionComponent<SearchProps> = ({searchInput}) => {
+const SiteHeader: React.FunctionComponent = () => {
 
-  const [currentSearchInput, setCurrentSearchInput] = useState(searchInput);
+  const history: any = useHistory();
+  const [input, setInput] = useState("");
+
+  function handleEnter(e: any): void {
+    if (e.key === 'Enter') {
+      history.push('/search', {searchInput: input})
+    }
+  }
 
   return (
     <>
-      <div className="site-header">
+      <div className={styles["site-header"]}>
         <Link
           style={{textDecoration: 'none', color: "black"}}
           to={{
             pathname: "/"
           }}
         >
-          <div className="digital-kampong-icon">Digital Kampong</div>
+          <div className={styles["digital-kampong-icon"]}>Digital Kampong</div>
         </Link>
-        <div className="header-button-group">
-          <Button basic className="header-button">Kampong Centre</Button>
-          <Button basic className="header-button">Sign up</Button>
-          <Button className="header-button-primary">Log in</Button>
+        <div className={styles["header-button-group"]}>
+          <Button basic className={styles["header-button"]}>Kampong Centre</Button>
+          <Button basic className={styles["header-button"]}>Sign up</Button>
+          <Button className={styles["header-button-primary"]}>Log in</Button>
         </div>
-        <div className="slogan-text">
-          Find your favourite Hawker!
+        <div className={styles["slogan-text"]}>
+          Craving for some hawker food?
         </div>
-        <div className="search-bar">
-          <Input fluid className="search-bar-input" placeholder='search for hawker centre / food' value={currentSearchInput} onChange={e => setCurrentSearchInput(e.target.value)}/>
+        <div className={styles["search-bar"]}>
+          <Input 
+            fluid 
+            className={styles["search-bar-input"]} 
+            placeholder='Search for hawker centre / food' 
+            value={input} 
+            onChange={e => setInput(e.target.value)}
+            onKeyPress={handleEnter}
+          />
           <Link to={{
             pathname: "/search",
             state: {
-              searchInput: currentSearchInput,
+              searchInput: input,
             }
           }}>
-            <Button className="search-button-primary">Search</Button>
+            <Button className={styles["search-button-primary"]}>Search</Button>
           </Link>
-          <Button basic className="search-button">Filters</Button>
         </div>
       </div>
-      <div className="site-header-filler"></div>
+      <div className={styles["site-header-filler"]}></div>
     </>
   );
 };

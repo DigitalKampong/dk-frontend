@@ -71,3 +71,17 @@ export const updateStall = async (id: number, data: API) => {
       throw error;
     })
 }
+
+/**
+ * Search for stalls with provided search query input
+ * 
+ * @method GET
+ * @access Public
+ * @param query Search query
+ */
+export const searchStall = async (query: string) => {
+  return await Axios.get(ENDPOINTS.BASE + ENDPOINTS.SEARCH + query)
+    .catch(error => {
+      throw error;
+    });
+};

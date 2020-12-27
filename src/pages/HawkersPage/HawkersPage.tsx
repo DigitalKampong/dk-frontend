@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import SiteHeader from '../../components/SiteHeader/SiteHeader';
 import { getAllHawkers } from '../../services/hawker';
-import './HawkersPage.css';
+import styles from './HawkersPage.module.css';
 import { Button } from 'semantic-ui-react'
 import HawkerGrid from '../../components/HawkerGrid/HawkerGrid';
-import {Link} from 'react-router-dom';
+import SearchHeader from '../../components/SearchHeader/SearchHeader';
+import HawkerCentre from '../../types/HawkerCentre';
 
 const HawkerLocationPage: React.FunctionComponent = () => {
-  const[hawkers, setHawkers] = useState([]);
+
+  const[hawkers, setHawkers] = useState<HawkerCentre[]>([]);
 
   useEffect(() => {
     getAllHawkers().then(response => {
@@ -17,26 +18,24 @@ const HawkerLocationPage: React.FunctionComponent = () => {
 
   return(
     <>
-    <SiteHeader searchInput= ""></SiteHeader>
-    <div className = "site-content">
-      <div className = "site-content-header">
-        <b> Directory </b> of Hawker Centres:
+      <SearchHeader></SearchHeader>
+      <div className={styles["site-content"]}>
+        <div className={styles["site-content-header"]}>
+          <b> Directory </b> of Hawker Centres:
+        </div>
+        <div className={styles["map-content"]}></div>
+        <div className={styles["location-filters-row"]}>
+        <div className={styles["location-filters-header"]}> Hawker Centers </div>
+          <Button basic> East </Button>
+          <Button basic> West </Button>
+          <Button basic> Central </Button>
+          <Button basic> North </Button>
+          <Button basic> NorthEast </Button>
+        </div>
+        <div className={styles["hawker-list"]}>
+          <HawkerGrid hawkerList={hawkers} />
+        </div>
       </div>
-      <div className = "map-content"></div>
-      <div className = "location-filters-row">
-      <div className = "location-filters-header"> Hawker Centers </div>
-        <Button basic> East </Button>
-        <Button basic> West </Button>
-        <Button basic> Central </Button>
-        <Button basic> North </Button>
-        <Button basic> NorthEast </Button>
-      </div>
-      <Link to = '/individualhawker'>
-      <div className = "hawker-list">
-        <HawkerGrid hawkerList={hawkers} />
-      </div>
-      </Link>
-    </div>
     </>
 
   )
