@@ -1,0 +1,42 @@
+.modal {
+  width: 456px !important;
+}
+
+.modal-header {
+  font-family: 'Raleway' !important;
+  font-weight: 700 !important;
+  font-size: 24px !important;
+  line-height: 24px !important;
+  text-align: center;
+  background: #FFC448 !important;
+}
+
+.modal-content {
+  text-align: center;
+  padding: 0 53px !important;
+}
+
+.input-field {
+  height: 50px;
+  width: 100%;
+  background: #EBEBEB;
+  font-family: 'Raleway' !important;
+  font-size: 24px !important;
+  line-height: 24px !important;
+  font-weight: 400 !important;
+  margin-top: 26px;
+}
+
+.signup-button {
+  margin-top: 89px !important;
+  margin-bottom: 40px !important;
+  height: 51px !important;
+  width: 100%;
+  font-size: 24px !important;
+  padding: 0 !important;
+  font-family: 'Montserrat' !important;
+  font-weight: 800 !important;
+  box-shadow: none !important;
+  background: #448fff !important;
+  color: white !important;
+}

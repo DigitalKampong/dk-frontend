@@ -1,0 +1,81 @@
+.modal {
+  width: 456px !important;
+}
+
+.modal-header {
+  font-family: 'Raleway' !important;
+  font-weight: 700 !important;
+  font-size: 24px !important;
+  line-height: 24px !important;
+  text-align: center;
+  background: #FFC448 !important;
+}
+
+.modal-content {
+  text-align: center;
+  padding: 0 53px !important;
+}
+
+.input-field {
+  height: 50px;
+  width: 100%;
+  background: #EBEBEB;
+  font-family: 'Raleway' !important;
+  font-size: 24px !important;
+  line-height: 24px !important;
+  font-weight: 400 !important;
+  margin-top: 26px;
+}
+
+.login-button {
+  margin-top: 44px !important;
+  margin-bottom: 49px !important;
+  height: 51px !important;
+  width: 100%;
+  font-size: 24px !important;
+  padding: 0 !important;
+  font-family: 'Montserrat' !important;
+  font-weight: 800 !important;
+  box-shadow: none !important;
+  background: #ff5c38 !important;
+  color: white !important;
+}
+
+.modal-row {
+  width: 350px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.checkbox {
+  font-family: 'Raleway' !important;
+  font-size: 18px !important;
+  font-weight: 400 !important;
+  padding-top: 2px;
+}
+
+.link-text {
+  font-family: 'Raleway';
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 700;
+  color: #ff4b4b;
+  text-decoration-line: underline;
+}
+
+.modal-footer {
+  text-align: center !important;
+  padding: 0 !important;
+}
+
+.signup-button {
+  height: 51px;
+  width: 272px;
+  font-family: 'Montserrat' !important;
+  font-weight: 800 !important;
+  font-size: 18px !important;
+  margin: 26px 0 !important;
+  background: #448FFF !important;
+  color: white !important;
+}

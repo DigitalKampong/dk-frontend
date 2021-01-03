@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { Button, Input } from 'semantic-ui-react';
+import LogInModal from '../LogInModal/LogInModal';
+import SignUpModal from '../SignUpModal/SignUpModal';
 import styles from './SearchHeader.module.css';
 
 const SearchHeader: React.FunctionComponent = () => {
 
   const history: any = useHistory();
   const [input, setInput] = useState<string>("");
+  const [isLogInModalOpen, setLogInModalOpen] = useState(false);
+  const [isSignUpModalOpen, setSignUpModalOpen] = useState(false);
 
   function handleEnter(e: any): void {
     if (e.key === 'Enter') {
@@ -27,8 +31,14 @@ const SearchHeader: React.FunctionComponent = () => {
         </Link>
         <div className={styles["header-button-group"]}>
           <Button basic className={styles["header-button"]}>Kampong Centre</Button>
-          <Button basic className={styles["header-button"]}>Sign up</Button>
-          <Button className={styles["header-button-primary"]}>Log in</Button>
+          <Button basic 
+            className={styles["header-button"]} 
+            onClick={() => setSignUpModalOpen(true)}
+          >Sign up</Button>
+          <Button 
+            className={styles["header-button-primary"]} 
+            onClick={() => setLogInModalOpen(true)}
+          >Log in</Button>
         </div>
         <div className={styles["search-bar"]}>
           <Input 
@@ -50,6 +60,8 @@ const SearchHeader: React.FunctionComponent = () => {
         </div>
       </div>
       <div className={styles["search-header-filler"]}></div>
+      <LogInModal isOpen={isLogInModalOpen} setModalOpen={setLogInModalOpen} />
+      <SignUpModal isOpen={isSignUpModalOpen} setModalOpen={setSignUpModalOpen} />
     </>
   );
 };
