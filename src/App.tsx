@@ -7,6 +7,7 @@ import HawkersPage from "./pages/HawkersPage/HawkersPage";
 import IndividualHawker from "./pages/IndividualHawker/IndividualHawker";
 import './App.css';
 import 'semantic-ui-css/semantic.min.css'
+import Footer from './components/Footer/Footer';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/search" component={SearchPage} />
         <Route path="/" component={HomePage}/>
       </Switch>
+      <Footer />  
     </Router>
   );
 }
