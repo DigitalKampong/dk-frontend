@@ -23,7 +23,7 @@ const SearchHeader: React.FunctionComponent = () => {
             pathname: "/"
           }}
         >
-          <div className={styles["digital-kampong-icon"]}>Digital Kampong</div>
+          <div className={styles["digital-kampong-icon"]}>Digital Kampung</div>
         </Link>
         <div className={styles["header-button-group"]}>
           <Button basic className={styles["header-button"]}>Kampong Centre</Button>

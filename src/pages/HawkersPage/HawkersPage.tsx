@@ -23,7 +23,6 @@ const HawkerLocationPage: React.FunctionComponent = () => {
         <div className={styles["site-content-header"]}>
           <b> Directory </b> of Hawker Centres:
         </div>
-        <div className={styles["map-content"]}></div>
         <div className={styles["location-filters-row"]}>
         <div className={styles["location-filters-header"]}> Hawker Centers </div>
           <Button basic> East </Button>
@@ -42,3 +41,7 @@ const HawkerLocationPage: React.FunctionComponent = () => {
 }
 
 export default HawkerLocationPage
+
+/*
+        <div className={styles["map-content"]}></div>
+*/
