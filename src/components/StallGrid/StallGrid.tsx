@@ -9,6 +9,7 @@ interface Props {
 }
 
 const StallGrid: React.FunctionComponent<Props> = (props: Props) => {
+
   const { stallList } = props;
 
   return (
