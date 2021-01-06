@@ -19,14 +19,14 @@ const SiteHeader: React.FunctionComponent = () => {
     <>
       <div className={styles["site-header"]}>
         <div className={styles["site-header-top"]}>
-          <div className={styles["digital-kampong-div"]}>
+          <div className={styles["digital-kampung-div"]}>
             <Link
               style={{textDecoration: 'none', color: "black"}}
               to={{
                 pathname: "/"
               }}
             >
-              <img className={styles["digital-kampong-logo"]} src={whiteLogo} alt=""></img>
+              <img className={styles["digital-kampung-logo"]} src={whiteLogo} alt=""></img>
             </Link>
           </div>
           <div className={styles["header-button-group"]}>

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Input } from 'semantic-ui-react';
 import styles from './SearchPageHeader.module.css';
+import darkLogo from '../../images/dk-dark-logo.png';
 
 interface Props {
   searchInput: string;
@@ -23,18 +24,24 @@ const SearchPageHeader: React.FunctionComponent<Props> = (props) => {
   return (
     <>
       <div className={styles["search-header"]}>
-        <Link
-          style={{textDecoration: 'none', color: "black"}}
-          to={{
-            pathname: "/"
-          }}
-        >
-          <div className={styles["digital-kampong-icon"]}>Digital Kampung</div>
-        </Link>
-        <div className={styles["header-button-group"]}>
-          <Button basic className={styles["header-button"]}>Kampong Centre</Button>
-          <Button basic className={styles["header-button"]}>Sign up</Button>
-          <Button className={styles["header-button-primary"]}>Log in</Button>
+        <div className={styles["search-header-top"]}>
+            <div className={styles["digital-kampung-div"]}>
+              <Link
+                style={{textDecoration: 'none', color: "black"}}
+                to={{
+                  pathname: "/"
+                }}
+              >
+                <img className={styles["digital-kampung-icon"]} src={darkLogo} alt=""></img>
+              </Link>
+            </div>
+            <div>
+              <div className={styles["header-button-group"]}>
+                <Button basic className={styles["header-button"]}>kampung Centre</Button>
+                <Button basic className={styles["header-button"]}>Sign up</Button>
+                <Button className={styles["header-button-primary"]}>Log in</Button>
+              </div>
+          </div>
         </div>
         <div className={styles["search-bar"]}>
           <Input
