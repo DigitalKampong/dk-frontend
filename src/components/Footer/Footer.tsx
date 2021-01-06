@@ -12,12 +12,12 @@ const Footer: React.FunctionComponent = () => {
         <div>
           <div className={styles['image-div']}>
             <a href="http://www.fmas.org.sg/">
-              <img className={styles['image']} src={fmasLogo} alt=""/>
+              <img className={styles['image-fmas']} src={fmasLogo} alt=""/>
             </a>
           </div>
           <div className={styles['image-div']}>
             <a href="https://dsc.comp.nus.edu.sg/">
-              <img className={styles['image']} src={dscLogo} alt=""/>
+              <img className={styles['image-dsc']} src={dscLogo} alt=""/>
             </a>
           </div>
         </div>
