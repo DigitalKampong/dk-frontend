@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { Button, Input } from 'semantic-ui-react';
 import styles from './SiteHeader.module.css';
+import whiteLogo from '../../images/dk-white-logo.png';
 
 const SiteHeader: React.FunctionComponent = () => {
 
@@ -17,42 +18,47 @@ const SiteHeader: React.FunctionComponent = () => {
   return (
     <>
       <div className={styles["site-header"]}>
-        <Link
-          style={{textDecoration: 'none', color: "black"}}
-          to={{
-            pathname: "/"
-          }}
-        >
-          <div className={styles["digital-kampong-icon"]}>Digital Kampong</div>
-        </Link>
-        <div className={styles["header-button-group"]}>
-          <Button basic className={styles["header-button"]}>Kampong Centre</Button>
-          <Button basic className={styles["header-button"]}>Sign up</Button>
-          <Button className={styles["header-button-primary"]}>Log in</Button>
+        <div className={styles["site-header-top"]}>
+          <div className={styles["digital-kampung-div"]}>
+            <Link
+              style={{textDecoration: 'none', color: "black"}}
+              to={{
+                pathname: "/"
+              }}
+            >
+              <img className={styles["digital-kampung-logo"]} src={whiteLogo} alt=""></img>
+            </Link>
+          </div>
+          <div className={styles["header-button-group"]}>
+            <Button className={styles["header-button"]}>Kampung Centre</Button>
+            <Button className={styles["header-button"]}>Sign up</Button>
+            <Button className={styles["header-button-primary"]}>Log in</Button>
+          </div>
         </div>
-        <div className={styles["slogan-text"]}>
-          Craving for some hawker food?
-        </div>
-        <div className={styles["search-bar"]}>
-          <Input 
-            fluid 
-            className={styles["search-bar-input"]} 
-            placeholder='Search for hawker centre / food' 
-            value={input} 
-            onChange={e => setInput(e.target.value)}
-            onKeyPress={handleEnter}
-          />
-          <Link to={{
-            pathname: "/search",
-            state: {
-              searchInput: input,
-            }
-          }}>
-            <Button className={styles["search-button-primary"]}>Search</Button>
-          </Link>
+        <div className={styles["site-header-top"]}>
+          <div className={styles["slogan-text"]}>
+            Craving for some hawker food?
+          </div>
+          <div className={styles["search-bar"]}>
+            <Input 
+              fluid 
+              className={styles["search-bar-input"]} 
+              placeholder='Search for hawker centre / food' 
+              value={input} 
+              onChange={e => setInput(e.target.value)}
+              onKeyPress={handleEnter}
+            />
+            <Link to={{
+              pathname: "/search",
+              state: {
+                searchInput: input,
+              }
+            }}>
+              <Button className={styles["search-button-primary"]}>Search</Button>
+            </Link>
+          </div>
         </div>
       </div>
-      <div className={styles["site-header-filler"]}></div>
     </>
   );
 };

@@ -13,6 +13,7 @@ const HawkerLocationPage: React.FunctionComponent = () => {
   useEffect(() => {
     getAllHawkers().then(response => {
       setHawkers(response.data);
+      console.log(response.data);
     });
   },[]);
 
@@ -23,14 +24,13 @@ const HawkerLocationPage: React.FunctionComponent = () => {
         <div className={styles["site-content-header"]}>
           <b> Directory </b> of Hawker Centres:
         </div>
-        <div className={styles["map-content"]}></div>
         <div className={styles["location-filters-row"]}>
-        <div className={styles["location-filters-header"]}> Hawker Centers </div>
+        <div className={styles["location-filters-header"]}> All Hawker Centers </div>
           <Button basic> East </Button>
           <Button basic> West </Button>
           <Button basic> Central </Button>
           <Button basic> North </Button>
-          <Button basic> NorthEast </Button>
+          <Button basic> South</Button>
         </div>
         <div className={styles["hawker-list"]}>
           <HawkerGrid hawkerList={hawkers} />
@@ -42,3 +42,7 @@ const HawkerLocationPage: React.FunctionComponent = () => {
 }
 
 export default HawkerLocationPage
+
+/*
+        <div className={styles["map-content"]}></div>
+*/
