@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { Button, Input } from 'semantic-ui-react';
 import styles from './SiteHeader.module.css';
+import darkLogo from '../../images/digitalkampungblacklogo.png';
 
 const SiteHeader: React.FunctionComponent = () => {
 
@@ -23,7 +24,9 @@ const SiteHeader: React.FunctionComponent = () => {
             pathname: "/"
           }}
         >
-          <div className={styles["digital-kampong-icon"]}>Digital Kampung</div>
+          <div className={styles["digital-kampong-div"]}>
+            <img className={styles["digital-kampong-logo"]} src={darkLogo} alt=""></img>
+          </div>
         </Link>
         <div className={styles["header-button-group"]}>
           <Button basic className={styles["header-button"]}>Kampong Centre</Button>
