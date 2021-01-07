@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import StallGrid from '../../components/StallGrid/StallGrid';
 import { searchStall } from '../../services/stall';
@@ -23,23 +23,36 @@ const SearchPage: React.FunctionComponent = () => {
   const [locationFilter, setLocationFilter] = useState<string[]>([]);
   const [ratingFilter, setRatingFilter] = useState<number>(0);
 
+  const filterStalls = useCallback(() => {
+    setStalls(originalStalls.filter((s) => {
+      return cuisineFilter.includes(s["Categories"]["name"]) || locationFilter.includes(s["HawkerCentre"]["Region"]["name"]);
+    }))
+  }, [])
+
   useEffect(() => {
     searchStall(query).then(response => {
+
+      const filterStalls: any = (stalls: any[]) => {
+        return stalls.filter((s) => { 
+          return cuisineFilter.includes(s["Categories"]["name"]) || locationFilter.includes(s["HawkerCentre"]["Region"]["name"]);
+        })
+      }
+
       setOriginalStalls(response.data);
-      setStalls(filterStalls(response.data));
+      setStalls(response.data);
     })
   }, [query]);
 
   useEffect(() => {
-    setStalls(() => filterStalls(originalStalls))
-  }, [ratingFilter])
 
-  function filterStalls(stalls: Stall[]): any {
-    return stalls;
-    //(cuisineFilter.includes(s.cuisine) ||
-    //locationFilter.includes(s.location)) &&
-    //s.rating > ratingFilter;
-  }
+    const filterStalls: any = (stalls: any[]) => {
+      return stalls.filter((s) => { 
+        return cuisineFilter.includes(s["Categories"]["name"]) || locationFilter.includes(s["HawkerCentre"]["Region"]["name"]);
+      })
+    }
+
+    setStalls(() => filterStalls(originalStalls))
+  }, [cuisineFilter, locationFilter])
 
   function filterByCuisine(e: any, data: any): void {
     if (data.checked) {
@@ -76,8 +89,8 @@ const SearchPage: React.FunctionComponent = () => {
             />
             <Checkbox
               name="cuisine"
-              label="Muslim"
-              value="Muslim"
+              label="Malay"
+              value="Malay"
               onChange={filterByCuisine}
             />
             <Checkbox
