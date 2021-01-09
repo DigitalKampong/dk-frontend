@@ -10,7 +10,7 @@ export default interface Stall {
   updatedAt: string;
   Images: string[];
   HawkerCentre: HawkerCentre;
-  Categories: string[] | Category[];
+  Categories: Category[] | string[];
   rating: number;
   description: string;
   contactNo: string;

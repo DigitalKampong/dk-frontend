@@ -1,14 +1,15 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import StallGrid from '../../components/StallGrid/StallGrid';
 import { searchStall } from '../../services/stall';
 import styles from './SearchPage.module.css';
-import { Checkbox, Rating } from 'semantic-ui-react';
+import { Checkbox } from 'semantic-ui-react';
 import SearchPageHeader from '../../components/SearchPageHeader/SearchPageHeader';
 import Stall from '../../types/Stall';
 
 interface StateProps {
   searchInput: string;
+  locationInput?: string;
 }
 
 const SearchPage: React.FunctionComponent = () => {
@@ -17,46 +18,46 @@ const SearchPage: React.FunctionComponent = () => {
 
   const [stalls, setStalls] = useState<Stall[]>([]);
   const [originalStalls, setOriginalStalls] = useState<Stall[]>([]);
-  const [query, setQuery] = useState<string>(state.searchInput);
-  const [cuisineFilter, setCuisineFilter] = useState<string[]>([]);
-  const [locationFilter, setLocationFilter] = useState<string[]>([]);
-  const [ratingFilter, setRatingFilter] = useState<number>(0);
+  const [query, setQuery] = useState<string>('');
+
+  const [locationFilter, setLocationFilter] = useState<string[]>(state.locationInput ? [state.locationInput] : []);
 
   useEffect(() => {
+    const filterStalls = (stalls: Stall[]) => {
+      return stalls.filter((s) => {
+        return locationFilter.includes(s['HawkerCentre']['Region']['name']);
+      });
+    };
     searchStall(query).then((response) => {
       setOriginalStalls(response.data);
-      setStalls(response.data);
+      setStalls(() => filterStalls(response.data));
     });
-  }, [query]);
+  }, [query, locationFilter]);
 
   useEffect(() => {
-    const filterStalls: any = (stalls: any[]) => {
+    const filterStalls = (stalls: Stall[]) => {
       return stalls.filter((s) => {
-        return cuisineFilter.includes(s['Categories']['name']) || locationFilter.includes(s['HawkerCentre']['Region']['name']);
+        return locationFilter.includes(s['HawkerCentre']['Region']['name']);
       });
     };
 
-    setStalls(() => filterStalls(originalStalls));
-  }, [cuisineFilter, locationFilter]);
-
-  function filterByCuisine(e: any, data: any): void {
-    if (data.checked) {
-      setCuisineFilter(() => [...cuisineFilter, data.value]);
+    if (locationFilter.length === 0) {
+      setStalls(originalStalls);
     } else {
-      setCuisineFilter(() => cuisineFilter.splice(cuisineFilter.indexOf(data.value), 1));
+      setStalls(() => filterStalls(originalStalls));
     }
-  }
+  }, [locationFilter, originalStalls]);
 
   function filterByLocation(e: any, data: any): void {
     if (data.checked) {
       setLocationFilter(() => [...locationFilter, data.value]);
     } else {
-      setLocationFilter(() => locationFilter.splice(locationFilter.indexOf(data.value), 1));
+      setLocationFilter(() => locationFilter.filter((e: string) => e !== data.value));
     }
   }
 
-  function filterByRating(e: any): void {
-    setRatingFilter(e.target.value);
+  function checkIfCheckedByLocation(value: string): boolean {
+    return locationFilter.includes(value);
   }
 
   return (
@@ -66,21 +67,15 @@ const SearchPage: React.FunctionComponent = () => {
         <div className={styles['filter-div']}>
           <div id="checkbox" className={styles['checkbox-div']}>
             <b>Cuisine</b>
-            <Checkbox name="cuisine" label="Chinese" value="Chinese" onChange={filterByCuisine} />
-            <Checkbox name="cuisine" label="Malay" value="Malay" onChange={filterByCuisine} />
-            <Checkbox name="cuisine" label="Western" value="Western" onChange={filterByCuisine} />
+            <Checkbox name="cuisine" label="Chinese" value="Chinese" />
+            <Checkbox name="cuisine" label="Malay" value="Malay" />
+            <Checkbox name="cuisine" label="Western" value="Western" />
             <b>Location</b>
             <Checkbox name="location" label="North" value="North" onChange={filterByLocation} />
             <Checkbox name="location" label="South" value="South" onChange={filterByLocation} />
-            <Checkbox name="location" label="East" value="East" onChange={filterByLocation} />
+            <Checkbox name="location" label="East" value="East" onChange={filterByLocation} checked={checkIfCheckedByLocation('East')} />
             <Checkbox name="location" label="West" value="West" onChange={filterByLocation} />
             <Checkbox name="location" label="Central" value="Central" onChange={filterByLocation} />
-            <b>
-              Rating {'>'} {ratingFilter}
-            </b>
-            <input type="range" min={0} max={5} value={ratingFilter} onChange={filterByRating} />
-            <br />
-            <Rating rating={ratingFilter} maxRating={5} />
           </div>
         </div>
         <div className={styles['result-div']}>
@@ -99,3 +94,22 @@ const SearchPage: React.FunctionComponent = () => {
 };
 
 export default SearchPage;
+
+/*
+  <b>
+    Rating {'>'} {ratingFilter}
+  </b>
+  <input type="range" min={0} max={5} value={ratingFilter} onChange={filterByRating} />
+  <br />
+  <Rating rating={ratingFilter} maxRating={5} />
+
+    function filterByCuisine(e: any, data: any): void {
+    if (data.checked) {
+      setCuisineFilter(() => [...cuisineFilter, data.value]);
+    } else {
+      setCuisineFilter(() => cuisineFilter.filter((e: string) => e !== data.value));
+    }
+  }
+
+    const [cuisineFilter, setCuisineFilter] = useState<string[]>([]);
+*/
