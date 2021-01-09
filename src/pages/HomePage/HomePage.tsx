@@ -10,6 +10,7 @@ const HomePage: React.FunctionComponent = () => {
   const [stalls, setStalls] = useState<Stall[]>([]);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     getAllStalls().then((response) => {
       setStalls(response.data);
     });
@@ -64,62 +65,27 @@ const HomePage: React.FunctionComponent = () => {
           </div>
         </div>
         <div className={styles['location-grid']}>
-          <Link
-            to={{
-              pathname: '/search',
-              state: {
-                locationInput: 'North',
-              },
-            }}
-          >
+          <Link to={{ pathname: '/search', state: { locationInput: 'North' } }}>
             <div className={styles['category-grid-cell']}>
               <div className={styles['category-grid-label']}>North</div>
             </div>
           </Link>
-          <Link
-            to={{
-              pathname: '/search',
-              state: {
-                locationInput: 'South',
-              },
-            }}
-          >
+          <Link to={{ pathname: '/search', state: { locationInput: 'South' } }}>
             <div className={styles['category-grid-cell']}>
               <div className={styles['category-grid-label']}>South</div>
             </div>
           </Link>
-          <Link
-            to={{
-              pathname: '/search',
-              state: {
-                locationInput: 'Central',
-              },
-            }}
-          >
+          <Link to={{ pathname: '/search', state: { locationInput: 'Central' } }}>
             <div className={styles['category-grid-cell']}>
               <div className={styles['category-grid-label']}>Central</div>
             </div>
           </Link>
-          <Link
-            to={{
-              pathname: '/search',
-              state: {
-                locationInput: 'East',
-              },
-            }}
-          >
+          <Link to={{ pathname: '/search', state: { locationInput: 'East' } }}>
             <div className={styles['category-grid-cell']}>
               <div className={styles['category-grid-label']}>East</div>
             </div>
           </Link>
-          <Link
-            to={{
-              pathname: '/search',
-              state: {
-                locationInput: 'West',
-              },
-            }}
-          >
+          <Link to={{ pathname: '/search', state: { locationInput: 'West' } }}>
             <div className={styles['category-grid-cell']}>
               <div className={styles['category-grid-label']}>West</div>
             </div>
@@ -130,10 +96,13 @@ const HomePage: React.FunctionComponent = () => {
             <b>Explore</b> by Directories
           </div>
         </div>
+
         <div className={styles['directory-grid']}>
-          <div className={styles['category-grid-cell']}>
-            <div className={styles['category-grid-label']}>View all stalls</div>
-          </div>
+          <Link to={{ pathname: '/search', state: { searchInput: '' } }}>
+            <div className={styles['category-grid-cell']}>
+              <div className={styles['category-grid-label']}>View all stalls</div>
+            </div>
+          </Link>
           <Link to="/hawkers">
             <div className={styles['category-grid-cell']}>
               <div className={styles['category-grid-label']}>View all Hawker centres</div>

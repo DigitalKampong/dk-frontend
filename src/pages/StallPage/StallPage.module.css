@@ -6,7 +6,7 @@
   width: 418px;
   height: 264px;
   margin-top: 38px;
-  background: url("https://react.semantic-ui.com/images/wireframe/image.png");
+  background: url('https://react.semantic-ui.com/images/wireframe/image.png');
   background-size: cover;
   background-position: center;
 }

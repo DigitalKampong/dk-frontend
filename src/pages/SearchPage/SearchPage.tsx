@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import StallGrid from '../../components/StallGrid/StallGrid';
 import { searchStall } from '../../services/stall';
 import styles from './SearchPage.module.css';

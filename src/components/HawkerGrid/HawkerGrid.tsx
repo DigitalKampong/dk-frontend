@@ -4,34 +4,36 @@ import { Button, List } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import styles from './HawkerGrid.module.css';
 
-interface Props{
-    hawkerList: Hawker[];
+interface Props {
+  hawkerList: Hawker[];
 }
 
-const HawkerGrid : React.FunctionComponent<Props> = (props : Props) => {
-  const{ hawkerList } = props;
-  return(
+const HawkerGrid: React.FunctionComponent<Props> = (props: Props) => {
+  const { hawkerList } = props;
+  return (
     <div>
       <List divided relaxed>
-        {hawkerList.map( hawker => {
+        {hawkerList.map((hawker) => {
           return (
             <List.Item key={hawker.id}>
-              <Link to={{
-                pathname: `/hawkers/${hawker.name}`,
-                state: {
-                  selectedHawker: hawker.id
-                }
-              }}>
-                <Button basic className={styles['hawker-button']}> 
+              <Link
+                to={{
+                  pathname: `/hawkers/${hawker.name}`,
+                  state: {
+                    selectedHawker: hawker.id,
+                  },
+                }}
+              >
+                <Button basic className={styles['hawker-button']}>
                   {hawker.name}
                 </Button>
               </Link>
             </List.Item>
-          )
-      })}
+          );
+        })}
       </List>
     </div>
-    )
-}
+  );
+};
 
 export default HawkerGrid;
