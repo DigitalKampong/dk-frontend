@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import StallGrid from '../../components/StallGrid/StallGrid';
 import { searchStall } from '../../services/stall';
 import styles from './SearchPage.module.css';
@@ -23,6 +23,7 @@ const SearchPage: React.FunctionComponent = () => {
   const [locationFilter, setLocationFilter] = useState<string[]>(state.locationInput ? [state.locationInput] : []);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     const filterStalls = (stalls: Stall[]) => {
       return stalls.filter((s) => {
         return locationFilter.includes(s['HawkerCentre']['Region']['name']);
@@ -71,11 +72,11 @@ const SearchPage: React.FunctionComponent = () => {
             <Checkbox name="cuisine" label="Malay" value="Malay" />
             <Checkbox name="cuisine" label="Western" value="Western" />
             <b>Location</b>
-            <Checkbox name="location" label="North" value="North" onChange={filterByLocation} />
-            <Checkbox name="location" label="South" value="South" onChange={filterByLocation} />
+            <Checkbox name="location" label="North" value="North" onChange={filterByLocation} checked={checkIfCheckedByLocation('North')} />
+            <Checkbox name="location" label="South" value="South" onChange={filterByLocation} checked={checkIfCheckedByLocation('South')} />
             <Checkbox name="location" label="East" value="East" onChange={filterByLocation} checked={checkIfCheckedByLocation('East')} />
-            <Checkbox name="location" label="West" value="West" onChange={filterByLocation} />
-            <Checkbox name="location" label="Central" value="Central" onChange={filterByLocation} />
+            <Checkbox name="location" label="West" value="West" onChange={filterByLocation} checked={checkIfCheckedByLocation('West')} />
+            <Checkbox name="location" label="Central" value="Central" onChange={filterByLocation} checked={checkIfCheckedByLocation('Central')} />
           </div>
         </div>
         <div className={styles['result-div']}>
