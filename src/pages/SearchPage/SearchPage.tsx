@@ -23,12 +23,6 @@ const SearchPage: React.FunctionComponent = () => {
   const [locationFilter, setLocationFilter] = useState<string[]>([]);
   const [ratingFilter, setRatingFilter] = useState<number>(0);
 
-  const filterStalls = useCallback(() => {
-    setStalls(originalStalls.filter((s) => {
-      return cuisineFilter.includes(s["Categories"]["name"]) || locationFilter.includes(s["HawkerCentre"]["Region"]["name"]);
-    }))
-  }, [])
-
   useEffect(() => {
     searchStall(query).then(response => {
 
@@ -39,9 +33,10 @@ const SearchPage: React.FunctionComponent = () => {
       }
 
       setOriginalStalls(response.data);
-      setStalls(response.data);
+      setStalls(filterStalls(response.data));
     })
   }, [query]);
+
 
   useEffect(() => {
 
