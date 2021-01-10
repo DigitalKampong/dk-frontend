@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Input } from 'semantic-ui-react';
+import HeaderUserButtons from '../HeaderUserButtons/HeaderUserButtons';
 import styles from './SearchPageHeader.module.css';
 
 interface Props {
@@ -33,8 +34,7 @@ const SearchPageHeader: React.FunctionComponent<Props> = (props) => {
         </Link>
         <div className={styles["header-button-group"]}>
           <Button basic className={styles["header-button"]}>Kampong Centre</Button>
-          <Button basic className={styles["header-button"]}>Sign up</Button>
-          <Button className={styles["header-button-primary"]}>Log in</Button>
+          <HeaderUserButtons />
         </div>
         <div className={styles["search-bar"]}>
           <Input

@@ -13,7 +13,6 @@ const StallPage: React.FunctionComponent = () => {
 
   useEffect(() => {
     getStall(parseInt(params.id)).then(response => {
-      console.log(response.data);
       setStall(response.data);
     });
   }, [params.id]); 

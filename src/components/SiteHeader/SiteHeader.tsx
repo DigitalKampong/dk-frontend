@@ -1,17 +1,13 @@
-import { setMaxListeners } from 'process';
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { Button, Input } from 'semantic-ui-react';
-import LogInModal from '../LogInModal/LogInModal';
-import SignUpModal from '../SignUpModal/SignUpModal';
+import HeaderUserButtons from '../HeaderUserButtons/HeaderUserButtons';
 import styles from './SiteHeader.module.css';
 
 const SiteHeader: React.FunctionComponent = () => {
 
   const history: any = useHistory();
   const [input, setInput] = useState("");
-  const [isLogInModalOpen, setLogInModalOpen] = useState(false);
-  const [isSignUpModalOpen, setSignUpModalOpen] = useState(false);
 
   function handleEnter(e: any): void {
     if (e.key === 'Enter') {
@@ -32,14 +28,7 @@ const SiteHeader: React.FunctionComponent = () => {
         </Link>
         <div className={styles["header-button-group"]}>
           <Button basic className={styles["header-button"]}>Kampong Centre</Button>
-          <Button basic 
-            className={styles["header-button"]} 
-            onClick={() => setSignUpModalOpen(true)}
-          >Sign up</Button>
-          <Button 
-            className={styles["header-button-primary"]} 
-            onClick={() => setLogInModalOpen(true)}
-          >Log in</Button>
+          <HeaderUserButtons />
         </div>
         <div className={styles["slogan-text"]}>
           Craving for some hawker food?
@@ -64,8 +53,6 @@ const SiteHeader: React.FunctionComponent = () => {
         </div>
       </div>
       <div className={styles["site-header-filler"]}></div>
-      <LogInModal isOpen={isLogInModalOpen} setModalOpen={setLogInModalOpen} />
-      <SignUpModal isOpen={isSignUpModalOpen} setModalOpen={setSignUpModalOpen} />
     </>
   );
 };

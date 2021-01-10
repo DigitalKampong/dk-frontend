@@ -1,0 +1,17 @@
+.header-button {
+  text-transform: uppercase !important;
+  font-size: 18px !important;
+  font-family: 'Montserrat' !important;
+  font-weight: 800 !important;
+  box-shadow: none !important;
+}
+
+.header-button-primary {
+  text-transform: uppercase !important;
+  font-size: 18px !important;
+  font-family: 'Montserrat' !important;
+  font-weight: 800 !important;
+  box-shadow: none !important;
+  background: #ff5c38 !important;
+  color: white !important;
+}
