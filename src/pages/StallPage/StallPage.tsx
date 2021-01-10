@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Button, Grid, GridColumn, Rating } from 'semantic-ui-react';
+import { Button, Grid, GridColumn, Progress, Rating } from 'semantic-ui-react';
 import FoodGrid from '../../components/FoodGrid/FoodGrid';
 import SearchHeader from '../../components/SearchHeader/SearchHeader';
 import { getStall } from '../../services/stall';
@@ -75,8 +75,83 @@ const StallPage: React.FunctionComponent = () => {
           </GridColumn>
         </Grid>
         <div className={styles["separator"]}></div>
-        <div className={styles["product-section-header"]}>Products</div>
+        <div className={styles["section-header"]}>Products</div>
         <FoodGrid foodList={stall ? stall?.Products : []} />
+        <div className={styles["separator"]}></div>
+        <div className={styles["section-header"]}>
+          Ratings {'&'} Reviews
+          <Button className={styles["button-special"]}>Give review</Button>
+        </div>
+        <div className={styles['rating-component']}>
+          <div>
+            <div className={styles['comment-ratings-number']}>3.0/5</div>
+            <Rating className={styles['comment-ratings']} maxRating={5} defaultRating={3} size='massive' icon='star' disabled/>
+            <div className={styles['rating-count-label']}>2250 ratings</div>
+          </div>
+          <div>
+            <div className={styles['rating-row']}>
+              <Rating maxRating={5} defaultRating={1} size='massive' icon='star' disabled />
+              <Progress className={styles['rating-row-progress']} percent={40} warning />
+              <div className={styles['rating-row-count']}>200</div>
+            </div>
+            <div className={styles['rating-row']}>
+              <Rating maxRating={5} defaultRating={2} size='massive' icon='star' disabled />
+              <Progress className={styles['rating-row-progress']} percent={60} warning />
+              <div className={styles['rating-row-count']}>300</div>
+            </div>
+            <div className={styles['rating-row']}>
+              <Rating maxRating={5} defaultRating={3} size='massive' icon='star' disabled />
+              <Progress className={styles['rating-row-progress']} percent={80} warning />
+              <div className={styles['rating-row-count']}>1200</div>
+            </div>
+            <div className={styles['rating-row']}>
+              <Rating maxRating={5} defaultRating={4} size='massive' icon='star' disabled />
+              <Progress className={styles['rating-row-progress']} percent={20} warning />
+              <div className={styles['rating-row-count']}>20</div>
+            </div>
+            <div className={styles['rating-row']}>
+              <Rating maxRating={5} defaultRating={5} size='massive' icon='star' disabled />
+              <Progress className={styles['rating-row-progress']} percent={5} warning />
+              <div className={styles['rating-row-count']}>10</div>
+            </div>
+          </div>
+        </div>
+        <div className={styles['review-header']}>Product Reviews</div>
+        <div className={styles['review-card']}>
+          <div className={styles['review-card-row']}>
+            <div>
+              <Rating maxRating={5} defaultRating={4} size='massive' icon='star' disabled />
+              <div className={styles['comment-username']}>by James Wang</div>
+            </div>
+            <div className={styles['comment-date']}>
+              08 Aug 2020
+            </div>
+          </div>
+          <div className={styles['comment-text']}>Great food, helpful stall owner! Would definitely come again!</div>
+        </div>
+        <div className={styles['review-card']}>
+          <div className={styles['review-card-row']}>
+            <div>
+              <Rating maxRating={5} defaultRating={4} size='massive' icon='star' disabled />
+              <div className={styles['comment-username']}>by James Wang</div>
+            </div>
+            <div className={styles['comment-date']}>
+              08 May 2020
+            </div>
+          </div>
+          <div className={styles['comment-text']}>Really love their steamed chicken! The steamed chicken rice set is a must try!!</div>
+        </div>
+        <div className={styles['review-card']}>
+          <div className={styles['review-card-row']}>
+            <div>
+              <Rating maxRating={5} defaultRating={4} size='massive' icon='star' disabled />
+              <div className={styles['comment-username']}>by Thomas Lim</div>
+            </div>
+            <div className={styles['comment-date']}>
+              08 May 2020
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );

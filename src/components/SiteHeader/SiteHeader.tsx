@@ -32,7 +32,7 @@ const SiteHeader: React.FunctionComponent = () => {
           </div>
           <div className={styles["header-button-group"]}>
             <Button className={styles["header-button"]}>Kampung Centre</Button>
-            <HeaderUserButtons />
+            <HeaderUserButtons isMainHeader={true} />
           </div>
         </div>
         <div className={styles["site-header-top"]}>

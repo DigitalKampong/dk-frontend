@@ -5,7 +5,11 @@ import styles from './HeaderUserButtons.module.css';
 import { Button } from 'semantic-ui-react';
 import { isLoggedIn } from '../../services/user';
 
-const HeaderUserButtons = () => {  
+interface Props {
+  isMainHeader: boolean;
+}
+
+const HeaderUserButtons = (props: Props) => {  
   const [isLogInModalOpen, setLogInModalOpen] = useState(false);
   const [isSignUpModalOpen, setSignUpModalOpen] = useState(false);
   const [userIsLoggedIn, setIsLoggedIn] = useState(false);
@@ -31,11 +35,11 @@ const HeaderUserButtons = () => {
     <>
       {!userIsLoggedIn && (
         <>
-          <Button basic 
+          <Button basic={props.isMainHeader ? undefined : true}
             className={styles["header-button"]} 
             onClick={() => setSignUpModalOpen(true)}
           >Sign up</Button>
-          <Button 
+          <Button
             className={styles["header-button-primary"]} 
             onClick={() => setLogInModalOpen(true)}
           >Log in</Button>
@@ -43,7 +47,7 @@ const HeaderUserButtons = () => {
       )}
       {userIsLoggedIn && (
         <>
-          <Button basic
+          <Button basic={props.isMainHeader ? undefined : true}
             className={styles["header-button"]}
             onClick={handleLogOut}
           >Log out</Button>

@@ -39,7 +39,7 @@ const SearchPageHeader: React.FunctionComponent<Props> = (props) => {
             <div>
               <div className={styles["header-button-group"]}>
                 <Button basic className={styles["header-button"]}>kampung Centre</Button>
-                <HeaderUserButtons />
+                <HeaderUserButtons isMainHeader={false} />
               </div>
           </div>
         </div>
