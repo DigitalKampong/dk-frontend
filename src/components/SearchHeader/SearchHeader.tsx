@@ -3,6 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { Button, Input } from 'semantic-ui-react';
 import HeaderUserButtons from '../HeaderUserButtons/HeaderUserButtons';
 import styles from './SearchHeader.module.css';
+import darkLogo from '../../images/dk-dark-logo.png';
 
 const SearchHeader: React.FunctionComponent = () => {
 
@@ -18,17 +19,23 @@ const SearchHeader: React.FunctionComponent = () => {
   return (
     <>
       <div className={styles["search-header"]}>
-        <Link
-          style={{textDecoration: 'none', color: "black"}}
-          to={{
-            pathname: "/"
-          }}
-        >
-          <div className={styles["digital-kampong-icon"]}>Digital Kampong</div>
-        </Link>
-        <div className={styles["header-button-group"]}>
-          <Button basic className={styles["header-button"]}>Kampong Centre</Button>
-          <HeaderUserButtons />
+        <div className={styles["search-header-top"]}>
+          <div className={styles["digital-kampung-div"]}>
+            <Link
+              style={{textDecoration: 'none', color: "black"}}
+              to={{
+                pathname: "/"
+              }}
+            >
+              <img className={styles["digital-kampung-icon"]} src={darkLogo} alt=""></img>
+            </Link>
+          </div>
+          <div>
+            <div className={styles["header-button-group"]}>
+              <Button basic className={styles["header-button"]}>kampung Centre</Button>
+              <HeaderUserButtons />
+            </div>
+         </div>
         </div>
         <div className={styles["search-bar"]}>
           <Input 

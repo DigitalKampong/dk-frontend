@@ -35,7 +35,7 @@ const SearchPage: React.FunctionComponent = () => {
   }, [ratingFilter])
 
   function filterStalls(stalls: Stall[]): any {
-    return stalls.filter((s: Stall) => s.rating > ratingFilter);
+    return stalls;
     //(cuisineFilter.includes(s.cuisine) ||
     //locationFilter.includes(s.location)) &&
     //s.rating > ratingFilter;

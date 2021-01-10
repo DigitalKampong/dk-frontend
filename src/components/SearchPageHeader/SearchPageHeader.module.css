@@ -1,5 +1,5 @@
 .search-header {
-  background-color: #f7e577;
+  background-color: #FFC448;
   position: fixed;
   width: 100%;
   top: 0;
@@ -13,20 +13,20 @@
   height: 200px;
 }
 
-.digital-kampong-icon {
-  position: absolute;
-  font-size: 36px;
-  font-family: 'Raleway';
-  left: 70px;
-  top: 36px;
+.digital-kampung-icon {
+  width: 320px;
+  height: 80px;
+  padding: 1px;
 }
 
 .header-button-group {
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
-  margin-top: 35px;
-  padding-right: 54px;
+  float: right;
+  padding: 20px 20px 20px 20px;
+}
+
+.digital-kampung-div {
+  padding: 20px 20px 20px 20px;
+  float: left;
 }
 
 .header-button {
