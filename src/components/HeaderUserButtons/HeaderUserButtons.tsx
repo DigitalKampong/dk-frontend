@@ -22,6 +22,11 @@ const HeaderUserButtons = () => {
     setIsLoggedIn(false);
   }, []);
 
+  const handleSignUpAction = useCallback(() => {
+    setLogInModalOpen(false);
+    setSignUpModalOpen(true);
+  }, []);
+
   return (
     <>
       {!userIsLoggedIn && (
@@ -44,7 +49,7 @@ const HeaderUserButtons = () => {
           >Log out</Button>
         </>
       )}
-      <LogInModal isOpen={isLogInModalOpen} setModalOpen={setLogInModalOpen} />
+      <LogInModal isOpen={isLogInModalOpen} setModalOpen={setLogInModalOpen} handleSignUpAction={handleSignUpAction} />
       <SignUpModal isOpen={isSignUpModalOpen} setModalOpen={setSignUpModalOpen} />
     </>
   );

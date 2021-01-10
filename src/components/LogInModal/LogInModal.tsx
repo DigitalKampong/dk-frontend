@@ -6,6 +6,7 @@ import styles from './LogInModal.module.css';
 type Props = {
   isOpen: boolean;
   setModalOpen: (isOpen: boolean) => void;
+  handleSignUpAction: () => void;
 };
 
 const LogInModal = (props: Props) => {
@@ -28,6 +29,9 @@ const LogInModal = (props: Props) => {
       props.setModalOpen(false);
     });
   }, [username, password, props]);
+  const handleSignUpClick = useCallback(() => {
+    props.handleSignUpAction();
+  }, [props]);
 
   return (
     <Modal
@@ -38,7 +42,7 @@ const LogInModal = (props: Props) => {
       closeIcon
       size="mini"
     >
-      <Modal.Header className={styles["modal-header"]}>Log in to Digital Kampong</Modal.Header>
+      <Modal.Header className={styles["modal-header"]}>Log in to Digital Kampung</Modal.Header>
       <Modal.Content className={styles["modal-content"]}>
         <Input className={styles["input-field"]} placeholder="Email" value={username} onChange={handleUsernameChange} />
         <Input className={styles["input-field"]} placeholder="Password" type="password" value={password} onChange={handlePasswordChange} />
@@ -51,7 +55,7 @@ const LogInModal = (props: Props) => {
         </div>
       </Modal.Content>
       <Modal.Actions className={styles["modal-footer"]}>
-        <Button className={styles["signup-button"]}>Create new account</Button>
+        <Button className={styles["signup-button"]} onClick={handleSignUpClick}>Create new account</Button>
       </Modal.Actions>
     </Modal>
   );

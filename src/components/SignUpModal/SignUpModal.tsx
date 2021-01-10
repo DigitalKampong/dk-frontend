@@ -38,7 +38,7 @@ const SignUpModal = (props: Props) => {
       closeIcon
       size="mini"
     >
-      <Modal.Header className={styles["modal-header"]}>Sign up to Digital Kampong</Modal.Header>
+      <Modal.Header className={styles["modal-header"]}>Sign up to Digital Kampung</Modal.Header>
       <Modal.Content className={styles["modal-content"]}>
         <Input className={styles["input-field"]} placeholder="Email" value={username} onChange={handleUsernameChange} />
         <Input className={styles["input-field"]} placeholder="Password" type="password" value={password} onChange={handlePasswordChange} />
