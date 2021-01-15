@@ -32,7 +32,7 @@ const SearchPage: React.FunctionComponent = () => {
 
   useEffect(() => {
     setStalls(() => filterStalls(originalStalls))
-  }, [ratingFilter])
+  }, [ratingFilter]) // eslint-disable-line react-hooks/exhaustive-deps
 
   function filterStalls(stalls: Stall[]): any {
     return stalls;
