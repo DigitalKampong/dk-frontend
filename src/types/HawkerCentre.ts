@@ -1,4 +1,5 @@
 import Region from "./Region";
+import Stall from "./Stall";
 
 export default interface HawkerCentre {
     id: number;
@@ -8,4 +9,5 @@ export default interface HawkerCentre {
     createdAt: string;
     updatedAt: string;
     Region: Region;
+    Stalls: Stall[];
 }

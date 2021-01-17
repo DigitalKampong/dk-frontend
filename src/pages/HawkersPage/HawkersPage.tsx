@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getAllHawkers } from '../../services/hawker';
 import styles from './HawkersPage.module.css';
-import { Button } from 'semantic-ui-react'
+import {Button } from 'semantic-ui-react';
 import HawkerGrid from '../../components/HawkerGrid/HawkerGrid';
 import SearchHeader from '../../components/SearchHeader/SearchHeader';
 import HawkerCentre from '../../types/HawkerCentre';
@@ -9,31 +9,58 @@ import HawkerCentre from '../../types/HawkerCentre';
 const HawkerLocationPage: React.FunctionComponent = () => {
 
   const[hawkers, setHawkers] = useState<HawkerCentre[]>([]);
+  const[filter, setFilter] = useState("");
+  const [isFiltered,changeFilteredStatus] = useState(false);
+  const[filteredHawkers, setFilteredHawkers] = useState<HawkerCentre[]>([]);
 
   useEffect(() => {
-    getAllHawkers().then(response => {
-      setHawkers(response.data);
-      console.log(response.data);
-    });
-  },[]);
+    if(filter.length === 0 && !isFiltered){
+      getAllHawkers().then(response => {
+        setHawkers(response.data);
+        console.log(response.data);
+      })} else{
+        changeFilteredStatus(true);
+        setFilteredHawkers(filterLocation(filter));
+        console.log("hello");
+      }
+  },[filter,isFiltered]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  function filterLocation(location : string){
+    const result = hawkers.filter(hawker => { 
+      return hawker.Region.name === location;
+    })
+    return result;
+  } 
+
+ /*
+  function addOrRemoveFilter(item) {
+    if(filter.includes(item)){
+      const filteredItems = filter.filter(filteredItem => filteredItem !== item)
+      setFilter([...filteredItems])
+    } else{
+      setFilter([...filter,item])
+    }
+  }
+  */
 
   return(
     <>
       <SearchHeader></SearchHeader>
       <div className={styles["site-content"]}>
-        <div className={styles["site-content-header"]}>
-          <b> Directory </b> of Hawker Centres:
-        </div>
         <div className={styles["location-filters-row"]}>
-        <div className={styles["location-filters-header"]}> All Hawker Centers </div>
-          <Button basic> East </Button>
-          <Button basic> West </Button>
-          <Button basic> Central </Button>
-          <Button basic> North </Button>
-          <Button basic> South</Button>
+          <div className={styles["site-content-header"]}>
+             <b> All Hawker Centres </b> 
+          </div>
+          <div className = {styles['filter-buttons']}>
+            <Button basic onClick = {() => setFilter("East")}> East </Button>
+            <Button basic  onClick = {() => setFilter("West") }> West </Button>
+            <Button basic  onClick = {() => setFilter("Central")}> Central </Button>
+            <Button basic  onClick = {() => setFilter("NorthEast")}> NorthEast </Button>
+            <Button basic  onClick = {() => setFilter("South")}> South</Button>
+          </div>
         </div>
         <div className={styles["hawker-list"]}>
-          <HawkerGrid hawkerList={hawkers} />
+           <HawkerGrid hawkerList={filter === "" ? hawkers : filteredHawkers} />
         </div>
       </div>
     </>
@@ -43,6 +70,3 @@ const HawkerLocationPage: React.FunctionComponent = () => {
 
 export default HawkerLocationPage
 
-/*
-        <div className={styles["map-content"]}></div>
-*/
