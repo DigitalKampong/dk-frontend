@@ -42,7 +42,7 @@ const SearchHeader: React.FunctionComponent = () => {
           <Input
             fluid
             className={styles['search-bar-input']}
-            placeholder="search for hawker centre / food"
+            placeholder="Search for hawker centre / food"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyPress={handleEnter}

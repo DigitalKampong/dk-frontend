@@ -9,6 +9,16 @@
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2);
 }
 
+.search-header-top {
+  height: 40%;
+  width: 100%;
+}
+
+.digital-kampung-div {
+  padding: 20px 20px 20px 20px;
+  float: left;
+}
+
 .search-header-filler {
   height: 200px;
 }
