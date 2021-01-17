@@ -8,17 +8,53 @@
   padding-top: 50px;
 }
 
-.hawker-content {
-  padding-left: 60px;
+.hawker-image {
+  width: 418px;
+  height: 264px;
+  margin-top: 38px;
+  background: url('https://react.semantic-ui.com/images/wireframe/image.png');
+  background-size: cover;
+  background-position: center;
 }
 
 .hawker-header {
   font-family: 'Montserrat';
   font-size: 50px;
+  margin-top: 30px;
+  font-size: 30px;
+  font-family: 'Raleway';
+  font-weight: 900;
+  line-height: 42px;
+}
+
+.hawker-address {
+  font-weight: 100;
+  font-family: 'Raleway';
+  font-size: 18px;
 }
 
 .hawker-description {
-  padding-top: 50px;
-  font-family: 'Montserrat';
-  font-size: 50px;
+  padding-top: 25px;
+  margin-top: 40px;
+  font-weight: 800;
+  font-family: 'Raleway';
+  font-size: 18px;
+}
+
+.hawker-transport {
+  font-size: 14px;
+  margin-top: 10px;
+  font-weight: 600;
+}
+
+.direction-button {
+  margin-top: 40px;
+}
+
+.stalls-header {
+  margin-top: 70px;
+  font-size: 30px;
+  font-family: 'Raleway';
+  font-weight: 900;
+  line-height: 42px;
 }

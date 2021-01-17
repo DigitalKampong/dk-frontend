@@ -25,7 +25,9 @@ const HawkerGrid: React.FunctionComponent<Props> = (props: Props) => {
                 }}
               >
                 <Button basic className={styles['hawker-button']}>
-                  {hawker.name}
+                  <div>
+                    {hawker.name} &emsp;{hawker.address}
+                  </div>
                 </Button>
               </Link>
             </List.Item>
