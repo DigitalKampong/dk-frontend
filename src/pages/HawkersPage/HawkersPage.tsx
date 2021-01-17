@@ -10,9 +10,8 @@ const HawkerLocationPage: React.FunctionComponent = () => {
 
   const[hawkers, setHawkers] = useState<HawkerCentre[]>([]);
   const[filter, setFilter] = useState("");
-  const [isFiltered,changeFilteredStatus] = useState(0);
+  const [isFiltered,changeFilteredStatus] = useState(false);
   const[filteredHawkers, setFilteredHawkers] = useState<HawkerCentre[]>([]);
-  const incrementClick = () => changeFilteredStatus(isFiltered + 1);
 
   useEffect(() => {
     if(filter.length === 0 && !isFiltered){
@@ -20,15 +19,9 @@ const HawkerLocationPage: React.FunctionComponent = () => {
         setHawkers(response.data);
         console.log(response.data);
       })} else{
-        if(isFiltered === 1){
-          setFilteredHawkers(filterLocation(filter));
-          console.log(isFiltered);
-        }else{
-          getAllHawkers().then(response => {
-            setHawkers(response.data);
-            console.log(isFiltered);
-          })
-        }
+        changeFilteredStatus(true);
+        setFilteredHawkers(filterLocation(filter));
+        console.log("hello");
       }
   },[filter,isFiltered]);
 
@@ -39,7 +32,17 @@ const HawkerLocationPage: React.FunctionComponent = () => {
     return result;
   } 
 
- 
+ /*
+  function addOrRemoveFilter(item) {
+    if(filter.includes(item)){
+      const filteredItems = filter.filter(filteredItem => filteredItem !== item)
+      setFilter([...filteredItems])
+    } else{
+      setFilter([...filter,item])
+    }
+  }
+  */
+
   return(
     <>
       <SearchHeader></SearchHeader>
@@ -57,7 +60,7 @@ const HawkerLocationPage: React.FunctionComponent = () => {
           </div>
         </div>
         <div className={styles["hawker-list"]}>
-           <HawkerGrid hawkerList={filter !== "" && isFiltered === 1 ? filteredHawkers :hawkers} />
+           <HawkerGrid hawkerList={filter === "" ? hawkers : filteredHawkers} />
         </div>
       </div>
     </>
@@ -66,3 +69,4 @@ const HawkerLocationPage: React.FunctionComponent = () => {
 }
 
 export default HawkerLocationPage
+

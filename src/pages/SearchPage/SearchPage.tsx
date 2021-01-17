@@ -28,11 +28,11 @@ const SearchPage: React.FunctionComponent = () => {
       setOriginalStalls(response.data);
       setStalls(filterStalls(response.data));
     })
-  }, [query]);
+  }, [query]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     setStalls(() => filterStalls(originalStalls))
-  }, [ratingFilter])
+  }, [ratingFilter]) // eslint-disable-line react-hooks/exhaustive-deps
 
   function filterStalls(stalls: Stall[]): any {
     return stalls;
