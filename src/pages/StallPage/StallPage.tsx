@@ -100,13 +100,6 @@ const StallPage: React.FunctionComponent = () => {
               <div className={styles['category-tag']}>Halal</div>
               <div className={styles['category-tag']}>Traditional</div>
             </div>
-            <div className={styles['category-container']}>
-              <div className={styles['category-tag']}>Chinese</div>
-              <div className={styles['category-tag']}>Singapore</div>
-              <div className={styles['category-tag']}>West</div>
-              <div className={styles['category-tag']}>Halal</div>
-              <div className={styles['category-tag']}>Traditional</div>
-            </div>
             <div className={styles['location-primary']}>Clementi Food Centre</div>
             <div className={styles['location-secondary']}>26 Clementi Road, Singapore 101010</div>
             <div className={styles['ratings-container']}>

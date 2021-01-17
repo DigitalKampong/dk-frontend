@@ -35,15 +35,6 @@ const SearchPageHeader: React.FunctionComponent<Props> = (props) => {
             </Link>
           </div>
           <div>
-            <div className={styles['header-button-group']}>
-              <Button basic className={styles['header-button']}>
-                kampung Centre
-              </Button>
-              <Button basic className={styles['header-button']}>
-                Sign up
-              </Button>
-              <Button className={styles['header-button-primary']}>Log in</Button>
-            </div>
             <div>
               <div className={styles['header-button-group']}>
                 <Button basic className={styles['header-button']}>
@@ -57,7 +48,7 @@ const SearchPageHeader: React.FunctionComponent<Props> = (props) => {
             <Input
               fluid
               className={styles['search-bar-input']}
-              placeholder="search for hawker centre / food"
+              placeholder="Search for hawker centre / food"
               value={input}
               onChange={(e: any) => setInput(e.target.value)}
               onKeyPress={handleEnter}
@@ -67,8 +58,8 @@ const SearchPageHeader: React.FunctionComponent<Props> = (props) => {
             </Button>
           </div>
         </div>
-        <div className={styles['search-header-filler']}></div>
       </div>
+      <div className={styles['search-header-filler']}></div>
     </>
   );
 };

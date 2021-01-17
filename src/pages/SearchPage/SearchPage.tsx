@@ -62,7 +62,7 @@ const SearchPage: React.FunctionComponent = () => {
 
   return (
     <>
-      <SearchPageHeader searchInput={state.searchInput} handleSearch={setQuery}></SearchPageHeader>
+      <SearchPageHeader searchInput={state.searchInput} handleSearch={setQuery} />
       <div className={styles['search-div']}>
         <div className={styles['filter-div']}>
           <div id="checkbox" className={styles['checkbox-div']}>
