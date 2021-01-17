@@ -23,7 +23,7 @@ const HawkerLocationPage: React.FunctionComponent = () => {
         setFilteredHawkers(filterLocation(filter));
         console.log("hello");
       }
-  },[filter,isFiltered]);
+  },[filter,isFiltered]); // eslint-disable-line react-hooks/exhaustive-deps
 
   function filterLocation(location : string){
     const result = hawkers.filter(hawker => { 
