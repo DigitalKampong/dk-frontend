@@ -9,15 +9,14 @@ interface Props {
 }
 
 const StallGrid: React.FunctionComponent<Props> = (props: Props) => {
-
   const { stallList } = props;
 
   return (
-    <Grid stackable columns={5} className={styles["stall-grid"]}>
-      {stallList.map(x => {
+    <Grid stackable columns={5} className={styles['stall-grid']}>
+      {stallList.map((x) => {
         return (
           <Grid.Column key={x.id}>
-            <StallCard stall={x}/>
+            <StallCard stall={x} />
           </Grid.Column>
         );
       })}

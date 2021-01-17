@@ -1,10 +1,10 @@
 export const ENDPOINTS = {
-  BASE: "https://dk-api-21.herokuapp.com/",
-  STALLS: "stalls/",
-  PRODUCTS: "products/",
-  SEARCH: "search/",
-  HAWKERS: "hawkercentres/",
-  REGISTER: "register/",
-  LOGIN: "login/",
-  REVIEWS: "reviews/"
+  BASE: 'https://dk-api-21.herokuapp.com/',
+  STALLS: 'stalls/',
+  PRODUCTS: 'products/',
+  SEARCH: 'search/',
+  HAWKERS: 'hawkercentres/',
+  REGISTER: 'register/',
+  LOGIN: 'login/',
+  REVIEWS: 'reviews/',
 };

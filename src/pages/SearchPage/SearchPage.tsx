@@ -12,7 +12,6 @@ interface StateProps {
 }
 
 const SearchPage: React.FunctionComponent = () => {
-
   const location = useLocation();
   const state = location.state as StateProps;
 
@@ -24,15 +23,15 @@ const SearchPage: React.FunctionComponent = () => {
   const [ratingFilter, setRatingFilter] = useState<number>(0);
 
   useEffect(() => {
-    searchStall(query).then(response => {
+    searchStall(query).then((response) => {
       setOriginalStalls(response.data);
       setStalls(filterStalls(response.data));
-    })
+    });
   }, [query]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
-    setStalls(() => filterStalls(originalStalls))
-  }, [ratingFilter]) // eslint-disable-line react-hooks/exhaustive-deps
+    setStalls(() => filterStalls(originalStalls));
+  }, [ratingFilter]); // eslint-disable-line react-hooks/exhaustive-deps
 
   function filterStalls(stalls: Stall[]): any {
     return stalls;
@@ -45,7 +44,7 @@ const SearchPage: React.FunctionComponent = () => {
     if (data.checked) {
       setCuisineFilter(() => [...cuisineFilter, data.value]);
     } else {
-      setCuisineFilter(() => cuisineFilter.splice(cuisineFilter.indexOf(data.value), 1))
+      setCuisineFilter(() => cuisineFilter.splice(cuisineFilter.indexOf(data.value), 1));
     }
   }
 
@@ -53,7 +52,7 @@ const SearchPage: React.FunctionComponent = () => {
     if (data.checked) {
       setLocationFilter(() => [...locationFilter, data.value]);
     } else {
-      setLocationFilter(() => locationFilter.splice(locationFilter.indexOf(data.value), 1))
+      setLocationFilter(() => locationFilter.splice(locationFilter.indexOf(data.value), 1));
     }
   }
 
@@ -68,76 +67,28 @@ const SearchPage: React.FunctionComponent = () => {
         <div className={styles['filter-div']}>
           <div id="checkbox" className={styles['checkbox-div']}>
             <b>Cuisine</b>
-            <Checkbox
-              name="cuisine"
-              label="Chinese"
-              value="Chinese"
-              onChange={filterByCuisine}
-            />
-            <Checkbox
-              name="cuisine"
-              label="Muslim"
-              value="Muslim"
-              onChange={filterByCuisine}
-            />
-            <Checkbox
-              name="cuisine"
-              label="Western"
-              value="Western"
-              onChange={filterByCuisine}
-            />
+            <Checkbox name="cuisine" label="Chinese" value="Chinese" onChange={filterByCuisine} />
+            <Checkbox name="cuisine" label="Muslim" value="Muslim" onChange={filterByCuisine} />
+            <Checkbox name="cuisine" label="Western" value="Western" onChange={filterByCuisine} />
             <b>Location</b>
-            <Checkbox
-              name="location"
-              label="North"
-              value="North"
-              onChange={filterByLocation}
-            />
-            <Checkbox
-              name="location"
-              label="South"
-              value="South"
-              onChange={filterByLocation}
-            />
-            <Checkbox
-              name="location"
-              label="East"
-              value="East"
-              onChange={filterByLocation}
-            />
-            <Checkbox
-              name="location"
-              label="West"
-              value="West"
-              onChange={filterByLocation}
-            />
-            <Checkbox
-              name="location"
-              label="Central"
-              value="Central"
-              onChange={filterByLocation}
-            />
-            <b>Rating {'>'} {ratingFilter}</b>
-            <input
-              type='range'
-              min={0}
-              max={5}
-              value={ratingFilter}
-              onChange={filterByRating}
-            />
+            <Checkbox name="location" label="North" value="North" onChange={filterByLocation} />
+            <Checkbox name="location" label="South" value="South" onChange={filterByLocation} />
+            <Checkbox name="location" label="East" value="East" onChange={filterByLocation} />
+            <Checkbox name="location" label="West" value="West" onChange={filterByLocation} />
+            <Checkbox name="location" label="Central" value="Central" onChange={filterByLocation} />
+            <b>
+              Rating {'>'} {ratingFilter}
+            </b>
+            <input type="range" min={0} max={5} value={ratingFilter} onChange={filterByRating} />
             <br />
-            <Rating rating={ratingFilter} maxRating={5}/>
+            <Rating rating={ratingFilter} maxRating={5} />
           </div>
         </div>
         <div className={styles['result-div']}>
-          <div className={styles["site-content"]}>
-            <div className={styles["section-search-header-row"]}>
-              <div className={styles["section-search-header"]}>
-                <b>
-                  {query !== "" 
-                  ? "Search result for " + query
-                  : "All stalls"}
-                </b>
+          <div className={styles['site-content']}>
+            <div className={styles['section-search-header-row']}>
+              <div className={styles['section-search-header']}>
+                <b>{query !== '' ? 'Search result for ' + query : 'All stalls'}</b>
               </div>
             </div>
             <StallGrid stallList={stalls} />

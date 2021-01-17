@@ -12,6 +12,6 @@ export type ReviewTransferObject = {
   updatedAt: string;
   User: { email: string };
   id: number;
-}
+};
 
 export default Review;

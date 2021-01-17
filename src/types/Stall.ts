@@ -1,15 +1,20 @@
-import Food from "./Food";
-import HawkerCentre from "./HawkerCentre";
+import Category from './Category';
+import Food from './Food';
+import HawkerCentre from './HawkerCentre';
 
 export default interface Stall {
   id: number;
   name: string;
-  description: string;
-  rating: number;
-  contactNo: string;
   hawkerCentreId: number;
   createdAt: string;
   updatedAt: string;
+  Images: string[];
+  HawkerCentre: HawkerCentre;
+  Categories: Category[] | string[];
+  rating: number;
+  description: string;
+  contactNo: string;
+  unitNo: string;
+  Reviews: any[];
   Products: Food[];
-  HawkerCentre: HawkerCentre
 }

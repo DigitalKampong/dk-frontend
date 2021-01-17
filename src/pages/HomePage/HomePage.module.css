@@ -42,7 +42,7 @@
 }
 
 .category-grid-cell {
-  background: url("https://react.semantic-ui.com/images/wireframe/image.png");
+  background: url('https://react.semantic-ui.com/images/wireframe/image.png');
   background-size: cover;
   background-position: center;
   height: 238px;

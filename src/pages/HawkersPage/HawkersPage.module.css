@@ -4,31 +4,28 @@
   background: #f9f8f4;
 }
 
-.site-content-header{
-  font-family : "Montserrat";
+.site-content-header {
+  font-family: 'Montserrat';
   font-size: 48px;
   padding-top: 58px;
   height: 24px;
   margin-bottom: 46px;
 }
 
-.location-filters-row{
+.location-filters-row {
   padding-top: 50px;
   display: flex;
   flex-direction: row;
-
 }
 
-.filter-buttons{
+.filter-buttons {
   margin-top: 58px;
-  height:24px;
-  margin-left : 100px;
+  height: 24px;
+  margin-left: 100px;
 }
 
-.hawker-list{
+.hawker-list {
   padding-top: 40px;
-  display:flex;
+  display: flex;
   flex-direction: row;
 }
-
-

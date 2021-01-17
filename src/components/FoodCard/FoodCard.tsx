@@ -12,10 +12,10 @@ const FoodCard: React.FunctionComponent<Props> = (props: Props) => {
 
   return (
     <Card>
-      <Image src='https://react.semantic-ui.com/images/wireframe/image.png' wrapped ui={false} />
+      <Image src="https://react.semantic-ui.com/images/wireframe/image.png" wrapped ui={false} />
       <Card.Content>
         <div className={styles['name-label']}>{food.name}</div>
-        <div className={styles['price-label']}>${food.price ? food.price.toFixed(2) : "N/A"}</div>
+        <div className={styles['price-label']}>${food.price ? food.price.toFixed(2) : 'N/A'}</div>
       </Card.Content>
     </Card>
   );

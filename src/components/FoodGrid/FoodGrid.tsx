@@ -13,10 +13,10 @@ const FoodGrid: React.FunctionComponent<Props> = (props: Props) => {
 
   return (
     <Grid stackable columns={5} className={styles['food-grid']}>
-      {foodList.map(x => {
+      {foodList.map((x) => {
         return (
           <Grid.Column key={x.id}>
-            <FoodCard food={x}/>
+            <FoodCard food={x} />
           </Grid.Column>
         );
       })}
