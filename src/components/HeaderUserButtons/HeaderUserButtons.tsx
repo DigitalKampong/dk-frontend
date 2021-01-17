@@ -10,7 +10,7 @@ interface Props {
   isMainHeader: boolean;
 }
 
-const HeaderUserButtons = (props: Props) => {  
+const HeaderUserButtons = (props: Props) => {
   const [isLogInModalOpen, setLogInModalOpen] = useState(false);
   const [isSignUpModalOpen, setSignUpModalOpen] = useState(false);
   const [isMyAccountModalOpen, setMyAccountModalOpen] = useState(false);
@@ -30,23 +30,19 @@ const HeaderUserButtons = (props: Props) => {
     <>
       {!userIsLoggedIn && (
         <>
-          <Button basic={props.isMainHeader ? undefined : true}
-            className={styles["header-button"]} 
-            onClick={() => setSignUpModalOpen(true)}
-          >Sign up</Button>
-          <Button
-            color="orange"
-            className={styles["header-button-primary"]} 
-            onClick={() => setLogInModalOpen(true)}
-          >Log in</Button>
+          <Button basic={props.isMainHeader ? undefined : true} className={styles['header-button']} onClick={() => setSignUpModalOpen(true)}>
+            Sign up
+          </Button>
+          <Button color="orange" className={styles['header-button-primary']} onClick={() => setLogInModalOpen(true)}>
+            Log in
+          </Button>
         </>
       )}
       {userIsLoggedIn && (
         <>
-          <Button basic={props.isMainHeader ? undefined : true}
-            className={styles["header-button"]}
-            onClick={() => setMyAccountModalOpen(true)}
-          >My account</Button>
+          <Button basic={props.isMainHeader ? undefined : true} className={styles['header-button']} onClick={() => setMyAccountModalOpen(true)}>
+            My account
+          </Button>
         </>
       )}
       <LogInModal isOpen={isLogInModalOpen} setModalOpen={setLogInModalOpen} handleSignUpAction={handleSignUpAction} />
