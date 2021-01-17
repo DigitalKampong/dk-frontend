@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { Button, Input } from 'semantic-ui-react';
+import HeaderUserButtons from '../HeaderUserButtons/HeaderUserButtons';
 import styles from './SiteHeader.module.css';
 import whiteLogo from '../../images/dk-white-logo.png';
 
@@ -30,8 +31,7 @@ const SiteHeader: React.FunctionComponent = () => {
           </div>
           <div className={styles['header-button-group']}>
             <Button className={styles['header-button']}>Kampung Centre</Button>
-            <Button className={styles['header-button']}>Sign up</Button>
-            <Button className={styles['header-button-primary']}>Log in</Button>
+            <HeaderUserButtons isMainHeader={true} />
           </div>
         </div>
         <div className={styles['site-header-top']}>

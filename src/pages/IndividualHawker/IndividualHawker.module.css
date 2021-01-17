@@ -1,5 +1,7 @@
 .site-content {
-  margin: 0 12%;
+  padding: 0 12%;
+  padding-bottom: 50px;
+  background: #f9f8f4;
 }
 
 .hawker-item {

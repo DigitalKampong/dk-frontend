@@ -13,16 +13,6 @@
   height: 200px;
 }
 
-.search-header-top {
-  height: 40%;
-  width: 100%;
-}
-
-.digital-kampung-div {
-  padding: 20px 20px 20px 20px;
-  float: left;
-}
-
 .digital-kampung-icon {
   width: 320px;
   height: 80px;
@@ -35,7 +25,6 @@
 }
 
 .header-button {
-  text-transform: uppercase !important;
   font-size: 18px !important;
   font-family: 'Montserrat' !important;
   font-weight: 800 !important;
@@ -43,13 +32,10 @@
 }
 
 .header-button-primary {
-  text-transform: uppercase !important;
   font-size: 18px !important;
   font-family: 'Montserrat' !important;
   font-weight: 800 !important;
   box-shadow: none !important;
-  background: #ff5c38 !important;
-  color: white !important;
 }
 
 .slogan-text {
