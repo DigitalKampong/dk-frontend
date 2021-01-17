@@ -3,5 +3,8 @@ export const ENDPOINTS = {
   STALLS: "stalls/",
   PRODUCTS: "products/",
   SEARCH: "search/",
-  HAWKERS: "hawkercentres/"
+  HAWKERS: "hawkercentres/",
+  REGISTER: "register/",
+  LOGIN: "login/",
+  REVIEWS: "reviews/"
 };
