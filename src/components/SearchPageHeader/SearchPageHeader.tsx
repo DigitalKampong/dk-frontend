@@ -45,27 +45,30 @@ const SearchPageHeader: React.FunctionComponent<Props> = (props) => {
               <Button className={styles['header-button-primary']}>Log in</Button>
             </div>
             <div>
-              <div className={styles["header-button-group"]}>
-                <Button basic className={styles["header-button"]}>Kampung Centre</Button>
+              <div className={styles['header-button-group']}>
+                <Button basic className={styles['header-button']}>
+                  Kampung Centre
+                </Button>
                 <HeaderUserButtons isMainHeader={false} />
               </div>
+            </div>
+          </div>
+          <div className={styles['search-bar']}>
+            <Input
+              fluid
+              className={styles['search-bar-input']}
+              placeholder="search for hawker centre / food"
+              value={input}
+              onChange={(e: any) => setInput(e.target.value)}
+              onKeyPress={handleEnter}
+            />
+            <Button id="search" className={styles['search-button-primary']} onClick={() => handleSearch(input)}>
+              Search
+            </Button>
           </div>
         </div>
-        <div className={styles['search-bar']}>
-          <Input
-            fluid
-            className={styles['search-bar-input']}
-            placeholder="search for hawker centre / food"
-            value={input}
-            onChange={(e: any) => setInput(e.target.value)}
-            onKeyPress={handleEnter}
-          />
-          <Button id="search" className={styles['search-button-primary']} onClick={() => handleSearch(input)}>
-            Search
-          </Button>
-        </div>
+        <div className={styles['search-header-filler']}></div>
       </div>
-      <div className={styles['search-header-filler']}></div>
     </>
   );
 };
