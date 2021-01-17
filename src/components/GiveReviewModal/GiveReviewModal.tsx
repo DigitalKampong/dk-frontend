@@ -21,7 +21,6 @@ const GiveReviewModal = (props: Props) => {
   }, []);
   const handleDescriptionChange = useCallback(e => setDescription(e.target.value), []);
   const handleSubmitReview = useCallback(() => {
-    console.log(reviewBeforeEdit?.id);
     if (reviewBeforeEdit?.id) {
       stall && editReview(reviewBeforeEdit.id, { data: {
         rating: rating,
