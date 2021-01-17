@@ -5,5 +5,6 @@ export const ENDPOINTS = {
   SEARCH: "search/",
   HAWKERS: "hawkercentres/",
   REGISTER: "register/",
-  LOGIN: "login/"
+  LOGIN: "login/",
+  REVIEWS: "reviews/"
 };

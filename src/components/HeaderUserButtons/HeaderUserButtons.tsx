@@ -4,6 +4,7 @@ import SignUpModal from '../SignUpModal/SignUpModal';
 import styles from './HeaderUserButtons.module.css';
 import { Button } from 'semantic-ui-react';
 import { isLoggedIn } from '../../services/user';
+import MyAccountModal from '../MyAccountModal/MyAccountModal';
 
 interface Props {
   isMainHeader: boolean;
@@ -12,19 +13,13 @@ interface Props {
 const HeaderUserButtons = (props: Props) => {  
   const [isLogInModalOpen, setLogInModalOpen] = useState(false);
   const [isSignUpModalOpen, setSignUpModalOpen] = useState(false);
+  const [isMyAccountModalOpen, setMyAccountModalOpen] = useState(false);
   const [userIsLoggedIn, setIsLoggedIn] = useState(false);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     setIsLoggedIn(isLoggedIn());
   });
-
-  const handleLogOut = useCallback(() => {
-    localStorage.removeItem('username');
-    localStorage.removeItem('loggedIn');
-    localStorage.removeItem('authToken');
-    setIsLoggedIn(false);
-  }, []);
 
   const handleSignUpAction = useCallback(() => {
     setLogInModalOpen(false);
@@ -40,6 +35,7 @@ const HeaderUserButtons = (props: Props) => {
             onClick={() => setSignUpModalOpen(true)}
           >Sign up</Button>
           <Button
+            color="orange"
             className={styles["header-button-primary"]} 
             onClick={() => setLogInModalOpen(true)}
           >Log in</Button>
@@ -49,12 +45,13 @@ const HeaderUserButtons = (props: Props) => {
         <>
           <Button basic={props.isMainHeader ? undefined : true}
             className={styles["header-button"]}
-            onClick={handleLogOut}
-          >Log out</Button>
+            onClick={() => setMyAccountModalOpen(true)}
+          >My account</Button>
         </>
       )}
       <LogInModal isOpen={isLogInModalOpen} setModalOpen={setLogInModalOpen} handleSignUpAction={handleSignUpAction} />
       <SignUpModal isOpen={isSignUpModalOpen} setModalOpen={setSignUpModalOpen} />
+      <MyAccountModal isOpen={isMyAccountModalOpen} setModalOpen={setMyAccountModalOpen} />
     </>
   );
 };

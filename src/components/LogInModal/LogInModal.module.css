@@ -37,8 +37,6 @@
   font-family: 'Montserrat' !important;
   font-weight: 800 !important;
   box-shadow: none !important;
-  background: #ff5c38 !important;
-  color: white !important;
 }
 
 .modal-row {
@@ -76,6 +74,4 @@
   font-weight: 800 !important;
   font-size: 18px !important;
   margin: 26px 0 !important;
-  background: #448FFF !important;
-  color: white !important;
 }

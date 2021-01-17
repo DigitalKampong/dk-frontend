@@ -46,7 +46,7 @@ const LogInModal = (props: Props) => {
       <Modal.Content className={styles["modal-content"]}>
         <Input className={styles["input-field"]} placeholder="Email" value={username} onChange={handleUsernameChange} />
         <Input className={styles["input-field"]} placeholder="Password" type="password" value={password} onChange={handlePasswordChange} />
-        <Button className={styles["login-button"]} onClick={handleLogInClick}>Log in</Button>
+        <Button color="orange" className={styles["login-button"]} onClick={handleLogInClick}>Log in</Button>
         <div className={styles["modal-row"]}>
           <Checkbox className={styles["checkbox"]} label='Remember me' />
           <div className={styles["link-text"]}>
@@ -55,7 +55,7 @@ const LogInModal = (props: Props) => {
         </div>
       </Modal.Content>
       <Modal.Actions className={styles["modal-footer"]}>
-        <Button className={styles["signup-button"]} onClick={handleSignUpClick}>Create new account</Button>
+        <Button color="blue" className={styles["signup-button"]} onClick={handleSignUpClick}>Create new account</Button>
       </Modal.Actions>
     </Modal>
   );

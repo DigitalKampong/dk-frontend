@@ -32,7 +32,7 @@ const SearchHeader: React.FunctionComponent = () => {
           </div>
           <div>
             <div className={styles["header-button-group"]}>
-              <Button basic className={styles["header-button"]}>kampung Centre</Button>
+              <Button basic className={styles["header-button"]}>Kampung Centre</Button>
               <HeaderUserButtons isMainHeader={false} />
             </div>
          </div>
