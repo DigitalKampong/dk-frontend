@@ -13,15 +13,14 @@ const HawkerLocationPage: React.FunctionComponent = () => {
   const [filteredHawkers, setFilteredHawkers] = useState<HawkerCentre[]>([]);
 
   useEffect(() => {
-    if (filter.length === 0 && !isFiltered) {
+    if (filter.length === 0) {
       getAllHawkers().then((response) => {
         setHawkers(response.data);
         console.log(response.data);
       });
     } else {
-      changeFilteredStatus(true);
       setFilteredHawkers(filterLocation(filter));
-      console.log('hello');
+      console.log(filter);
     }
   }, [filter, isFiltered]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -32,16 +31,16 @@ const HawkerLocationPage: React.FunctionComponent = () => {
     return result;
   }
 
-  /*
-  function addOrRemoveFilter(item) {
-    if(filter.includes(item)){
-      const filteredItems = filter.filter(filteredItem => filteredItem !== item)
-      setFilter([...filteredItems])
-    } else{
-      setFilter([...filter,item])
+  function handleSetFilter(currentFilter: string) {
+    const pressed = currentFilter === filter && isFiltered === true;
+    if (pressed) {
+      setFilter('');
+      changeFilteredStatus(false);
+    } else {
+      setFilter(currentFilter);
+      changeFilteredStatus(true);
     }
   }
-  */
 
   return (
     <>
@@ -52,23 +51,23 @@ const HawkerLocationPage: React.FunctionComponent = () => {
             <b> All Hawker Centres </b>
           </div>
           <div className={styles['filter-buttons']}>
-            <Button basic onClick={() => setFilter('East')}>
+            <Button basic onClick={() => handleSetFilter('East')}>
               {' '}
               East{' '}
             </Button>
-            <Button basic onClick={() => setFilter('West')}>
+            <Button basic onClick={() => handleSetFilter('West')}>
               {' '}
               West{' '}
             </Button>
-            <Button basic onClick={() => setFilter('Central')}>
+            <Button basic onClick={() => handleSetFilter('Central')}>
               {' '}
               Central{' '}
             </Button>
-            <Button basic onClick={() => setFilter('NorthEast')}>
+            <Button basic onClick={() => handleSetFilter('NorthEast')}>
               {' '}
               NorthEast{' '}
             </Button>
-            <Button basic onClick={() => setFilter('South')}>
+            <Button basic onClick={() => handleSetFilter('South')}>
               {' '}
               South
             </Button>

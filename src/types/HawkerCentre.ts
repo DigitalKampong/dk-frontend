@@ -10,4 +10,6 @@ export default interface HawkerCentre {
   updatedAt: string;
   Region: Region;
   Stalls: Stall[];
+  bus: string;
+  mrt: string;
 }
