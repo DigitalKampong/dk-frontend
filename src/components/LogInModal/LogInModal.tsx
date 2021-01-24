@@ -1,6 +1,8 @@
 import React, { useCallback, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Button, Checkbox, Input, Modal } from 'semantic-ui-react';
 import { loginUser } from '../../services/user';
+import { UPDATE_CURRENT_USER } from '../../store/types';
 import styles from './LogInModal.module.css';
 
 type Props = {
@@ -10,8 +12,11 @@ type Props = {
 };
 
 const LogInModal = (props: Props) => {
+  const dispatch = useDispatch();
+  const { isOpen, setModalOpen, handleSignUpAction } = props;
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [errorModalOpen, setErrorModalOpen] = useState(false);
   const handleUsernameChange = useCallback((event) => {
     setUsername(event.target.value);
   }, []);
@@ -24,23 +29,28 @@ const LogInModal = (props: Props) => {
         email: username,
         password: password,
       },
-    }).then((response) => {
-      localStorage.setItem('username', username);
-      localStorage.setItem('loggedIn', 'true');
-      localStorage.setItem('authToken', response.data.token);
-      props.setModalOpen(false);
-    });
-  }, [username, password, props]);
+    })
+      .then((response) => {
+        localStorage.setItem('username', username);
+        localStorage.setItem('loggedIn', 'true');
+        localStorage.setItem('authToken', response.data.token);
+        dispatch({ type: UPDATE_CURRENT_USER, payload: { email: username } });
+        setModalOpen(false);
+      })
+      .catch((error) => {
+        setErrorModalOpen(true);
+      });
+  }, [username, password, setModalOpen, dispatch]);
   const handleSignUpClick = useCallback(() => {
-    props.handleSignUpAction();
-  }, [props]);
+    handleSignUpAction();
+  }, [handleSignUpAction]);
 
   return (
     <Modal
       className={styles['modal']}
       onClose={() => props.setModalOpen(false)}
       onOpen={() => props.setModalOpen(true)}
-      open={props.isOpen}
+      open={isOpen}
       closeIcon
       size="mini"
     >
@@ -61,6 +71,15 @@ const LogInModal = (props: Props) => {
           Create new account
         </Button>
       </Modal.Actions>
+      <Modal
+        basic
+        className={styles['login-modal']}
+        onClose={() => setErrorModalOpen(false)}
+        onOpen={() => setErrorModalOpen(true)}
+        open={errorModalOpen}
+        content="Invalid credentials. Check your email / password and try again."
+        actions={['Ok']}
+      />
     </Modal>
   );
 };

@@ -28,11 +28,13 @@ export const loginUser = async (data: API) => {
   });
 };
 
-export const isLoggedIn = () => {
+export const getLoggedInUser = () => {
   const temp = localStorage.getItem('loggedIn');
   if (temp === null || temp === '') {
-    return false;
+    return undefined;
   } else {
-    return true;
+    return {
+      email: localStorage.getItem('username'),
+    };
   }
 };
