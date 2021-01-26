@@ -75,9 +75,10 @@ export const updateStall = async (id: number, data: API) => {
  * @method GET
  * @access Public
  * @param query Search query
+ * @param params Search params
  */
-export const searchStall = async (query: string) => {
-  return await Axios.get(ENDPOINTS.BASE + ENDPOINTS.SEARCH + query).catch((error) => {
+export const searchStall = async (query: string, params: string) => {
+  return await Axios.get(ENDPOINTS.BASE + ENDPOINTS.SEARCH + query + '?' + params).catch((error) => {
     throw error;
   });
 };

@@ -6,12 +6,28 @@ import styles from './SiteHeader.module.css';
 import whiteLogo from '../../images/dk-white-logo.png';
 
 const SiteHeader: React.FunctionComponent = () => {
+  const queryString = require('query-string');
   const history: any = useHistory();
   const [input, setInput] = useState('');
 
   function handleEnter(e: any): void {
     if (e.key === 'Enter') {
-      history.push('/search/' + input.trim());
+      handleSearch();
+    }
+  }
+
+  function handleSearch(): void {
+    const trimmedInput: string = input.trim();
+    if (trimmedInput.length > 0) {
+      history.push({
+        pathname: `/search/${trimmedInput}`,
+        search: '?limit=20&page=1',
+      });
+    } else {
+      history.push({
+        pathname: `/search/`,
+        search: '?limit=20&page=1',
+      });
     }
   }
 
@@ -45,7 +61,7 @@ const SiteHeader: React.FunctionComponent = () => {
               onChange={(e) => setInput(e.target.value)}
               onKeyPress={handleEnter}
             />
-            <Button className={styles['search-button-primary']} onClick={() => history.push('/search/' + input.trim())}>
+            <Button className={styles['search-button-primary']} onClick={handleSearch}>
               Search
             </Button>
           </div>

@@ -1,27 +1,66 @@
-import React, { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useLocation, useParams } from 'react-router-dom';
 import StallGrid from '../../components/StallGrid/StallGrid';
 import styles from './SearchPage.module.css';
-import { Checkbox, Rating } from 'semantic-ui-react';
+import { Checkbox } from 'semantic-ui-react';
 import SearchHeader from '../../components/SearchHeader/SearchHeader';
 import Stall from '../../types/Stall';
-
-interface StateProps {
-  searchInput: string;
-}
+import { searchStall } from '../../services/stall';
 
 const SearchPage: React.FunctionComponent = () => {
+  const queryString = require('query-string');
   const location = useLocation();
-  const state = location.state as StateProps;
+
+  const params = useParams<{ query: string }>();
+  const searchParams = queryString.parse(location.search);
 
   const [stalls, setStalls] = useState<Stall[]>([]);
-  const [originalStalls, setOriginalStalls] = useState<Stall[]>([]);
-  const [query, setQuery] = useState<string>('');
-  const [cuisineFilter, setCuisineFilter] = useState<string[]>([]);
-  const [locationFilter, setLocationFilter] = useState<string[]>([]);
-  const [ratingFilter, setRatingFilter] = useState<number>(0);
+  const [query, setQuery] = useState<string>(params.query ? params.query : '');
 
-  /*
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    const currentParams: string = queryString.stringify(searchParams);
+    searchStall(query, currentParams).then((response) => {
+      setStalls(response.data.rows);
+    });
+  }, [query]);
+
+  return (
+    <>
+      <SearchHeader isSearchPage={true} setQuery={setQuery} />
+      <div className={styles['search-div']}>
+        <div className={styles['filter-div']}>
+          <div id="checkbox" className={styles['checkbox-div']}>
+            <b>Cuisine</b>
+            <Checkbox name="cuisine" label="Chinese" value="Chinese" />
+            <Checkbox name="cuisine" label="Muslim" value="Muslim" />
+            <Checkbox name="cuisine" label="Western" value="Western" />
+            <b>Location</b>
+            <Checkbox name="location" label="North" value="North" />
+            <Checkbox name="location" label="South" value="South" />
+            <Checkbox name="location" label="East" value="East" />
+            <Checkbox name="location" label="West" value="West" />
+            <Checkbox name="location" label="Central" value="Central" />
+          </div>
+        </div>
+        <div className={styles['result-div']}>
+          <div className={styles['site-content']}>
+            <div className={styles['section-search-header-row']}>
+              <div className={styles['section-search-header']}>
+                <b>{query !== '' ? 'Search result for ' + query : 'All stalls'}</b>
+              </div>
+            </div>
+            <StallGrid stallList={stalls} />
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default SearchPage;
+
+/*
   useEffect(() => {
     searchStall(query).then((response) => {
       setOriginalStalls(response.data);
@@ -60,44 +99,3 @@ const SearchPage: React.FunctionComponent = () => {
     setRatingFilter(e.target.value);
   }
   */
-
-  return (
-    <>
-      <SearchHeader />
-      <div className={styles['search-div']}>
-        <div className={styles['filter-div']}>
-          <div id="checkbox" className={styles['checkbox-div']}>
-            <b>Cuisine</b>
-            <Checkbox name="cuisine" label="Chinese" value="Chinese" />
-            <Checkbox name="cuisine" label="Muslim" value="Muslim" />
-            <Checkbox name="cuisine" label="Western" value="Western" />
-            <b>Location</b>
-            <Checkbox name="location" label="North" value="North" />
-            <Checkbox name="location" label="South" value="South" />
-            <Checkbox name="location" label="East" value="East" />
-            <Checkbox name="location" label="West" value="West" />
-            <Checkbox name="location" label="Central" value="Central" />
-            <b>
-              Rating {'>'} {ratingFilter}
-            </b>
-            <input type="range" min={0} max={5} value={ratingFilter} />
-            <br />
-            <Rating rating={ratingFilter} maxRating={5} />
-          </div>
-        </div>
-        <div className={styles['result-div']}>
-          <div className={styles['site-content']}>
-            <div className={styles['section-search-header-row']}>
-              <div className={styles['section-search-header']}>
-                <b>{query !== '' ? 'Search result for ' + query : 'All stalls'}</b>
-              </div>
-            </div>
-            <StallGrid stallList={stalls} />
-          </div>
-        </div>
-      </div>
-    </>
-  );
-};
-
-export default SearchPage;

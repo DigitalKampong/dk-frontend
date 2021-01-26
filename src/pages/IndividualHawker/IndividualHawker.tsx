@@ -26,7 +26,7 @@ const IndividualHawker: React.FunctionComponent = () => {
 
   return (
     <>
-      <SearchHeader></SearchHeader>
+      <SearchHeader isSearchPage={false} setQuery={() => {}}></SearchHeader>
       <div className={styles['site-content']}>
         <div className={styles['hawker-item']}>
           <Grid>

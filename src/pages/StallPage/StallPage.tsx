@@ -85,7 +85,7 @@ const StallPage: React.FunctionComponent = () => {
 
   return (
     <>
-      <SearchHeader></SearchHeader>
+      <SearchHeader isSearchPage={false} setQuery={() => {}}></SearchHeader>
       <div className={styles['site-content']}>
         <Grid>
           <Grid.Column width={6}>
