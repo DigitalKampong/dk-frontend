@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { useHistory, useLocation, useParams } from 'react-router-dom';
 import StallGrid from '../../components/StallGrid/StallGrid';
 import styles from './SearchPage.module.css';
 import { Checkbox } from 'semantic-ui-react';
@@ -7,23 +7,64 @@ import SearchHeader from '../../components/SearchHeader/SearchHeader';
 import Stall from '../../types/Stall';
 import { searchStall } from '../../services/stall';
 
+interface InitialSearchParams {
+  region?: string;
+  category?: string;
+  limit: string;
+  page: string;
+}
+
 const SearchPage: React.FunctionComponent = () => {
+  window.scrollTo(0, 0);
   const queryString = require('query-string');
   const location = useLocation();
+  const history: any = useHistory();
 
   const params = useParams<{ query: string }>();
-  const searchParams = queryString.parse(location.search);
-
+  const inputSearchParams: InitialSearchParams = queryString.parse(location.search, { arrayFormat: 'comma' });
+  const [searchParams, setSearchParams] = useState<InitialSearchParams>(inputSearchParams);
   const [stalls, setStalls] = useState<Stall[]>([]);
   const [query, setQuery] = useState<string>(params.query ? params.query : '');
+  const [locations, setLocation] = useState<string[]>(inputSearchParams.region ? [inputSearchParams.region] : []);
+  const [categories, setCategory] = useState<string[]>(inputSearchParams.category ? [inputSearchParams.category] : []);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-    const currentParams: string = queryString.stringify(searchParams);
+    function buildParams(): string {
+      const newSearchParams: any = { ...searchParams };
+      newSearchParams.region = locations;
+      newSearchParams.category = categories;
+      return queryString.stringify(newSearchParams, { arrayFormat: 'comma' });
+    }
+
+    const currentParams: string = buildParams();
     searchStall(query, currentParams).then((response) => {
       setStalls(response.data.rows);
     });
-  }, [query]);
+  }, [query, queryString, searchParams, categories, locations]);
+
+  function checkLocation(loc: string): boolean {
+    return locations.includes(loc);
+  }
+
+  function checkCategory(cat: string): boolean {
+    return categories.includes(cat);
+  }
+
+  function filterByCategory(e: any, data: any): void {
+    if (data.checked) {
+      setCategory(() => [...categories, data.value]);
+    } else {
+      setCategory(() => categories.filter((val: string) => val !== data.value));
+    }
+  }
+
+  function filterByLocation(e: any, data: any): void {
+    if (data.checked) {
+      setLocation(() => [...locations, data.value]);
+    } else {
+      setLocation(() => locations.filter((val: string) => val !== data.value));
+    }
+  }
 
   return (
     <>
@@ -32,15 +73,20 @@ const SearchPage: React.FunctionComponent = () => {
         <div className={styles['filter-div']}>
           <div id="checkbox" className={styles['checkbox-div']}>
             <b>Cuisine</b>
-            <Checkbox name="cuisine" label="Chinese" value="Chinese" />
-            <Checkbox name="cuisine" label="Muslim" value="Muslim" />
-            <Checkbox name="cuisine" label="Western" value="Western" />
+            <Checkbox name="cuisine" label="Chinese" value="1" checked={checkCategory('1')} onChange={filterByCategory} />
+            <Checkbox name="cuisine" label="Malay" value="4" checked={checkCategory('4')} onChange={filterByCategory} />
+            <Checkbox name="cuisine" label="Indian" value="3" checked={checkCategory('3')} onChange={filterByCategory} />
+            <Checkbox name="cuisine" label="Western" value="2" checked={checkCategory('2')} onChange={filterByCategory} />
+            <Checkbox name="cuisine" label="Japanese" value="6" checked={checkCategory('6')} onChange={filterByCategory} />
+            <Checkbox name="cuisine" label="Korean" value="5" checked={checkCategory('5')} onChange={filterByCategory} />
+            <Checkbox name="cuisine" label="Thai" value="8" checked={checkCategory('8')} onChange={filterByCategory} />
+            <Checkbox name="cuisine" label="Dessert" value="10" checked={checkCategory('10')} onChange={filterByCategory} />
             <b>Location</b>
-            <Checkbox name="location" label="North" value="North" />
-            <Checkbox name="location" label="South" value="South" />
-            <Checkbox name="location" label="East" value="East" />
-            <Checkbox name="location" label="West" value="West" />
-            <Checkbox name="location" label="Central" value="Central" />
+            <Checkbox name="location" label="North" value="1" checked={checkLocation('1')} onChange={filterByLocation} />
+            <Checkbox name="location" label="Northeast" value="5" checked={checkLocation('5')} onChange={filterByLocation} />
+            <Checkbox name="location" label="East" value="2" checked={checkLocation('2')} onChange={filterByLocation} />
+            <Checkbox name="location" label="West" value="3" checked={checkLocation('3')} onChange={filterByLocation} />
+            <Checkbox name="location" label="Central" value="4" checked={checkLocation('4')} onChange={filterByLocation} />
           </div>
         </div>
         <div className={styles['result-div']}>
