@@ -6,7 +6,6 @@ import styles from './SiteHeader.module.css';
 import whiteLogo from '../../images/dk-white-logo.png';
 
 const SiteHeader: React.FunctionComponent = () => {
-  const queryString = require('query-string');
   const history: any = useHistory();
   const [input, setInput] = useState('');
 
