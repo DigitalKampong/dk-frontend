@@ -1,8 +1,15 @@
-import { AddCount } from './types';
+import User from '../types/User';
+import { UserActionTypes, UPDATE_CURRENT_USER, REMOVE_CURRENT_USER } from './types';
 
-export const addCount = (payload: number): AddCount => {
+export const updateCurrentUser = (user: User): UserActionTypes => {
   return {
-    type: 'ADD_COUNT',
-    count: payload,
+    type: UPDATE_CURRENT_USER,
+    payload: user,
+  };
+};
+
+export const removeCurrentUser = (): UserActionTypes => {
+  return {
+    type: REMOVE_CURRENT_USER,
   };
 };

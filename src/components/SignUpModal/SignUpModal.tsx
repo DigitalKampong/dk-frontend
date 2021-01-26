@@ -1,6 +1,8 @@
 import React, { useCallback, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Button, Input, Modal } from 'semantic-ui-react';
 import { registerUser } from '../../services/user';
+import { UPDATE_CURRENT_USER } from '../../store/types';
 import styles from './SignUpModal.module.css';
 
 type Props = {
@@ -9,8 +11,11 @@ type Props = {
 };
 
 const SignUpModal = (props: Props) => {
+  const dispatch = useDispatch();
+  const { isOpen, setModalOpen } = props;
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [errorModalOpen, setErrorModalOpen] = useState(false);
   const handleUsernameChange = useCallback((event) => {
     setUsername(event.target.value);
   }, []);
@@ -23,20 +28,25 @@ const SignUpModal = (props: Props) => {
         email: username,
         password: password,
       },
-    }).then((response) => {
-      localStorage.setItem('username', username);
-      localStorage.setItem('loggedIn', 'true');
-      localStorage.setItem('authToken', response.data.token);
-      props.setModalOpen(false);
-    });
-  }, [username, password, props]);
+    })
+      .then((response) => {
+        localStorage.setItem('username', username);
+        localStorage.setItem('loggedIn', 'true');
+        localStorage.setItem('authToken', response.data.token);
+        dispatch({ type: UPDATE_CURRENT_USER, payload: { email: username } });
+        setModalOpen(false);
+      })
+      .catch((error) => {
+        setErrorModalOpen(true);
+      });
+  }, [username, password, dispatch, setModalOpen]);
 
   return (
     <Modal
       className={styles['modal']}
       onClose={() => props.setModalOpen(false)}
       onOpen={() => props.setModalOpen(true)}
-      open={props.isOpen}
+      open={isOpen}
       closeIcon
       size="mini"
     >
@@ -49,6 +59,15 @@ const SignUpModal = (props: Props) => {
           Sign up
         </Button>
       </Modal.Content>
+      <Modal
+        basic
+        className={styles['login-modal']}
+        onClose={() => setErrorModalOpen(false)}
+        onOpen={() => setErrorModalOpen(true)}
+        open={errorModalOpen}
+        content="Sign up failed. The same email may have already been registered."
+        actions={['Ok']}
+      />
     </Modal>
   );
 };

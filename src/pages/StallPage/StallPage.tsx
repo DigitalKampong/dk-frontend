@@ -9,12 +9,15 @@ import Stall from '../../types/Stall';
 import Review, { ReviewTransferObject } from '../../types/Review';
 import GiveReviewModal from '../../components/GiveReviewModal/GiveReviewModal';
 import styles from './StallPage.module.css';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/types';
 
 const StallPage: React.FunctionComponent = () => {
   const params = useParams<{ id: string }>();
   const currentUsername = localStorage.getItem('username');
   const [stall, setStall] = useState<Stall>();
   const [reviews, setReviews] = useState<Review[]>([]);
+  const userIsLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);
   const [isGiveReviewModalOpen, setIsGiveReviewModalOpen] = useState(false);
   const setGiveReviewModalOpen = (target: boolean) => {
     setIsGiveReviewModalOpen(target);
@@ -132,7 +135,7 @@ const StallPage: React.FunctionComponent = () => {
         <div className={styles['separator']}></div>
         <div className={styles['section-header']}>
           Ratings {'&'} Reviews
-          <Button className={styles['button-special']} onClick={() => setGiveReviewModalOpen(true)}>
+          <Button className={styles['button-special']} onClick={() => setGiveReviewModalOpen(true)} disabled={!userIsLoggedIn}>
             {currentUserReview ? 'Edit' : 'Give'} review
           </Button>
         </div>
@@ -158,7 +161,7 @@ const StallPage: React.FunctionComponent = () => {
             <div className={styles['review-card']} key={x.username}>
               <div className={styles['review-card-row']}>
                 <div>
-                  <Rating maxRating={5} defaultRating={x.rating} size="massive" icon="star" disabled />
+                  <Rating maxRating={5} rating={x.rating} size="massive" icon="star" disabled />
                   <div className={styles['comment-username']}>by {x.username}</div>
                 </div>
                 <div className={styles['comment-date']}>{formatDate(x.updatedAt)}</div>
