@@ -11,7 +11,7 @@ const SiteHeader: React.FunctionComponent = () => {
 
   function handleEnter(e: any): void {
     if (e.key === 'Enter') {
-      history.push('/search', { searchInput: input });
+      history.push('/search/' + input.trim());
     }
   }
 
@@ -45,16 +45,9 @@ const SiteHeader: React.FunctionComponent = () => {
               onChange={(e) => setInput(e.target.value)}
               onKeyPress={handleEnter}
             />
-            <Link
-              to={{
-                pathname: '/search',
-                state: {
-                  searchInput: input,
-                },
-              }}
-            >
-              <Button className={styles['search-button-primary']}>Search</Button>
-            </Link>
+            <Button className={styles['search-button-primary']} onClick={() => history.push('/search/' + input.trim())}>
+              Search
+            </Button>
           </div>
         </div>
       </div>
