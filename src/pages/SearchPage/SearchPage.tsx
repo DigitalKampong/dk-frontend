@@ -7,62 +7,88 @@ import SearchHeader from '../../components/SearchHeader/SearchHeader';
 import Stall from '../../types/Stall';
 import { searchStall } from '../../services/stall';
 
-interface InitialSearchParams {
-  region?: string;
-  category?: string;
+interface SearchParams {
+  region: any;
+  category: any;
   limit: string;
   page: string;
 }
 
 const SearchPage: React.FunctionComponent = () => {
-  window.scrollTo(0, 0);
+  const history: any = useHistory();
   const queryString = require('query-string');
   const location = useLocation();
-  const history: any = useHistory();
 
   const params = useParams<{ query: string }>();
-  const inputSearchParams: InitialSearchParams = queryString.parse(location.search, { arrayFormat: 'comma' });
-  const [searchParams, setSearchParams] = useState<InitialSearchParams>(inputSearchParams);
+  const inputSearchParams: SearchParams = queryString.parse(location.search, { arrayFormat: 'comma' });
+  if (typeof inputSearchParams.region === 'string') {
+    inputSearchParams.region = [inputSearchParams.region];
+  } else {
+    inputSearchParams.region = Array.isArray(inputSearchParams.region) ? inputSearchParams.region : [];
+  }
+
+  if (typeof inputSearchParams.category === 'string') {
+    inputSearchParams.category = [inputSearchParams.category];
+  } else {
+    inputSearchParams.category = Array.isArray(inputSearchParams.category) ? inputSearchParams.category : [];
+  }
+
+  const [searchParams, setSearchParams] = useState<SearchParams>(inputSearchParams);
   const [stalls, setStalls] = useState<Stall[]>([]);
   const [query, setQuery] = useState<string>(params.query ? params.query : '');
-  const [locations, setLocation] = useState<string[]>(inputSearchParams.region ? [inputSearchParams.region] : []);
-  const [categories, setCategory] = useState<string[]>(inputSearchParams.category ? [inputSearchParams.category] : []);
 
   useEffect(() => {
-    function buildParams(): string {
-      const newSearchParams: any = { ...searchParams };
-      newSearchParams.region = locations;
-      newSearchParams.category = categories;
-      return queryString.stringify(newSearchParams, { arrayFormat: 'comma' });
-    }
-
-    const currentParams: string = buildParams();
+    window.scrollTo(0, 0);
+    console.log(searchParams);
+    const currentParams: string = queryString.stringify(searchParams, { arrayFormat: 'comma' });
     searchStall(query, currentParams).then((response) => {
       setStalls(response.data.rows);
     });
-  }, [query, queryString, searchParams, categories, locations]);
+  }, [query, queryString, searchParams]);
 
   function checkLocation(loc: string): boolean {
-    return locations.includes(loc);
+    return searchParams.region && searchParams.region.includes(loc);
   }
 
   function checkCategory(cat: string): boolean {
-    return categories.includes(cat);
+    return searchParams.category && searchParams.category.includes(cat);
   }
 
   function filterByCategory(e: any, data: any): void {
+    const newSearchParams: SearchParams = { ...searchParams };
     if (data.checked) {
-      setCategory(() => [...categories, data.value]);
+      newSearchParams.category.push(data.value);
+      setSearchParams(newSearchParams);
+      history.push({
+        pathname: `/search/`,
+        search: queryString.stringify(newSearchParams, { arrayFormat: 'comma' }),
+      });
     } else {
-      setCategory(() => categories.filter((val: string) => val !== data.value));
+      newSearchParams.category = newSearchParams.category.filter((val: string) => val !== data.value);
+      setSearchParams(newSearchParams);
+      history.push({
+        pathname: `/search/`,
+        search: queryString.stringify(newSearchParams, { arrayFormat: 'comma' }),
+      });
     }
   }
 
   function filterByLocation(e: any, data: any): void {
+    const newSearchParams: SearchParams = { ...searchParams };
     if (data.checked) {
-      setLocation(() => [...locations, data.value]);
+      newSearchParams.region.push(data.value);
+      setSearchParams(newSearchParams);
+      history.push({
+        pathname: `/search/`,
+        search: queryString.stringify(newSearchParams, { arrayFormat: 'comma' }),
+      });
     } else {
-      setLocation(() => locations.filter((val: string) => val !== data.value));
+      newSearchParams.region = newSearchParams.region.filter((val: string) => val !== data.value);
+      setSearchParams(newSearchParams);
+      history.push({
+        pathname: `/search/`,
+        search: queryString.stringify(newSearchParams, { arrayFormat: 'comma' }),
+      });
     }
   }
 
