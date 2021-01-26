@@ -10,6 +10,7 @@ interface Props {
 
 const StallCard: React.FunctionComponent<Props> = (props: Props) => {
   const { stall } = props;
+  console.log(stall.Images[0]);
   return (
     <Link
       to={{
@@ -17,10 +18,9 @@ const StallCard: React.FunctionComponent<Props> = (props: Props) => {
       }}
     >
       <Card>
-        <Image src="https://react.semantic-ui.com/images/wireframe/image.png" wrapped ui={false} />
+        <Image src={stall.Images[0].downloadUrl} wrapped ui={false} />
         <Card.Content>
           <Card.Header>{stall.name}</Card.Header>
-          <Card.Meta>$2.50/pax</Card.Meta>
           <Card.Meta>
             <Rating icon="star" defaultRating={Math.floor(stall.rating)} maxRating={5} disabled />
             <span>({stall.rating ? stall.rating : 'N/A'})</span>
