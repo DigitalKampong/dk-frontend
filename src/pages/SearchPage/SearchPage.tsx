@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useHistory, useLocation, useParams } from 'react-router-dom';
 import StallGrid from '../../components/StallGrid/StallGrid';
 import styles from './SearchPage.module.css';
-import { Checkbox } from 'semantic-ui-react';
+import { Checkbox, Pagination } from 'semantic-ui-react';
 import SearchHeader from '../../components/SearchHeader/SearchHeader';
 import Stall from '../../types/Stall';
 import { searchStall } from '../../services/stall';
@@ -36,13 +36,14 @@ const SearchPage: React.FunctionComponent = () => {
   const [searchParams, setSearchParams] = useState<SearchParams>(inputSearchParams);
   const [stalls, setStalls] = useState<Stall[]>([]);
   const [query, setQuery] = useState<string>(params.query ? params.query : '');
+  const [pages, setPages] = useState<number>(0);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    console.log(searchParams);
     const currentParams: string = queryString.stringify(searchParams, { arrayFormat: 'comma' });
     searchStall(query, currentParams).then((response) => {
       setStalls(response.data.rows);
+      setPages(Math.ceil(response.data.count / parseInt(searchParams.limit)));
     });
   }, [query, queryString, searchParams]);
 
@@ -92,6 +93,20 @@ const SearchPage: React.FunctionComponent = () => {
     }
   }
 
+  function handlePagination(e: any, data: any) {
+    e.preventDefault();
+    console.log(data);
+
+    const pageNo: string = e.target.getAttribute('value');
+    const newSearchParams: SearchParams = { ...searchParams };
+    newSearchParams.page = pageNo;
+    setSearchParams(newSearchParams);
+    history.push({
+      pathname: `/search/`,
+      search: queryString.stringify(newSearchParams, { arrayFormat: 'comma' }),
+    });
+  }
+
   return (
     <>
       <SearchHeader isSearchPage={true} setQuery={setQuery} />
@@ -124,6 +139,9 @@ const SearchPage: React.FunctionComponent = () => {
             </div>
             <StallGrid stallList={stalls} />
           </div>
+          <div className={styles['pagination-div']}>
+            <Pagination boundaryRange={0} defaultActivePage={searchParams.page} totalPages={pages} onPageChange={handlePagination} />
+          </div>
         </div>
       </div>
     </>
@@ -133,6 +151,8 @@ const SearchPage: React.FunctionComponent = () => {
 export default SearchPage;
 
 /*
+
+        <Pagination defaultActivePage={1} totalPages={10} />
   useEffect(() => {
     searchStall(query).then((response) => {
       setOriginalStalls(response.data);
