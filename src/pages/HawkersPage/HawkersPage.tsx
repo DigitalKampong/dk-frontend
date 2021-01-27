@@ -13,6 +13,7 @@ const HawkerLocationPage: React.FunctionComponent = () => {
   const [filteredHawkers, setFilteredHawkers] = useState<HawkerCentre[]>([]);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     if (filter.length === 0 && !isFiltered) {
       getAllHawkers().then((response) => {
         setHawkers(response.data);
@@ -45,7 +46,7 @@ const HawkerLocationPage: React.FunctionComponent = () => {
 
   return (
     <>
-      <SearchHeader></SearchHeader>
+      <SearchHeader isSearchPage={false} setQuery={() => {}}></SearchHeader>
       <div className={styles['site-content']}>
         <div className={styles['location-filters-row']}>
           <div className={styles['site-content-header']}>

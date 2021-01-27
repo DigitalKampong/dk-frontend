@@ -11,7 +11,22 @@ const SiteHeader: React.FunctionComponent = () => {
 
   function handleEnter(e: any): void {
     if (e.key === 'Enter') {
-      history.push('/search', { searchInput: input });
+      handleSearch();
+    }
+  }
+
+  function handleSearch(): void {
+    const trimmedInput: string = input.trim();
+    if (trimmedInput.length > 0) {
+      history.push({
+        pathname: `/search/${trimmedInput}`,
+        search: '?limit=20&page=1',
+      });
+    } else {
+      history.push({
+        pathname: `/search/`,
+        search: '?limit=20&page=1',
+      });
     }
   }
 
@@ -45,16 +60,9 @@ const SiteHeader: React.FunctionComponent = () => {
               onChange={(e) => setInput(e.target.value)}
               onKeyPress={handleEnter}
             />
-            <Link
-              to={{
-                pathname: '/search',
-                state: {
-                  searchInput: input,
-                },
-              }}
-            >
-              <Button className={styles['search-button-primary']}>Search</Button>
-            </Link>
+            <Button className={styles['search-button-primary']} onClick={handleSearch}>
+              Search
+            </Button>
           </div>
         </div>
       </div>

@@ -10,6 +10,7 @@
   font-size: 24px !important;
   line-height: 28px !important;
   display: flex !important;
+  margin: 8px 0;
 }
 
 .content > .content-header {

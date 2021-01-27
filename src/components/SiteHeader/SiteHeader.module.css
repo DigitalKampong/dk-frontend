@@ -85,6 +85,7 @@
 }
 
 .search-button-primary {
+  height: 50px;
   margin-left: 12px !important;
   text-transform: uppercase !important;
   font-size: 18px !important;

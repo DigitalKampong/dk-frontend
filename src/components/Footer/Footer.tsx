@@ -1,6 +1,5 @@
 import React from 'react';
-import fmasLogo from '../../images/fmas-logo.png';
-import dscLogo from '../../images/dsc-logo.png';
+import { fmasLogo, dscLogo } from '../../images/image_modules';
 import styles from './Footer.module.css';
 
 const Footer: React.FunctionComponent = () => {
