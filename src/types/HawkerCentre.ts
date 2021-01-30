@@ -12,4 +12,5 @@ export default interface HawkerCentre {
   Stalls: Stall[];
   bus: string;
   mrt: string;
+  Images: [];
 }
