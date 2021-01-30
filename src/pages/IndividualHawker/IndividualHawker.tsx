@@ -38,9 +38,9 @@ const IndividualHawker: React.FunctionComponent = () => {
               <div className={styles['hawker-address']}>{hawkerData.address}</div>
               <div className={styles['hawker-description']}>Getting there:</div>
               <div className={styles['hawker-transport']}>
-                Nearest Mrt:
+                Nearest Mrt: : {hawkerData.mrt};
                 <br />
-                Bus:
+                Bus: {hawkerData.bus}
               </div>
               <div className={styles['direction-button']}>
                 <Button basic>Open in Google Map</Button>
