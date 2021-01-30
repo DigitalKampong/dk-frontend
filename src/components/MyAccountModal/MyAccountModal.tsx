@@ -1,6 +1,8 @@
 import React, { useCallback } from 'react';
 import styles from './MyAccountModal.module.css';
 import { Button, Modal } from 'semantic-ui-react';
+import { useDispatch } from 'react-redux';
+import { REMOVE_CURRENT_USER } from '../../store/types';
 
 type Props = {
   isOpen: boolean;
@@ -8,14 +10,16 @@ type Props = {
 };
 
 const MyAccountModal = (props: Props) => {
+  const dispatch = useDispatch();
   const username = localStorage.getItem('username');
   const { setModalOpen } = props;
   const handleLogOut = useCallback(() => {
     localStorage.removeItem('username');
     localStorage.removeItem('loggedIn');
     localStorage.removeItem('authToken');
+    dispatch({ type: REMOVE_CURRENT_USER });
     setModalOpen(false);
-  }, [setModalOpen]);
+  }, [setModalOpen, dispatch]);
 
   return (
     <Modal onClose={() => setModalOpen(false)} onOpen={() => setModalOpen(true)} open={props.isOpen} closeIcon>
@@ -25,9 +29,15 @@ const MyAccountModal = (props: Props) => {
       <Modal.Content>
         <Modal.Description className={styles['content']}>
           <div className={styles['content-header']}>
-            <b>Username</b>
+            <b>Email</b>
           </div>
           <div>{username}</div>
+        </Modal.Description>
+        <Modal.Description className={styles['content']}>
+          <div className={styles['content-header']}>
+            <b>Username</b>
+          </div>
+          <div>undefined</div>
         </Modal.Description>
       </Modal.Content>
       <Modal.Actions>

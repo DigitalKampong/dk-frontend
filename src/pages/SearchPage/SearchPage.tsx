@@ -1,27 +1,158 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useHistory, useLocation, useParams } from 'react-router-dom';
 import StallGrid from '../../components/StallGrid/StallGrid';
-import { searchStall } from '../../services/stall';
 import styles from './SearchPage.module.css';
-import { Checkbox, Rating } from 'semantic-ui-react';
-import SearchPageHeader from '../../components/SearchPageHeader/SearchPageHeader';
+import { Checkbox, Pagination } from 'semantic-ui-react';
+import SearchHeader from '../../components/SearchHeader/SearchHeader';
 import Stall from '../../types/Stall';
+import { searchStall } from '../../services/stall';
 
-interface StateProps {
-  searchInput: string;
+interface SearchParams {
+  region: any;
+  category: any;
+  limit: string;
+  page: string;
 }
 
 const SearchPage: React.FunctionComponent = () => {
+  const history: any = useHistory();
+  const queryString = require('query-string');
   const location = useLocation();
-  const state = location.state as StateProps;
 
+  const params = useParams<{ query: string }>();
+  const inputSearchParams: SearchParams = queryString.parse(location.search, { arrayFormat: 'comma' });
+  if (typeof inputSearchParams.region === 'string') {
+    inputSearchParams.region = [inputSearchParams.region];
+  } else {
+    inputSearchParams.region = Array.isArray(inputSearchParams.region) ? inputSearchParams.region : [];
+  }
+
+  if (typeof inputSearchParams.category === 'string') {
+    inputSearchParams.category = [inputSearchParams.category];
+  } else {
+    inputSearchParams.category = Array.isArray(inputSearchParams.category) ? inputSearchParams.category : [];
+  }
+
+  const [searchParams, setSearchParams] = useState<SearchParams>(inputSearchParams);
   const [stalls, setStalls] = useState<Stall[]>([]);
-  const [originalStalls, setOriginalStalls] = useState<Stall[]>([]);
-  const [query, setQuery] = useState<string>(state.searchInput);
-  const [cuisineFilter, setCuisineFilter] = useState<string[]>([]);
-  const [locationFilter, setLocationFilter] = useState<string[]>([]);
-  const [ratingFilter, setRatingFilter] = useState<number>(0);
+  const [query, setQuery] = useState<string>(params.query ? params.query : '');
+  const [pages, setPages] = useState<number>(0);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    const currentParams: string = queryString.stringify(searchParams, { arrayFormat: 'comma' });
+    searchStall(query, currentParams).then((response) => {
+      setStalls(response.data.rows);
+      setPages(Math.ceil(response.data.count / parseInt(searchParams.limit)));
+    });
+  }, [query, queryString, searchParams]);
+
+  function checkLocation(loc: string): boolean {
+    return searchParams.region && searchParams.region.includes(loc);
+  }
+
+  function checkCategory(cat: string): boolean {
+    return searchParams.category && searchParams.category.includes(cat);
+  }
+
+  function filterByCategory(e: any, data: any): void {
+    const newSearchParams: SearchParams = { ...searchParams };
+    if (data.checked) {
+      newSearchParams.category.push(data.value);
+      setSearchParams(newSearchParams);
+      history.push({
+        pathname: `/search/`,
+        search: queryString.stringify(newSearchParams, { arrayFormat: 'comma' }),
+      });
+    } else {
+      newSearchParams.category = newSearchParams.category.filter((val: string) => val !== data.value);
+      setSearchParams(newSearchParams);
+      history.push({
+        pathname: `/search/`,
+        search: queryString.stringify(newSearchParams, { arrayFormat: 'comma' }),
+      });
+    }
+  }
+
+  function filterByLocation(e: any, data: any): void {
+    const newSearchParams: SearchParams = { ...searchParams };
+    if (data.checked) {
+      newSearchParams.region.push(data.value);
+      setSearchParams(newSearchParams);
+      history.push({
+        pathname: `/search/`,
+        search: queryString.stringify(newSearchParams, { arrayFormat: 'comma' }),
+      });
+    } else {
+      newSearchParams.region = newSearchParams.region.filter((val: string) => val !== data.value);
+      setSearchParams(newSearchParams);
+      history.push({
+        pathname: `/search/`,
+        search: queryString.stringify(newSearchParams, { arrayFormat: 'comma' }),
+      });
+    }
+  }
+
+  function handlePagination(e: any, data: any) {
+    e.preventDefault();
+    console.log(data);
+
+    const pageNo: string = e.target.getAttribute('value');
+    const newSearchParams: SearchParams = { ...searchParams };
+    newSearchParams.page = pageNo;
+    setSearchParams(newSearchParams);
+    history.push({
+      pathname: `/search/`,
+      search: queryString.stringify(newSearchParams, { arrayFormat: 'comma' }),
+    });
+  }
+
+  return (
+    <>
+      <SearchHeader isSearchPage={true} setQuery={setQuery} />
+      <div className={styles['search-div']}>
+        <div className={styles['filter-div']}>
+          <div id="checkbox" className={styles['checkbox-div']}>
+            <b>Cuisine</b>
+            <Checkbox name="cuisine" label="Chinese" value="1" checked={checkCategory('1')} onChange={filterByCategory} />
+            <Checkbox name="cuisine" label="Malay" value="4" checked={checkCategory('4')} onChange={filterByCategory} />
+            <Checkbox name="cuisine" label="Indian" value="3" checked={checkCategory('3')} onChange={filterByCategory} />
+            <Checkbox name="cuisine" label="Western" value="2" checked={checkCategory('2')} onChange={filterByCategory} />
+            <Checkbox name="cuisine" label="Japanese" value="6" checked={checkCategory('6')} onChange={filterByCategory} />
+            <Checkbox name="cuisine" label="Korean" value="5" checked={checkCategory('5')} onChange={filterByCategory} />
+            <Checkbox name="cuisine" label="Thai" value="8" checked={checkCategory('8')} onChange={filterByCategory} />
+            <Checkbox name="cuisine" label="Dessert" value="10" checked={checkCategory('10')} onChange={filterByCategory} />
+            <b>Location</b>
+            <Checkbox name="location" label="North" value="1" checked={checkLocation('1')} onChange={filterByLocation} />
+            <Checkbox name="location" label="Northeast" value="5" checked={checkLocation('5')} onChange={filterByLocation} />
+            <Checkbox name="location" label="East" value="2" checked={checkLocation('2')} onChange={filterByLocation} />
+            <Checkbox name="location" label="West" value="3" checked={checkLocation('3')} onChange={filterByLocation} />
+            <Checkbox name="location" label="Central" value="4" checked={checkLocation('4')} onChange={filterByLocation} />
+          </div>
+        </div>
+        <div className={styles['result-div']}>
+          <div className={styles['site-content']}>
+            <div className={styles['section-search-header-row']}>
+              <div className={styles['section-search-header']}>
+                <b>{query !== '' ? 'Search result for ' + query : 'All stalls'}</b>
+              </div>
+            </div>
+            <StallGrid stallList={stalls} />
+          </div>
+          <div className={styles['pagination-div']}>
+            <Pagination boundaryRange={0} defaultActivePage={searchParams.page} totalPages={pages} onPageChange={handlePagination} />
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default SearchPage;
+
+/*
+
+        <Pagination defaultActivePage={1} totalPages={10} />
   useEffect(() => {
     searchStall(query).then((response) => {
       setOriginalStalls(response.data);
@@ -59,44 +190,4 @@ const SearchPage: React.FunctionComponent = () => {
   function filterByRating(e: any): void {
     setRatingFilter(e.target.value);
   }
-
-  return (
-    <>
-      <SearchPageHeader searchInput={state.searchInput} handleSearch={setQuery} />
-      <div className={styles['search-div']}>
-        <div className={styles['filter-div']}>
-          <div id="checkbox" className={styles['checkbox-div']}>
-            <b>Cuisine</b>
-            <Checkbox name="cuisine" label="Chinese" value="Chinese" onChange={filterByCuisine} />
-            <Checkbox name="cuisine" label="Muslim" value="Muslim" onChange={filterByCuisine} />
-            <Checkbox name="cuisine" label="Western" value="Western" onChange={filterByCuisine} />
-            <b>Location</b>
-            <Checkbox name="location" label="North" value="North" onChange={filterByLocation} />
-            <Checkbox name="location" label="South" value="South" onChange={filterByLocation} />
-            <Checkbox name="location" label="East" value="East" onChange={filterByLocation} />
-            <Checkbox name="location" label="West" value="West" onChange={filterByLocation} />
-            <Checkbox name="location" label="Central" value="Central" onChange={filterByLocation} />
-            <b>
-              Rating {'>'} {ratingFilter}
-            </b>
-            <input type="range" min={0} max={5} value={ratingFilter} onChange={filterByRating} />
-            <br />
-            <Rating rating={ratingFilter} maxRating={5} />
-          </div>
-        </div>
-        <div className={styles['result-div']}>
-          <div className={styles['site-content']}>
-            <div className={styles['section-search-header-row']}>
-              <div className={styles['section-search-header']}>
-                <b>{query !== '' ? 'Search result for ' + query : 'All stalls'}</b>
-              </div>
-            </div>
-            <StallGrid stallList={stalls} />
-          </div>
-        </div>
-      </div>
-    </>
-  );
-};
-
-export default SearchPage;
+  */

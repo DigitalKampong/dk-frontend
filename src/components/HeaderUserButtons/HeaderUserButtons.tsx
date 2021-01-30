@@ -3,8 +3,10 @@ import LogInModal from '../LogInModal/LogInModal';
 import SignUpModal from '../SignUpModal/SignUpModal';
 import styles from './HeaderUserButtons.module.css';
 import { Button } from 'semantic-ui-react';
-import { isLoggedIn } from '../../services/user';
+import { getLoggedInUser } from '../../services/user';
 import MyAccountModal from '../MyAccountModal/MyAccountModal';
+import { useDispatch, useSelector } from 'react-redux';
+import { REMOVE_CURRENT_USER, RootState, UPDATE_CURRENT_USER } from '../../store/types';
 
 interface Props {
   isMainHeader: boolean;
@@ -14,12 +16,17 @@ const HeaderUserButtons = (props: Props) => {
   const [isLogInModalOpen, setLogInModalOpen] = useState(false);
   const [isSignUpModalOpen, setSignUpModalOpen] = useState(false);
   const [isMyAccountModalOpen, setMyAccountModalOpen] = useState(false);
-  const [userIsLoggedIn, setIsLoggedIn] = useState(false);
+  const userIsLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);
+  const dispatch = useDispatch();
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
-    setIsLoggedIn(isLoggedIn());
-  });
+    const currentUser = getLoggedInUser();
+    if (currentUser) {
+      dispatch({ type: UPDATE_CURRENT_USER, payload: currentUser });
+    } else {
+      dispatch({ type: REMOVE_CURRENT_USER });
+    }
+  }, [dispatch]);
 
   const handleSignUpAction = useCallback(() => {
     setLogInModalOpen(false);

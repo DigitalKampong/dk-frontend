@@ -5,11 +5,13 @@ import API from '../types/api';
 /**
  * Get all stalls from the backend (Public)
  *
+ * @param limit: Max No. of stalls returned
+ * @param page: page
  * @method GET
  * @access Public
  */
-export const getAllStalls = async () => {
-  return await Axios.get(ENDPOINTS.BASE + ENDPOINTS.STALLS).catch((error) => {
+export const getAllStalls = async (limit: number = 12, page: number = 1) => {
+  return await Axios.get(ENDPOINTS.BASE + ENDPOINTS.STALLS + '?limit=' + limit + '&page=' + page).catch((error) => {
     throw error;
   });
 };
@@ -73,9 +75,10 @@ export const updateStall = async (id: number, data: API) => {
  * @method GET
  * @access Public
  * @param query Search query
+ * @param params Search params
  */
-export const searchStall = async (query: string) => {
-  return await Axios.get(ENDPOINTS.BASE + ENDPOINTS.SEARCH + query).catch((error) => {
+export const searchStall = async (query: string, params: string) => {
+  return await Axios.get(ENDPOINTS.BASE + ENDPOINTS.SEARCH + query + '?' + params).catch((error) => {
     throw error;
   });
 };

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Input } from 'semantic-ui-react';
-import HeaderUserButtons from '../HeaderUserButtons/HeaderUserButtons';
+import HeaderUserButtons from '../../components/HeaderUserButtons/HeaderUserButtons';
 import styles from './SearchPageHeader.module.css';
 import darkLogo from '../../images/dk-dark-logo.png';
 

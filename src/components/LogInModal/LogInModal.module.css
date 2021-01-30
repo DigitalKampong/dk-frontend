@@ -2,6 +2,19 @@
   width: 456px !important;
 }
 
+.login-modal > div {
+  font-family: 'Raleway' !important;
+  font-size: 24px !important;
+  line-height: 24px !important;
+  font-weight: 400 !important;
+}
+
+.login-modal > div > button {
+  font-family: 'Montserrat' !important;
+  font-size: 18px !important;
+  font-weight: 800 !important;
+}
+
 .modal-header {
   font-family: 'Raleway' !important;
   font-weight: 700 !important;
