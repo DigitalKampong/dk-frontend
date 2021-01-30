@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Button, Checkbox, Input, Modal } from 'semantic-ui-react';
 import { loginUser } from '../../services/user';
 import { UPDATE_CURRENT_USER } from '../../store/types';
-import styles from './LogInModal.module.css';
+import styles from './LogInModal.module.scss';
 
 type Props = {
   isOpen: boolean;

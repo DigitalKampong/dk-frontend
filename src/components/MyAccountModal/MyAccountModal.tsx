@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import styles from './MyAccountModal.module.css';
+import styles from './MyAccountModal.module.scss';
 import { Button, Modal } from 'semantic-ui-react';
 import { useDispatch } from 'react-redux';
 import { REMOVE_CURRENT_USER } from '../../store/types';

@@ -1,3 +1,5 @@
+@import '../../variables.scss';
+
 .modal {
   width: 456px !important;
 }
@@ -21,7 +23,7 @@
   font-size: 24px !important;
   line-height: 24px !important;
   text-align: center;
-  background: #ffc448 !important;
+  background: $header !important;
 }
 
 .modal-content {
