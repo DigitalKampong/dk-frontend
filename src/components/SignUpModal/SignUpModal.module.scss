@@ -1,3 +1,5 @@
+@import '../../variables.scss';
+
 .modal {
   width: 456px !important;
 }
@@ -10,9 +12,7 @@
 }
 
 .login-modal > div > button {
-  font-family: 'Montserrat' !important;
-  font-size: 18px !important;
-  font-weight: 800 !important;
+  @extend %button-text;
 }
 
 .modal-header {
@@ -52,4 +52,28 @@
   box-shadow: none !important;
   background: #448fff !important;
   color: white !important;
+}
+
+@media (max-width: $mobileWidth) {
+  .modal {
+    width: 80% !important;
+  }
+
+  .login-modal > div {
+    font-size: 18px !important;
+    line-height: 18px !important;
+  }
+
+  .modal-header {
+    font-size: 18px !important;
+  }
+
+  .input-field {
+    font-size: 18px !important;
+    line-height: 18px !important;
+  }
+
+  .signup-button {
+    font-size: 18px !important;
+  }
 }

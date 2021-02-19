@@ -1,3 +1,5 @@
+@import '../../variables.scss';
+
 .site-content {
   padding: 0 12%;
   padding-bottom: 50px;
@@ -15,33 +17,37 @@
 
 .section-header {
   font-family: 'Montserrat';
-  font-size: 48px;
+  font-size: 36px;
 }
 
 .section-header-button {
-  font-family: 'Montserrat';
-  font-weight: 800;
+  @extend %button-text;
+
   color: #ffb444;
-  font-size: 24px;
   text-transform: uppercase;
 }
 
 .category-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 20px;
 }
 
 .location-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 20px;
 }
 
 .directory-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
 }
 
-.category-grid-cell {
+.category-grid-cell,
+.location-grid-cell,
+.directory-grid-cell {
   background-size: cover;
   background-position: center;
   height: 238px;
@@ -49,19 +55,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 10px;
-  background: rgba(0, 0, 0, 0.25);
   box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.2);
 }
 
-.cat-img {
-  position: absolute;
-  height: inherit;
-  z-index: 1;
-}
-
 .category-grid-label {
-  z-index: 2;
   font-family: 'Raleway';
   font-style: normal;
   font-weight: bold;
@@ -69,4 +66,55 @@
   line-height: 24px;
   color: white;
   text-shadow: 0px 10px 4px rgba(0, 0, 0, 0.25);
+  text-align: center;
+}
+
+@media (max-width: $mobileWidth) {
+  .site-content {
+    padding: 0 20px;
+    padding-bottom: 20px;
+  }
+
+  .section-header-row {
+    padding-top: 25px;
+    margin-bottom: 32px;
+  }
+
+  .section-header {
+    font-size: 18px;
+  }
+
+  .category-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 10px;
+  }
+
+  .category-grid-cell {
+    height: 102px;
+    box-shadow: none;
+  }
+
+  .location-grid-cell {
+    height: 78px;
+    box-shadow: none;
+  }
+
+  .category-grid-label {
+    font-size: 18px;
+    line-height: 18px;
+  }
+
+  .location-grid {
+    grid-gap: 5px;
+  }
+
+  .directory-grid {
+    grid-gap: 10px;
+  }
+
+  .directory-grid-cell {
+    height: 78px;
+    box-shadow: none;
+    background: rgba(0, 0, 0, 0.2);
+  }
 }

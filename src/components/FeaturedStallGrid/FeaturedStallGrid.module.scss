@@ -1,0 +1,9 @@
+.stall-grid {
+  box-sizing: border-box;
+  overflow-x: auto;
+  display: flex;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

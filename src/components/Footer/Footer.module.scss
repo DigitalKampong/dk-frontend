@@ -1,0 +1,54 @@
+@import '../../variables.scss';
+
+.footer {
+  background-color: #ebebeb;
+  height: 225px;
+}
+
+.footer-body {
+  padding: 30px 30px 150px 250px;
+}
+
+.image-div {
+  float: left;
+  margin: 10px 20px 0px 0px;
+}
+
+.image-dsc {
+  width: 300px;
+  height: 75px;
+}
+
+.image-fmas {
+  width: 300px;
+  height: 75px;
+}
+
+@media (max-width: $mobileWidth) {
+  .footer {
+    height: 80px;
+  }
+
+  .footer-body {
+    padding: 10px 20px;
+  }
+
+  h2 {
+    font-size: 14px;
+    margin: 0;
+  }
+
+  .image-div {
+    margin: 5px 20px 0px 0px;
+  }
+
+  .image-fmas {
+    width: 125px;
+    height: 31px;
+  }
+
+  .image-dsc {
+    width: 125px;
+    height: 31px;
+  }
+}
