@@ -11,7 +11,7 @@ interface Props {
 const HawkerGrid: React.FunctionComponent<Props> = (props: Props) => {
   const { hawkerList } = props;
   return (
-    <div>
+    <div className={styles['hawker-grid']}>
       <List divided relaxed>
         {hawkerList.map((hawker) => {
           return (
@@ -25,8 +25,9 @@ const HawkerGrid: React.FunctionComponent<Props> = (props: Props) => {
                 }}
               >
                 <Button basic className={styles['hawker-button']}>
-                  <div>
-                    {hawker.name} &emsp;{hawker.address}
+                  <div className={styles['hawker-content']}>
+                    <div className={styles['hawker-name']}>{hawker.name}</div>
+                    <div className={styles['hawker-address']}>{hawker.address}</div>
                   </div>
                 </Button>
               </Link>

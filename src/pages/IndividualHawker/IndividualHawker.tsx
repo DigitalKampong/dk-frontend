@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { Grid, Button } from 'semantic-ui-react';
+import { Button } from 'semantic-ui-react';
 import SearchHeader from '../../components/SearchHeader/SearchHeader';
 import { getHawker } from '../../services/hawker';
 import HawkerCentre from '../../types/HawkerCentre';
@@ -28,26 +28,25 @@ const IndividualHawker: React.FunctionComponent = () => {
     <>
       <SearchHeader isSearchPage={false} setQuery={() => {}}></SearchHeader>
       <div className={styles['site-content']}>
-        <div className={styles['hawker-item']}>
-          <Grid>
-            <Grid.Column width={6}>
-              <div className={styles['hawker-image']}></div>
-            </Grid.Column>
-            <Grid.Column width={6}>
-              <div className={styles['hawker-header']}>{hawkerData.name}</div>
-              <div className={styles['hawker-address']}>{hawkerData.address}</div>
-              <div className={styles['hawker-description']}>Getting there:</div>
-              <div className={styles['hawker-transport']}>
-                Nearest Mrt: : {hawkerData.mrt};
-                <br />
-                Bus: {hawkerData.bus}
-              </div>
-              <div className={styles['direction-button']}>
-                <Button basic>Open in Google Map</Button>
-              </div>
-            </Grid.Column>
-          </Grid>
-          <div className={styles['stalls-header']}>Stalls</div>
+        <div className={styles['hawker']}>
+          <div className={styles['hawker-image-grid']}></div>
+          <div className={styles['hawker-content-grid']}>
+            <div className={styles['hawker-header']}>{hawkerData.name}</div>
+            <div className={styles['hawker-address']}>{hawkerData.address}</div>
+            <div className={styles['hawker-description']}>Getting there:</div>
+            <div className={styles['hawker-transport']}>
+              <p>Nearest Mrt: {hawkerData.mrt}</p>
+              <p>Bus: {hawkerData.bus}</p>
+            </div>
+            <div className={styles['direction-button']}>
+              <Button basic className={styles['button']}>
+                Open in Google Map
+              </Button>
+            </div>
+          </div>
+        </div>
+        <div className={styles['stalls-header']}>Stalls</div>
+        <div className={styles['stalls']}>
           <StallGrid stallList={hawkerData.id ? hawkerData?.Stalls : []} />
         </div>
       </div>

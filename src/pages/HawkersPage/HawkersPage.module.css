@@ -1,7 +1,12 @@
+@import '../../variables.scss';
+
 .site-content {
-  padding: 0 12%;
+  padding: 0 12% 0 12%;
+  box-sizing: border-box;
   padding-bottom: 50px;
   background: #f9f8f4;
+  width: 100%;
+  text-align: center;
 }
 
 .site-content-header {
@@ -26,6 +31,20 @@
 
 .hawker-list {
   padding-top: 40px;
-  display: flex;
-  flex-direction: row;
+}
+
+@media only screen and (max-width: 900px) {
+  .site-content-header {
+    font-family: 'Montserrat';
+    font-size: 30px;
+    padding-top: 20px;
+    margin-bottom: 20px;
+    white-space: nowrap;
+  }
+
+  .filter-buttons {
+    margin-top: 20px;
+    height: 15px;
+    float: right;
+  }
 }

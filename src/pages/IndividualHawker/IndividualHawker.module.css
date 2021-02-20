@@ -1,60 +1,126 @@
 .site-content {
   padding: 0 12%;
   padding-bottom: 50px;
-  background: #f9f8f4;
+  background: #ffffff;
 }
 
-.hawker-item {
-  padding-top: 50px;
+.hawker {
+  display: inline-grid;
+  grid-template-columns: auto auto auto;
+  grid-column-gap: 50px;
+  padding: 20px;
 }
 
-.hawker-image {
-  width: 418px;
-  height: 264px;
-  margin-top: 38px;
+.hawker-image-grid {
+  width: 600px;
+  padding: 20px;
+  height: 400px;
   background: url('https://react.semantic-ui.com/images/wireframe/image.png');
   background-size: cover;
   background-position: center;
 }
 
+.hawker-content-grid {
+  padding: 10px;
+}
+
 .hawker-header {
   font-family: 'Montserrat';
   font-size: 50px;
-  margin-top: 30px;
-  font-size: 30px;
   font-family: 'Raleway';
   font-weight: 900;
   line-height: 42px;
+  white-space: nowrap;
 }
 
 .hawker-address {
+  margin-top: 20px;
   font-weight: 100;
   font-family: 'Raleway';
-  font-size: 18px;
+  font-size: 30px;
+  white-space: nowrap;
 }
 
 .hawker-description {
-  padding-top: 25px;
-  margin-top: 40px;
+  margin-top: 60px;
   font-weight: 800;
   font-family: 'Raleway';
-  font-size: 18px;
+  font-size: 25px;
 }
 
 .hawker-transport {
-  font-size: 14px;
-  margin-top: 10px;
-  font-weight: 600;
+  font-size: 20px;
+  margin-top: 30px;
+  font-weight: 500;
 }
 
 .direction-button {
   margin-top: 40px;
 }
 
+.button {
+  margin-top: 20px;
+  font-size: 20px;
+  width: 200px;
+  height: 50px;
+}
+
 .stalls-header {
   margin-top: 70px;
+  padding: 20px;
   font-size: 30px;
   font-family: 'Raleway';
   font-weight: 900;
   line-height: 42px;
+}
+
+.stalls {
+  padding: 20px;
+}
+
+@media only screen and (max-width: 900px) {
+  .site-content {
+    padding: 0 5% 0 5%;
+  }
+
+  .hawker {
+    display: inline-grid;
+  }
+
+  .hawker-image-grid {
+    width: 400px;
+    height: 300px;
+  }
+
+  .hawker-header {
+    font-size: 25px;
+  }
+
+  .hawker-address {
+    margin-top: 5px;
+    font-size: 18px;
+  }
+
+  .hawker-description {
+    margin-top: 30px;
+    font-size: 17px;
+  }
+
+  .hawker-transport {
+    margin-top: 10px;
+    font-size: 15px;
+  }
+
+  .direction-button {
+    margin-top: 20px;
+  }
+
+  .button {
+    height: auto;
+    width: auto;
+  }
+
+  .stalls-header {
+    margin-top: 30px;
+  }
 }
