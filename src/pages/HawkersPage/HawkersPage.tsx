@@ -16,11 +16,9 @@ const HawkerLocationPage: React.FunctionComponent = () => {
     if (filter.length === 0) {
       getAllHawkers().then((response) => {
         setHawkers(response.data);
-        console.log(response.data);
       });
     } else {
       setFilteredHawkers(filterLocation(filter));
-      console.log(filter);
     }
   }, [filter, isFiltered]); // eslint-disable-line react-hooks/exhaustive-deps
 

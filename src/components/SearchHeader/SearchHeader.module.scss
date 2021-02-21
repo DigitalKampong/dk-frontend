@@ -89,7 +89,7 @@
 
 @media (max-width: $mobileWidth) {
   .search-header {
-    height: auto;
+    height: 130px;
     padding: 10px 0;
   }
 
@@ -148,5 +148,9 @@
         opacity: 50%;
       }
     }
+  }
+
+  .search-header-filler {
+    height: 130px;
   }
 }

@@ -1,17 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useLocation, useParams } from 'react-router-dom';
 import StallGrid from '../../components/StallGrid/StallGrid';
-import styles from './SearchPage.module.css';
+import styles from './SearchPage.module.scss';
 import { Checkbox, Pagination } from 'semantic-ui-react';
 import SearchHeader from '../../components/SearchHeader/SearchHeader';
 import Stall from '../../types/Stall';
 import { searchStall } from '../../services/stall';
+import { getAllCategories } from '../../services/categories';
+import { getAllLocations } from '../../services/locations';
 
 interface SearchParams {
   region: any;
   category: any;
   limit: string;
   page: string;
+}
+
+interface Filter {
+  id: number;
+  name: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 const SearchPage: React.FunctionComponent = () => {
@@ -37,6 +46,8 @@ const SearchPage: React.FunctionComponent = () => {
   const [stalls, setStalls] = useState<Stall[]>([]);
   const [query, setQuery] = useState<string>(params.query ? params.query : '');
   const [pages, setPages] = useState<number>(0);
+  const [catFilters, setCatFilters] = useState<Filter[]>([]);
+  const [locFilters, setLocFilters] = useState<Filter[]>([]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -44,6 +55,12 @@ const SearchPage: React.FunctionComponent = () => {
     searchStall(query, currentParams).then((response) => {
       setStalls(response.data.rows);
       setPages(Math.ceil(response.data.count / parseInt(searchParams.limit)));
+    });
+    getAllCategories().then((response) => {
+      setCatFilters(response.data);
+    });
+    getAllLocations().then((response) => {
+      setLocFilters(response.data);
     });
   }, [query, queryString, searchParams]);
 
@@ -95,7 +112,6 @@ const SearchPage: React.FunctionComponent = () => {
 
   function handlePagination(e: any, data: any) {
     e.preventDefault();
-    console.log(data);
 
     const pageNo: string = e.target.getAttribute('value');
     const newSearchParams: SearchParams = { ...searchParams };
@@ -114,20 +130,31 @@ const SearchPage: React.FunctionComponent = () => {
         <div className={styles['filter-div']}>
           <div id="checkbox" className={styles['checkbox-div']}>
             <b>Cuisine</b>
-            <Checkbox name="cuisine" label="Chinese" value="1" checked={checkCategory('1')} onChange={filterByCategory} />
-            <Checkbox name="cuisine" label="Malay" value="4" checked={checkCategory('4')} onChange={filterByCategory} />
-            <Checkbox name="cuisine" label="Indian" value="3" checked={checkCategory('3')} onChange={filterByCategory} />
-            <Checkbox name="cuisine" label="Western" value="2" checked={checkCategory('2')} onChange={filterByCategory} />
-            <Checkbox name="cuisine" label="Japanese" value="6" checked={checkCategory('6')} onChange={filterByCategory} />
-            <Checkbox name="cuisine" label="Korean" value="5" checked={checkCategory('5')} onChange={filterByCategory} />
-            <Checkbox name="cuisine" label="Thai" value="8" checked={checkCategory('8')} onChange={filterByCategory} />
-            <Checkbox name="cuisine" label="Dessert" value="10" checked={checkCategory('10')} onChange={filterByCategory} />
+            {catFilters.map((val) => {
+              return (
+                <Checkbox
+                  key={val.id}
+                  name={val.name}
+                  label={val.name}
+                  value={val.id.toString()}
+                  checked={checkCategory(val.id.toString())}
+                  onChange={filterByCategory}
+                />
+              );
+            })}
             <b>Location</b>
-            <Checkbox name="location" label="North" value="1" checked={checkLocation('1')} onChange={filterByLocation} />
-            <Checkbox name="location" label="Northeast" value="5" checked={checkLocation('5')} onChange={filterByLocation} />
-            <Checkbox name="location" label="East" value="2" checked={checkLocation('2')} onChange={filterByLocation} />
-            <Checkbox name="location" label="West" value="3" checked={checkLocation('3')} onChange={filterByLocation} />
-            <Checkbox name="location" label="Central" value="4" checked={checkLocation('4')} onChange={filterByLocation} />
+            {locFilters.map((val) => {
+              return (
+                <Checkbox
+                  key={val.id}
+                  name={val.name}
+                  label={val.name}
+                  value={val.id.toString()}
+                  checked={checkLocation(val.id.toString())}
+                  onChange={filterByLocation}
+                />
+              );
+            })}
           </div>
         </div>
         <div className={styles['result-div']}>
@@ -144,6 +171,7 @@ const SearchPage: React.FunctionComponent = () => {
           </div>
         </div>
       </div>
+      <div className={styles['filter-nav-bar']}></div>
     </>
   );
 };
@@ -151,6 +179,22 @@ const SearchPage: React.FunctionComponent = () => {
 export default SearchPage;
 
 /*
+
+            <Checkbox name="cuisine" label="Chinese" value="1" checked={checkCategory('1')} onChange={filterByCategory} />
+            <Checkbox name="cuisine" label="Malay" value="4" checked={checkCategory('4')} onChange={filterByCategory} />
+            <Checkbox name="cuisine" label="Indian" value="3" checked={checkCategory('3')} onChange={filterByCategory} />
+            <Checkbox name="cuisine" label="Western" value="2" checked={checkCategory('2')} onChange={filterByCategory} />
+            <Checkbox name="cuisine" label="Japanese" value="6" checked={checkCategory('6')} onChange={filterByCategory} />
+            <Checkbox name="cuisine" label="Korean" value="5" checked={checkCategory('5')} onChange={filterByCategory} />
+            <Checkbox name="cuisine" label="Thai" value="8" checked={checkCategory('8')} onChange={filterByCategory} />
+            <Checkbox name="cuisine" label="Dessert" value="10" checked={checkCategory('10')} onChange={filterByCategory} />
+            
+
+                        <Checkbox name="location" label="North" value="1" checked={checkLocation('1')} onChange={filterByLocation} />
+            <Checkbox name="location" label="Northeast" value="5" checked={checkLocation('5')} onChange={filterByLocation} />
+            <Checkbox name="location" label="East" value="2" checked={checkLocation('2')} onChange={filterByLocation} />
+            <Checkbox name="location" label="West" value="3" checked={checkLocation('3')} onChange={filterByLocation} />
+            <Checkbox name="location" label="Central" value="4" checked={checkLocation('4')} onChange={filterByLocation} />
 
         <Pagination defaultActivePage={1} totalPages={10} />
   useEffect(() => {
