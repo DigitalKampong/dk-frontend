@@ -1,20 +1,24 @@
+@import '../../variables.scss';
+
 .site-content {
   padding: 0 12%;
   padding-bottom: 50px;
   background: #f9f8f4;
 }
 
+.stall-grid {
+  padding-top: 38px;
+}
+
 .stall-image {
   width: 418px;
-  height: 264px;
-  margin-top: 38px;
-  background: url('https://react.semantic-ui.com/images/wireframe/image.png');
-  background-size: cover;
-  background-position: center;
+  background-size: contain;
+  background-position: top;
+  background-repeat: no-repeat;
+  margin-right: 24px;
 }
 
 .stall-title {
-  margin-top: 38px;
   font-size: 36px;
   font-family: 'Raleway';
   font-weight: 700;
@@ -89,16 +93,13 @@
 }
 
 .button-secondary {
-  font-size: 18px !important;
-  font-family: 'Montserrat' !important;
-  font-weight: 800 !important;
+  @extend %button-text;
+
   margin-left: 50px !important;
 }
 
 .button-primary {
-  font-size: 18px !important;
-  font-family: 'Montserrat' !important;
-  font-weight: 800 !important;
+  @extend %button-text;
 }
 
 .separator {
@@ -120,9 +121,8 @@
 }
 
 .button-special {
-  font-family: 'Montserrat' !important;
-  font-weight: 800 !important;
-  font-size: 18px !important;
+  @extend %button-text;
+
   background: #448fff !important;
   color: white !important;
 }
@@ -215,4 +215,130 @@
   font-family: 'Raleway';
   font-weight: 400;
   margin-top: 14px;
+}
+
+.stall-grid {
+  display: flex;
+}
+
+@media (max-width: $mobileWidth) {
+  .site-content {
+    padding: 0 20px;
+    padding-bottom: 20px;
+  }
+
+  .stall-image {
+    width: 162px;
+    height: 162px;
+    background-size: cover;
+    margin-right: 12px;
+    flex-shrink: 0;
+  }
+
+  .stall-grid {
+    padding-top: 20px;
+  }
+
+  .stall-title {
+    font-size: 14px;
+    line-height: 16px;
+  }
+
+  .category-tag {
+    font-size: 10px;
+    line-height: 17px;
+    min-width: 60px;
+    margin-right: 4px;
+    margin-bottom: 4px;
+  }
+
+  .location-primary {
+    font-size: 13px;
+    line-height: 13px;
+    font-weight: 400;
+    margin-top: 6px;
+  }
+
+  .location-secondary {
+    font-size: 13px;
+    line-height: 13px;
+    margin-top: 4px;
+  }
+
+  .ratings-container {
+    margin-top: 10px;
+  }
+
+  .ratings-count {
+    font-size: 13px;
+    line-height: 13px;
+  }
+
+  .opening-hours-title {
+    font-size: 13px;
+    line-height: 16px;
+    margin-bottom: 4px;
+    margin-top: 6px;
+  }
+
+  .opening-hours-label {
+    font-size: 13px;
+    line-height: 16px;
+  }
+
+  .stall-button-container {
+    margin-top: 18px;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .separator {
+    margin-top: 24px;
+  }
+
+  .section-header {
+    font-size: 24px;
+    line-height: 28px;
+  }
+
+  .comment-ratings-number {
+    font-size: 18px;
+    line-height: 18px;
+  }
+
+  .comment-ratings {
+    font-size: 1.5rem !important;
+  }
+
+  .rating-count-label {
+    font-size: 13px;
+  }
+
+  .rating-row-count {
+    display: none;
+  }
+
+  .rating-row-progress {
+    width: 100px;
+    height: 10px;
+    overflow: hidden;
+    display: flex !important;
+    align-items: center;
+  }
+
+  .rating-component {
+    margin-top: 14px;
+  }
+
+  .rating-row {
+    margin: 4px 0;
+  }
+
+  .review-header {
+    display: none;
+  }
+
+  .comment-text {
+    font-size: 14px;
+  }
 }

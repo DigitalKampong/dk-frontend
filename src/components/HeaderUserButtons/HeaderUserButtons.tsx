@@ -7,6 +7,7 @@ import { getLoggedInUser } from '../../services/user';
 import MyAccountModal from '../MyAccountModal/MyAccountModal';
 import { useDispatch, useSelector } from 'react-redux';
 import { REMOVE_CURRENT_USER, RootState, UPDATE_CURRENT_USER } from '../../store/types';
+import isMobile from '../../mobile';
 
 interface Props {
   isMainHeader: boolean;
@@ -37,7 +38,11 @@ const HeaderUserButtons = (props: Props) => {
     <>
       {!userIsLoggedIn && (
         <>
-          <Button basic={props.isMainHeader ? undefined : true} className={styles['header-button']} onClick={() => setSignUpModalOpen(true)}>
+          <Button
+            basic={props.isMainHeader && !isMobile() ? undefined : true}
+            className={styles['header-button']}
+            onClick={() => setSignUpModalOpen(true)}
+          >
             Sign up
           </Button>
           <Button color="orange" className={styles['header-button-primary']} onClick={() => setLogInModalOpen(true)}>

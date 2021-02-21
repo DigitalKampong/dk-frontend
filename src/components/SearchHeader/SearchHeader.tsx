@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { Button, Input } from 'semantic-ui-react';
+import { Button, Icon, Input } from 'semantic-ui-react';
 import HeaderUserButtons from '../HeaderUserButtons/HeaderUserButtons';
-import styles from './SearchHeader.module.css';
+import styles from './SearchHeader.module.scss';
 import darkLogo from '../../images/dk-dark-logo.png';
+import blackLogo from '../../images/black-logo.png';
+import isMobile from '../../mobile';
 
 interface Props {
   isSearchPage: boolean;
@@ -52,14 +54,16 @@ const SearchHeader: React.FunctionComponent<Props> = (props: Props) => {
                 pathname: '/',
               }}
             >
-              <img className={styles['digital-kampung-icon']} src={darkLogo} alt=""></img>
+              <img className={styles['digital-kampung-icon']} src={isMobile() ? blackLogo : darkLogo} alt=""></img>
             </Link>
           </div>
           <div>
             <div className={styles['header-button-group']}>
-              <Button basic className={styles['header-button']}>
-                Kampung Centre
-              </Button>
+              {!isMobile() && (
+                <Button basic className={styles['header-button']}>
+                  Kampung Centre
+                </Button>
+              )}
               <HeaderUserButtons isMainHeader={false} />
             </div>
           </div>
@@ -72,10 +76,13 @@ const SearchHeader: React.FunctionComponent<Props> = (props: Props) => {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyPress={handleEnter}
+            labelPosition="right"
+            label={
+              <Button id="search" className={styles['search-button-primary']} onClick={handleSearch} icon={isMobile()}>
+                {isMobile() ? <Icon name="search"></Icon> : 'Search'}
+              </Button>
+            }
           />
-          <Button id="search" className={styles['search-button-primary']} onClick={handleSearch}>
-            Search
-          </Button>
         </div>
       </div>
       <div className={styles['search-header-filler']}></div>

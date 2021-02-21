@@ -30,7 +30,6 @@ const HomePage: React.FunctionComponent = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     getAllStalls(12, 1).then((response) => {
-      console.log(response);
       setStalls(response.data.rows);
     });
   }, []);

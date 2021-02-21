@@ -1,3 +1,9 @@
+interface ImageData {
+  downloadUrl: string;
+  id: number;
+  fileName: string;
+}
+
 export default interface Food {
   description: string;
   id: number;
@@ -7,5 +13,5 @@ export default interface Food {
   createdAt: string;
   updatedAt: string;
   category?: string;
-  image?: string;
+  Images: ImageData[];
 }
