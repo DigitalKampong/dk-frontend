@@ -12,9 +12,7 @@
 }
 
 .login-modal > div > button {
-  font-family: 'Montserrat' !important;
-  font-size: 18px !important;
-  font-weight: 800 !important;
+  @extend %button-text;
 }
 
 .modal-header {
@@ -83,10 +81,46 @@
 }
 
 .signup-button {
+  @extend %button-text;
+
   height: 51px;
   width: 272px;
-  font-family: 'Montserrat' !important;
-  font-weight: 800 !important;
-  font-size: 18px !important;
   margin: 26px 0 !important;
+}
+
+@media (max-width: $mobileWidth) {
+  .modal {
+    width: 80% !important;
+  }
+
+  .login-modal > div {
+    font-size: 18px !important;
+    line-height: 18px !important;
+  }
+
+  .modal-header {
+    font-size: 18px !important;
+  }
+
+  .input-field {
+    font-size: 18px !important;
+    line-height: 18px !important;
+  }
+
+  .login-button {
+    font-size: 18px !important;
+  }
+
+  .checkbox {
+    font-size: 13px !important;
+  }
+
+  .link-text {
+    font-size: 13px;
+    line-height: 13px;
+  }
+
+  .modal-row {
+    width: 100%;
+  }
 }

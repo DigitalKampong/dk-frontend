@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import LogInModal from '../LogInModal/LogInModal';
 import SignUpModal from '../SignUpModal/SignUpModal';
-import styles from './HeaderUserButtons.module.css';
+import styles from './HeaderUserButtons.module.scss';
 import { Button } from 'semantic-ui-react';
 import { getLoggedInUser } from '../../services/user';
 import MyAccountModal from '../MyAccountModal/MyAccountModal';

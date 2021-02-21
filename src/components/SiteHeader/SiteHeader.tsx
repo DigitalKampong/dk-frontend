@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { Button, Input } from 'semantic-ui-react';
+import { Button, Icon, Input } from 'semantic-ui-react';
 import HeaderUserButtons from '../HeaderUserButtons/HeaderUserButtons';
-import styles from './SiteHeader.module.css';
+import styles from './SiteHeader.module.scss';
 import whiteLogo from '../../images/dk-white-logo.png';
+import blackLogo from '../../images/black-logo.png';
+import isMobile from '../../mobile';
 
 const SiteHeader: React.FunctionComponent = () => {
   const history: any = useHistory();
@@ -41,15 +43,15 @@ const SiteHeader: React.FunctionComponent = () => {
                 pathname: '/',
               }}
             >
-              <img className={styles['digital-kampung-logo']} src={whiteLogo} alt=""></img>
+              <img className={styles['digital-kampung-logo']} src={isMobile() ? blackLogo : whiteLogo} alt=""></img>
             </Link>
           </div>
           <div className={styles['header-button-group']}>
-            <Button className={styles['header-button']}>Kampung Centre</Button>
+            {!isMobile() && <Button className={styles['header-button']}>Kampung Centre</Button>}
             <HeaderUserButtons isMainHeader={true} />
           </div>
         </div>
-        <div className={styles['site-header-top']}>
+        <div className={styles['site-header-bottom']}>
           <div className={styles['slogan-text']}>Craving for some hawker food?</div>
           <div className={styles['search-bar']}>
             <Input
@@ -59,10 +61,13 @@ const SiteHeader: React.FunctionComponent = () => {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyPress={handleEnter}
+              labelPosition="right"
+              label={
+                <Button className={styles['search-button-primary']} onClick={handleSearch} icon={isMobile()}>
+                  {isMobile() ? <Icon name="search"></Icon> : 'Search'}
+                </Button>
+              }
             />
-            <Button className={styles['search-button-primary']} onClick={handleSearch}>
-              Search
-            </Button>
           </div>
         </div>
       </div>

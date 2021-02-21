@@ -1,0 +1,34 @@
+.view-map-link {
+  float: right;
+}
+
+.stallCard {
+  width: 154px;
+  height: 141px;
+  background-size: cover;
+  border-radius: 10px;
+  position: relative;
+}
+
+.stallCardContainer:not(:last-child) {
+  margin-right: 10px;
+}
+
+.cardContent {
+  position: absolute;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+  color: white;
+  padding: 2px 4px 8px 4px;
+  font-size: 13px;
+  width: 100%;
+  border-radius: 0 0 10px 10px;
+}
+
+.stallName {
+  font-weight: 700;
+}
+
+.stallCenter {
+  text-decoration-line: underline;
+}

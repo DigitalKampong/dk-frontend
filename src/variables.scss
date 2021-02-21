@@ -1,11 +1,18 @@
-$backgroun: #f9f8f4;
+$background: #f9f8f4;
 $button: #ec4f38;
 $header: #ffc448;
 $text: black;
+
+$mobileWidth: 900px;
 
 %button-text {
   font-family: 'Montserrat' !important;
   font-size: 18px !important;
   font-weight: 800 !important;
   line-height: 18px !important;
+
+  @media (max-width: $mobileWidth) {
+    font-size: 13px !important;
+    line-height: 15px !important;
+  }
 }
