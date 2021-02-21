@@ -26,7 +26,7 @@ const IndividualHawker: React.FunctionComponent = () => {
 
   return (
     <>
-      <SearchHeader isSearchPage={false} setQuery={() => {}}></SearchHeader>
+      <SearchHeader toggleFilterNavBar={() => {}} isSearchPage={false} setQuery={() => {}}></SearchHeader>
       <div className={styles['site-content']}>
         <div className={styles['hawker-item']}>
           <Grid>

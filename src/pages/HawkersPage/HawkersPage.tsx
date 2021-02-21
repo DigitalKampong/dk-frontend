@@ -42,7 +42,7 @@ const HawkerLocationPage: React.FunctionComponent = () => {
 
   return (
     <>
-      <SearchHeader isSearchPage={false} setQuery={() => {}}></SearchHeader>
+      <SearchHeader toggleFilterNavBar={() => {}} isSearchPage={false} setQuery={() => {}}></SearchHeader>
       <div className={styles['site-content']}>
         <div className={styles['location-filters-row']}>
           <div className={styles['site-content-header']}>

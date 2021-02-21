@@ -48,6 +48,7 @@ const SearchPage: React.FunctionComponent = () => {
   const [pages, setPages] = useState<number>(0);
   const [catFilters, setCatFilters] = useState<Filter[]>([]);
   const [locFilters, setLocFilters] = useState<Filter[]>([]);
+  const [isFilterNavOpen, setIsFilterNavOpen] = useState<boolean>(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -123,9 +124,13 @@ const SearchPage: React.FunctionComponent = () => {
     });
   }
 
+  function toggleFilterNavBar(): void {
+    setIsFilterNavOpen(!isFilterNavOpen);
+  }
+
   return (
     <>
-      <SearchHeader isSearchPage={true} setQuery={setQuery} />
+      <SearchHeader toggleFilterNavBar={toggleFilterNavBar} isSearchPage={true} setQuery={setQuery} />
       <div className={styles['search-div']}>
         <div className={styles['filter-div']}>
           <div id="checkbox" className={styles['checkbox-div']}>
@@ -157,6 +162,7 @@ const SearchPage: React.FunctionComponent = () => {
             })}
           </div>
         </div>
+
         <div className={styles['result-div']}>
           <div className={styles['site-content']}>
             <div className={styles['section-search-header-row']}>
@@ -171,7 +177,15 @@ const SearchPage: React.FunctionComponent = () => {
           </div>
         </div>
       </div>
-      <div className={styles['filter-nav-bar']}></div>
+      {isFilterNavOpen ? (
+        <div className={styles['filter-nav-bar']}>
+          <div className={styles['nav-bar-wrapper']}>
+            <div className={styles['nav-back-btn']} onClick={toggleFilterNavBar}>
+              Back
+            </div>
+          </div>
+        </div>
+      ) : undefined}
     </>
   );
 };

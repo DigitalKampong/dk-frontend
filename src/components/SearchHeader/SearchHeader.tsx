@@ -9,6 +9,7 @@ import isMobile from '../../mobile';
 interface Props {
   isSearchPage: boolean;
   setQuery: Function;
+  toggleFilterNavBar: Function;
 }
 
 const SearchHeader: React.FunctionComponent<Props> = (props: Props) => {
@@ -46,7 +47,11 @@ const SearchHeader: React.FunctionComponent<Props> = (props: Props) => {
     <>
       <div className={styles['search-header']}>
         <div className={styles['mobile-search-header-top']}>
-          <div className={styles['filter-button']}>Filters</div>
+          {props.isSearchPage ? (
+            <div className={styles['filter-button']} onClick={() => props.toggleFilterNavBar()}>
+              Filters
+            </div>
+          ) : null}
           <Link
             style={{ textDecoration: 'none', color: 'black' }}
             to={{
