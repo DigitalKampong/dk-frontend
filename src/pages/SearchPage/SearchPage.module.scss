@@ -59,6 +59,28 @@
   display: none;
 }
 
+.cuisine-div {
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+  span {
+    font-size: 18px;
+    margin: 10px 0;
+  }
+}
+.location-div {
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+  span {
+    font-size: 18px;
+    margin: 10px 0;
+  }
+}
+.checkbox {
+  margin: 5px 0;
+}
+
 @media (max-width: $mobileWidth) {
   .section-search-header-row {
     height: fit-content;
@@ -114,25 +136,5 @@
     .nav-back-btn:hover {
       opacity: 50%;
     }
-  }
-  .cuisine-div {
-    margin: 5px;
-    display: flex;
-    flex-direction: column;
-    span {
-      font-size: 18px;
-      margin: 10px 0;
-    }
-  }
-  .location-div {
-    display: flex;
-    flex-direction: column;
-    margin: 5px;
-    b {
-      font-size: 18px;
-    }
-  }
-  .checkbox {
-    margin: 5px 0;
   }
 }

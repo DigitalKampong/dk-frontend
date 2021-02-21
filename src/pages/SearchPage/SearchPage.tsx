@@ -135,32 +135,42 @@ const SearchPage: React.FunctionComponent = () => {
       <div className={styles['search-div']}>
         <div className={styles['filter-div']}>
           <div id="checkbox" className={styles['checkbox-div']}>
-            <b>Cuisine</b>
-            {catFilters.map((val) => {
-              return (
-                <Checkbox
-                  key={val.id}
-                  name={val.name}
-                  label={val.name}
-                  value={val.id.toString()}
-                  checked={checkCategory(val.id.toString())}
-                  onChange={filterByCategory}
-                />
-              );
-            })}
-            <b>Location</b>
-            {locFilters.map((val) => {
-              return (
-                <Checkbox
-                  key={val.id}
-                  name={val.name}
-                  label={val.name}
-                  value={val.id.toString()}
-                  checked={checkLocation(val.id.toString())}
-                  onChange={filterByLocation}
-                />
-              );
-            })}
+            <div className={styles['cuisine-div']}>
+              <span>
+                <b>Cuisine</b>
+              </span>
+              {catFilters.map((val) => {
+                return (
+                  <Checkbox
+                    className={styles['checkbox']}
+                    key={val.id}
+                    name={val.name}
+                    label={val.name}
+                    value={val.id.toString()}
+                    checked={checkCategory(val.id.toString())}
+                    onChange={filterByCategory}
+                  />
+                );
+              })}
+            </div>
+            <div className={styles['location-div']}>
+              <span>
+                <b>Location</b>
+              </span>
+              {locFilters.map((val) => {
+                return (
+                  <Checkbox
+                    className={styles['checkbox']}
+                    key={val.id}
+                    name={val.name}
+                    label={val.name}
+                    value={val.id.toString()}
+                    checked={checkLocation(val.id.toString())}
+                    onChange={filterByLocation}
+                  />
+                );
+              })}
+            </div>
           </div>
         </div>
 
@@ -214,7 +224,9 @@ const SearchPage: React.FunctionComponent = () => {
                 })}
               </div>
               <div className={styles['location-div']}>
-                <b>Location</b>
+                <span>
+                  <b>Location</b>
+                </span>
                 {locFilters.map((val) => {
                   return (
                     <Checkbox
