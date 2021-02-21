@@ -1,0 +1,54 @@
+.wrapper {
+  height: fit-content;
+  display: flex;
+}
+
+.stall-div {
+  display: flex;
+  flex-direction: row;
+}
+
+.line {
+  height: 0px;
+  margin: 10px;
+  border: solid black 1px;
+}
+
+.stall-image-div {
+  max-width: 30%;
+  max-height: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 10px;
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.stall-name {
+  font-weight: 800;
+}
+
+.stall-hawker {
+  text-decoration: underline;
+}
+
+.stall-info-div {
+  width: 70%;
+}
+
+.stall-map {
+  width: 30%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  .map-btn {
+    padding: 0 3px;
+    text-align: center;
+    height: fit-content;
+    border: 1px solid black;
+    border-radius: 5px;
+  }
+}

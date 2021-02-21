@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useLocation, useParams } from 'react-router-dom';
 import StallGrid from '../../components/StallGrid/StallGrid';
+import StallCardMobile from '../../components/StallCardMobile/StallCardMobile';
 import styles from './SearchPage.module.scss';
 import { Checkbox, Pagination } from 'semantic-ui-react';
 import SearchHeader from '../../components/SearchHeader/SearchHeader';
@@ -170,18 +171,64 @@ const SearchPage: React.FunctionComponent = () => {
                 <b>{query !== '' ? 'Search result for ' + query : 'All stalls'}</b>
               </div>
             </div>
-            <StallGrid stallList={stalls} />
+
+            <div className={styles['grid-div']}>
+              <StallGrid stallList={stalls} />
+            </div>
+            <div className={styles['mobile-grid-div']}>
+              {stalls.map((val) => {
+                return <StallCardMobile key={val.id} stall={val} />;
+              })}
+            </div>
           </div>
+
           <div className={styles['pagination-div']}>
             <Pagination boundaryRange={0} defaultActivePage={searchParams.page} totalPages={pages} onPageChange={handlePagination} />
           </div>
         </div>
       </div>
+
       {isFilterNavOpen ? (
         <div className={styles['filter-nav-bar']}>
           <div className={styles['nav-bar-wrapper']}>
             <div className={styles['nav-back-btn']} onClick={toggleFilterNavBar}>
               Back
+            </div>
+            <div id="checkbox" className={styles['checkbox-div']}>
+              <div className={styles['cuisine-div']}>
+                <span>
+                  <b>Cuisine</b>
+                </span>
+                {catFilters.map((val) => {
+                  return (
+                    <Checkbox
+                      className={styles['checkbox']}
+                      key={val.id}
+                      name={val.name}
+                      label={val.name}
+                      value={val.id.toString()}
+                      checked={checkCategory(val.id.toString())}
+                      onChange={filterByCategory}
+                    />
+                  );
+                })}
+              </div>
+              <div className={styles['location-div']}>
+                <b>Location</b>
+                {locFilters.map((val) => {
+                  return (
+                    <Checkbox
+                      className={styles['checkbox']}
+                      key={val.id}
+                      name={val.name}
+                      label={val.name}
+                      value={val.id.toString()}
+                      checked={checkLocation(val.id.toString())}
+                      onChange={filterByLocation}
+                    />
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>
