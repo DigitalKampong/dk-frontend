@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { Button, Input } from 'semantic-ui-react';
+import { Button, Input, Icon } from 'semantic-ui-react';
 import HeaderUserButtons from '../HeaderUserButtons/HeaderUserButtons';
-import styles from './SearchHeader.module.css';
-import darkLogo from '../../images/dk-dark-logo.png';
+import styles from './SearchHeader.module.scss';
+import { darkLogo, menuIcon } from '../../images/image_modules';
+import isMobile from '../../mobile';
 
 interface Props {
   isSearchPage: boolean;
@@ -44,6 +45,20 @@ const SearchHeader: React.FunctionComponent<Props> = (props: Props) => {
   return (
     <>
       <div className={styles['search-header']}>
+        <div className={styles['mobile-search-header-top']}>
+          <div className={styles['filter-button']}>Filters</div>
+          <Link
+            style={{ textDecoration: 'none', color: 'black' }}
+            to={{
+              pathname: '/',
+            }}
+          >
+            <div className={styles['digital-kampung-title']}>Digital Kampung</div>
+          </Link>
+          <div className={styles['menu-div']}>
+            <img className={styles['menu-btn']} src={menuIcon} alt="" />
+          </div>
+        </div>
         <div className={styles['search-header-top']}>
           <div className={styles['digital-kampung-div']}>
             <Link
@@ -55,14 +70,13 @@ const SearchHeader: React.FunctionComponent<Props> = (props: Props) => {
               <img className={styles['digital-kampung-icon']} src={darkLogo} alt=""></img>
             </Link>
           </div>
-          <div>
-            <div className={styles['header-button-group']}>
-              <Button basic className={styles['header-button']}>
-                Kampung Centre
-              </Button>
-              <HeaderUserButtons isMainHeader={false} />
-            </div>
+          <div className={styles['header-button-group']}>
+            <Button basic className={styles['header-button']}>
+              Kampung Centre
+            </Button>
+            <HeaderUserButtons isMainHeader={false} />
           </div>
+          <div className={styles['menu-btn']}></div>
         </div>
         <div className={styles['search-bar']}>
           <Input
@@ -72,10 +86,13 @@ const SearchHeader: React.FunctionComponent<Props> = (props: Props) => {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyPress={handleEnter}
+            labelPosition="right"
+            label={
+              <Button className={styles['search-button-primary']} onClick={handleSearch} icon={isMobile()}>
+                {isMobile() ? <Icon name="search"></Icon> : 'Search'}
+              </Button>
+            }
           />
-          <Button id="search" className={styles['search-button-primary']} onClick={handleSearch}>
-            Search
-          </Button>
         </div>
       </div>
       <div className={styles['search-header-filler']}></div>
