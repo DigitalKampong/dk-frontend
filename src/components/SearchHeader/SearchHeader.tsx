@@ -3,7 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { Button, Input, Icon } from 'semantic-ui-react';
 import HeaderUserButtons from '../HeaderUserButtons/HeaderUserButtons';
 import styles from './SearchHeader.module.scss';
-import { darkLogo, menuIcon, blackLogo } from '../../images/image_modules';
+import { darkLogo, blackLogo } from '../../images/image_modules';
 import isMobile from '../../mobile';
 
 interface Props {
@@ -46,24 +46,6 @@ const SearchHeader: React.FunctionComponent<Props> = (props: Props) => {
   return (
     <>
       <div className={styles['search-header']}>
-        <div className={styles['mobile-search-header-top']}>
-          {props.isSearchPage ? (
-            <div className={styles['filter-button']} onClick={() => props.toggleFilterNavBar()}>
-              Filters
-            </div>
-          ) : null}
-          <Link
-            style={{ textDecoration: 'none', color: 'black' }}
-            to={{
-              pathname: '/',
-            }}
-          >
-            <div className={styles['digital-kampung-title']}>Digital Kampung</div>
-          </Link>
-          <div className={styles['menu-div']}>
-            <img className={styles['menu-btn']} src={menuIcon} alt="" />
-          </div>
-        </div>
         <div className={styles['search-header-top']}>
           <div className={styles['digital-kampung-div']}>
             <Link
@@ -76,12 +58,18 @@ const SearchHeader: React.FunctionComponent<Props> = (props: Props) => {
             </Link>
           </div>
           <div className={styles['header-button-group']}>
-            <Button basic className={styles['header-button']}>
-              Kampung Centre
-            </Button>
+            {!isMobile() && (
+              <Button basic className={styles['header-button']}>
+                Kampung Centre
+              </Button>
+            )}
+            {props.isSearchPage && isMobile() ? (
+              <Button basic={true} className={styles['filter-button-primary']} onClick={() => props.toggleFilterNavBar()}>
+                Filters
+              </Button>
+            ) : null}
             <HeaderUserButtons isMainHeader={false} />
           </div>
-          <div className={styles['menu-btn']}></div>
         </div>
         <div className={styles['search-bar']}>
           <Input
@@ -106,3 +94,25 @@ const SearchHeader: React.FunctionComponent<Props> = (props: Props) => {
 };
 
 export default SearchHeader;
+
+/*
+
+        <div className={styles['mobile-search-header-top']}>
+          {props.isSearchPage ? (
+            <div className={styles['filter-button']} onClick={() => props.toggleFilterNavBar()}>
+              Filters
+            </div>
+          ) : null}
+          <Link
+            style={{ textDecoration: 'none', color: 'black' }}
+            to={{
+              pathname: '/',
+            }}
+          >
+            <div className={styles['digital-kampung-title']}>Digital Kampung</div>
+          </Link>
+          <div className={styles['menu-div']}>
+            <img className={styles['menu-btn']} src={menuIcon} alt="" />
+          </div>
+        </div>
+*/
