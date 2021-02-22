@@ -7,4 +7,6 @@ export const ENDPOINTS = {
   REGISTER: 'register/',
   LOGIN: 'login/',
   REVIEWS: 'reviews/',
+  CATEGORIES: 'categories/',
+  LOCATIONS: 'regions/',
 };

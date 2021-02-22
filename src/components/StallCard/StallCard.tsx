@@ -10,7 +10,6 @@ interface Props {
 
 const StallCard: React.FunctionComponent<Props> = (props: Props) => {
   const { stall } = props;
-
   return (
     <Link
       to={{

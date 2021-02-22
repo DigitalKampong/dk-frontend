@@ -1,5 +1,8 @@
 import fmasLogo from './fmas-logo.png';
 import dscLogo from './dsc-logo.png';
+import blackLogo from './black-logo.png';
+import darkLogo from './dk-dark-logo.png';
+import whiteLogo from './dk-white-logo.png';
 import catChinese from './cat-chinese.jpg';
 import catConfect from './cat-confect.jpg';
 import catDessert from './cat-dessert.jpg';
@@ -21,10 +24,14 @@ import locNorth from './loc-north.jpg';
 import locNortheast from './loc-northeast.jpg';
 import locWest from './loc-west.jpg';
 import locEast from './loc-east.jpg';
+import menuIcon from './menu-icon.png';
 
 export {
+  blackLogo,
   fmasLogo,
   dscLogo,
+  darkLogo,
+  whiteLogo,
   catChinese,
   catConfect,
   catDessert,
@@ -46,4 +53,5 @@ export {
   locWest,
   locEast,
   locNorth,
+  menuIcon,
 };

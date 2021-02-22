@@ -89,9 +89,18 @@
   color: white !important;
 }
 
+.filter-button-primary {
+  @extend %button-text;
+
+  box-shadow: none !important;
+  margin: 0px 6px 0px 6px !important;
+}
+
 @media (max-width: $mobileWidth) {
   .digital-kampung-div {
     padding: 10px;
+    display: flex;
+    align-items: center;
   }
 
   .digital-kampung-icon {

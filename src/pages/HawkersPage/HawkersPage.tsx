@@ -16,11 +16,9 @@ const HawkerLocationPage: React.FunctionComponent = () => {
     if (filter.length === 0) {
       getAllHawkers().then((response) => {
         setHawkers(response.data);
-        console.log(response.data);
       });
     } else {
       setFilteredHawkers(filterLocation(filter));
-      console.log(filter);
     }
   }, [filter, isFiltered]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -44,7 +42,7 @@ const HawkerLocationPage: React.FunctionComponent = () => {
 
   return (
     <>
-      <SearchHeader isSearchPage={false} setQuery={() => {}}></SearchHeader>
+      <SearchHeader toggleFilterNavBar={() => {}} isSearchPage={false} setQuery={() => {}}></SearchHeader>
       <div className={styles['site-content']}>
         <div className={styles['location-filters-row']}>
           <div className={styles['site-content-header']}>

@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { Button, Icon, Input } from 'semantic-ui-react';
+import { Button, Input, Icon } from 'semantic-ui-react';
 import HeaderUserButtons from '../HeaderUserButtons/HeaderUserButtons';
 import styles from './SearchHeader.module.scss';
-import darkLogo from '../../images/dk-dark-logo.png';
-import blackLogo from '../../images/black-logo.png';
+import { darkLogo, blackLogo } from '../../images/image_modules';
 import isMobile from '../../mobile';
 
 interface Props {
   isSearchPage: boolean;
   setQuery: Function;
+  toggleFilterNavBar: Function;
 }
 
 const SearchHeader: React.FunctionComponent<Props> = (props: Props) => {
@@ -57,15 +57,18 @@ const SearchHeader: React.FunctionComponent<Props> = (props: Props) => {
               <img className={styles['digital-kampung-icon']} src={isMobile() ? blackLogo : darkLogo} alt=""></img>
             </Link>
           </div>
-          <div>
-            <div className={styles['header-button-group']}>
-              {!isMobile() && (
-                <Button basic className={styles['header-button']}>
-                  Kampung Centre
-                </Button>
-              )}
-              <HeaderUserButtons isMainHeader={false} />
-            </div>
+          <div className={styles['header-button-group']}>
+            {!isMobile() && (
+              <Button basic className={styles['header-button']}>
+                Kampung Centre
+              </Button>
+            )}
+            {props.isSearchPage && isMobile() ? (
+              <Button basic={true} className={styles['filter-button-primary']} onClick={() => props.toggleFilterNavBar()}>
+                Filters
+              </Button>
+            ) : null}
+            <HeaderUserButtons isMainHeader={false} />
           </div>
         </div>
         <div className={styles['search-bar']}>
@@ -91,3 +94,25 @@ const SearchHeader: React.FunctionComponent<Props> = (props: Props) => {
 };
 
 export default SearchHeader;
+
+/*
+
+        <div className={styles['mobile-search-header-top']}>
+          {props.isSearchPage ? (
+            <div className={styles['filter-button']} onClick={() => props.toggleFilterNavBar()}>
+              Filters
+            </div>
+          ) : null}
+          <Link
+            style={{ textDecoration: 'none', color: 'black' }}
+            to={{
+              pathname: '/',
+            }}
+          >
+            <div className={styles['digital-kampung-title']}>Digital Kampung</div>
+          </Link>
+          <div className={styles['menu-div']}>
+            <img className={styles['menu-btn']} src={menuIcon} alt="" />
+          </div>
+        </div>
+*/
