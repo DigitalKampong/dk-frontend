@@ -1,4 +1,3 @@
-import Category from './Category';
 import Food from './Food';
 import HawkerCentre from './HawkerCentre';
 
@@ -6,6 +5,13 @@ interface ImageData {
   downloadUrl: string;
   id: number;
   fileName: string;
+}
+
+interface TimeSpan {
+  allDay: boolean;
+  closed: boolean;
+  start: string;
+  end: string;
 }
 
 export default interface Stall {
@@ -16,11 +22,12 @@ export default interface Stall {
   updatedAt: string;
   Images: ImageData[];
   HawkerCentre: HawkerCentre;
-  Categories: Category[] | string[];
+  categories: string[];
   rating: number;
   description: string;
   contactNo: string;
   unitNo: string;
   Reviews: any[];
   Products: Food[];
+  openingHours: Record<string, TimeSpan>;
 }

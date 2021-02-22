@@ -1,3 +1,5 @@
+@import '../../variables.scss';
+
 .search-header {
   background-color: #ffc448;
   position: fixed;
@@ -74,19 +76,64 @@
 }
 
 .search-button {
-  margin-left: 12px !important;
+  @extend %button-text;
+
   text-transform: uppercase !important;
-  font-size: 18px !important;
-  font-family: 'Montserrat' !important;
-  font-weight: 800 !important;
 }
 
 .search-button-primary {
-  margin-left: 12px !important;
+  @extend %button-text;
+
   text-transform: uppercase !important;
-  font-size: 18px !important;
-  font-family: 'Montserrat' !important;
-  font-weight: 800 !important;
   background: #ff5c38 !important;
   color: white !important;
+}
+
+@media (max-width: $mobileWidth) {
+  .digital-kampung-div {
+    padding: 10px;
+  }
+
+  .digital-kampung-icon {
+    width: 28px;
+    height: 28px;
+    padding: 0;
+  }
+
+  .search-header-top {
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .header-button-group {
+    padding: 10px;
+  }
+
+  .search-bar {
+    padding: 0 40px;
+    font-size: 13px;
+    font-family: 'Raleway';
+  }
+
+  .search-bar-input {
+    height: 36px;
+  }
+
+  .search-button-primary {
+    height: 36px;
+  }
+
+  .search-bar {
+    top: 64px;
+  }
+
+  .search-header-filler {
+    height: 120px;
+  }
+
+  .search-header {
+    height: 120px;
+  }
 }
