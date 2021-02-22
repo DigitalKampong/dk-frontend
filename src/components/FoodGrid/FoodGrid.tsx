@@ -1,8 +1,7 @@
 import React from 'react';
-import { Grid } from 'semantic-ui-react';
 import Food from '../../types/Food';
 import FoodCard from '../FoodCard/FoodCard';
-import styles from './FoodGrid.module.css';
+import styles from './FoodGrid.module.scss';
 
 interface Props {
   foodList: Food[];
@@ -12,15 +11,15 @@ const FoodGrid: React.FunctionComponent<Props> = (props: Props) => {
   const { foodList } = props;
 
   return (
-    <Grid stackable columns={5} className={styles['food-grid']}>
+    <div className={styles['food-grid']}>
       {foodList.map((x) => {
         return (
-          <Grid.Column key={x.id}>
+          <div key={x.name}>
             <FoodCard food={x} />
-          </Grid.Column>
+          </div>
         );
       })}
-    </Grid>
+    </div>
   );
 };
 

@@ -61,10 +61,11 @@
 }
 
 .search-bar {
+  position: fixed;
   top: 120px;
   display: flex;
   width: 100%;
-  padding: 0 15%;
+  padding: 0 320px;
   font-size: 24px;
   font-family: 'Raleway';
 }
@@ -74,32 +75,44 @@
   height: 50px;
 }
 
+.search-button {
+  @extend %button-text;
+
+  text-transform: uppercase !important;
+}
+
 .search-button-primary {
   @extend %button-text;
 
-  height: 50px;
   text-transform: uppercase !important;
   background: #ff5c38 !important;
   color: white !important;
 }
 
-.mobile-search-header-top {
-  display: none;
-}
-
 @media (max-width: $mobileWidth) {
-  .search-header {
-    height: 130px;
-    padding: 10px 0;
+  .digital-kampung-div {
+    padding: 10px;
+  }
+
+  .digital-kampung-icon {
+    width: 28px;
+    height: 28px;
+    padding: 0;
   }
 
   .search-header-top {
-    display: none;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .header-button-group {
+    padding: 10px;
   }
 
   .search-bar {
-    margin: 10px 0;
-    padding: 0 20px;
+    padding: 0 40px;
     font-size: 13px;
     font-family: 'Raleway';
   }
@@ -112,46 +125,15 @@
     height: 36px;
   }
 
-  .mobile-search-header-top {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    height: 40%;
-    .filter-button {
-      margin: 0 3%;
-      border: 1px solid black;
-      height: fit-content;
-      padding: 5px 3% 5px 3%;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    .filter-button:hover {
-      opacity: 50%;
-    }
-    .digital-kampung-title {
-      margin: 0 5px;
-      font-size: 18px !important;
-      font-family: 'Montserrat' !important;
-      font-weight: 800 !important;
-    }
-    .menu-div {
-      margin: 0 5px;
-      width: fit-content;
-      padding: 5px 3% 5px 3%;
-      height: auto;
-      img {
-        padding: 5px;
-        border-radius: 5px;
-        border: 1px solid black;
-      }
-      img:hover {
-        opacity: 50%;
-      }
-    }
+  .search-bar {
+    top: 64px;
   }
 
   .search-header-filler {
-    height: 130px;
+    height: 120px;
+  }
+
+  .search-header {
+    height: 120px;
   }
 }

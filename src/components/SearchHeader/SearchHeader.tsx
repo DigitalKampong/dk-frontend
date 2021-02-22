@@ -3,7 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { Button, Input, Icon } from 'semantic-ui-react';
 import HeaderUserButtons from '../HeaderUserButtons/HeaderUserButtons';
 import styles from './SearchHeader.module.scss';
-import { darkLogo, menuIcon } from '../../images/image_modules';
+import { darkLogo, menuIcon, blackLogo } from '../../images/image_modules';
 import isMobile from '../../mobile';
 
 interface Props {
@@ -72,7 +72,7 @@ const SearchHeader: React.FunctionComponent<Props> = (props: Props) => {
                 pathname: '/',
               }}
             >
-              <img className={styles['digital-kampung-icon']} src={darkLogo} alt=""></img>
+              <img className={styles['digital-kampung-icon']} src={isMobile() ? blackLogo : darkLogo} alt=""></img>
             </Link>
           </div>
           <div className={styles['header-button-group']}>
@@ -93,7 +93,7 @@ const SearchHeader: React.FunctionComponent<Props> = (props: Props) => {
             onKeyPress={handleEnter}
             labelPosition="right"
             label={
-              <Button className={styles['search-button-primary']} onClick={handleSearch} icon={isMobile()}>
+              <Button id="search" className={styles['search-button-primary']} onClick={handleSearch} icon={isMobile()}>
                 {isMobile() ? <Icon name="search"></Icon> : 'Search'}
               </Button>
             }

@@ -1,0 +1,32 @@
+@import '../../variables.scss';
+
+.name-label {
+  font-size: 18px;
+  line-height: 24px;
+  font-family: 'Raleway';
+  font-weight: 700;
+}
+
+.price-label {
+  font-size: 24px;
+  line-height: 24px;
+  font-family: 'Raleway';
+  font-weight: 400;
+  margin-bottom: 6px;
+}
+
+@media (max-width: $mobileWidth) {
+  .foodCard {
+    width: initial !important;
+  }
+
+  .cardContent {
+    padding: 6px !important;
+  }
+
+  .name-label,
+  .price-label {
+    font-size: 13px;
+    line-height: 16px;
+  }
+}
