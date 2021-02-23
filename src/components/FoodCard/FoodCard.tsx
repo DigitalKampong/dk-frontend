@@ -12,7 +12,7 @@ const FoodCard: React.FunctionComponent<Props> = (props: Props) => {
 
   return (
     <Card className={styles.foodCard}>
-      <Image src={food.Images[0].downloadUrl} wrapped ui={false} />
+      <Image src={food.Images[0] ? food.Images[0].downloadUrl : undefined} wrapped ui={false} />
       <Card.Content className={styles.cardContent}>
         <div className={styles['name-label']}>{food.name}</div>
         <div className={styles['price-label']}>${food.price ? food.price.toFixed(2) : 'N/A'}</div>
