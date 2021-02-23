@@ -17,7 +17,7 @@ const FeaturedStallCard: React.FunctionComponent<Props> = (props: Props) => {
         pathname: `/stalls/${stall.id}`,
       }}
     >
-      <div className={styles.stallCard} style={{ backgroundImage: `url(${stall.Images[0].downloadUrl})` }}>
+      <div className={styles.stallCard} style={{ backgroundImage: `url(${stall.Images[0] ? stall.Images[0].downloadUrl : null})` }}>
         <div className={styles.cardContent}>
           <div className={styles.stallName}>{stall.name}</div>
           <div>

@@ -17,7 +17,7 @@ const StallCard: React.FunctionComponent<Props> = (props: Props) => {
       }}
     >
       <Card>
-        <Image src={stall.Images[0].downloadUrl} wrapped ui={false} />
+        <Image src={stall.Images[0] ? stall.Images[0].downloadUrl : null} wrapped ui={false} />
         <Card.Content>
           <Card.Header>{stall.name}</Card.Header>
           <Card.Meta>

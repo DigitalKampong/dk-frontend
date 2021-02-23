@@ -22,7 +22,7 @@ const StallCardMobile: React.FunctionComponent<Props> = (props: Props) => {
         >
           <div className={styles['stall-div']}>
             <div className={styles['stall-image-div']}>
-              <img src={stall.Images[0].downloadUrl} alt="" />
+              <img src={stall.Images[0] ? stall.Images[0].downloadUrl : undefined} alt="" />
             </div>
             <div className={styles['stall-info-div']}>
               <div className={styles['stall-name']}>{stall.name}</div>

@@ -96,7 +96,7 @@ const StallPage: React.FunctionComponent = () => {
       <SearchHeader toggleFilterNavBar={() => {}} isSearchPage={false} setQuery={() => {}}></SearchHeader>
       <div className={styles['site-content']}>
         <div className={styles['stall-grid']}>
-          <div className={styles['stall-image']} style={{ backgroundImage: `url(${stall?.Images[0].downloadUrl})` }}></div>
+          <div className={styles['stall-image']} style={{ backgroundImage: `url(${stall?.Images[0]?.downloadUrl})` }}></div>
           <div className={styles['stall-details']}>
             <div className={styles['stall-title']}>{stall?.name}</div>
             <div className={styles['category-container']}>
