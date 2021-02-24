@@ -14,10 +14,14 @@ const SignUpModal = (props: Props) => {
   const dispatch = useDispatch();
   const { isOpen, setModalOpen } = props;
   const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorModalOpen, setErrorModalOpen] = useState(false);
   const handleUsernameChange = useCallback((event) => {
     setUsername(event.target.value);
+  }, []);
+  const handleEmailChange = useCallback((event) => {
+    setEmail(event.target.value);
   }, []);
   const handlePasswordChange = useCallback((event) => {
     setPassword(event.target.value);
@@ -25,21 +29,22 @@ const SignUpModal = (props: Props) => {
   const handleSignUpClick = useCallback(() => {
     registerUser({
       data: {
-        email: username,
+        username: username,
+        email: email,
         password: password,
       },
     })
       .then((response) => {
-        localStorage.setItem('username', username);
+        localStorage.setItem('username', email);
         localStorage.setItem('loggedIn', 'true');
         localStorage.setItem('authToken', response.data.token);
-        dispatch({ type: UPDATE_CURRENT_USER, payload: { email: username } });
+        dispatch({ type: UPDATE_CURRENT_USER, payload: { email: email, username: username } });
         setModalOpen(false);
       })
       .catch((error) => {
         setErrorModalOpen(true);
       });
-  }, [username, password, dispatch, setModalOpen]);
+  }, [email, username, password, dispatch, setModalOpen]);
 
   return (
     <Modal
@@ -52,9 +57,9 @@ const SignUpModal = (props: Props) => {
     >
       <Modal.Header className={styles['modal-header']}>Sign up to Digital Kampung</Modal.Header>
       <Modal.Content className={styles['modal-content']}>
-        <Input className={styles['input-field']} placeholder="Email" value={username} onChange={handleUsernameChange} />
+        <Input className={styles['input-field']} placeholder="Username" value={username} onChange={handleUsernameChange} />
+        <Input className={styles['input-field']} placeholder="Email" value={email} onChange={handleEmailChange} />
         <Input className={styles['input-field']} placeholder="Password" type="password" value={password} onChange={handlePasswordChange} />
-        {/* <Input className={styles["input-field"]} placeholder="Mobile number or email" /> */}
         <Button className={styles['signup-button']} onClick={handleSignUpClick}>
           Sign up
         </Button>
