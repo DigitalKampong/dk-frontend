@@ -1,0 +1,138 @@
+@import '../../variables.scss';
+.site-content {
+  padding: 0 12%;
+  padding-bottom: 50px;
+  background: #f9f8f4;
+}
+
+.hawker {
+  display: inline-grid;
+  grid-template-columns: auto auto auto;
+  grid-column-gap: 50px;
+  padding: 38px;
+}
+
+.hawker-image-grid {
+  background: url('https://react.semantic-ui.com/images/wireframe/image.png');
+  width: 418px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-right: 24px;
+}
+
+.hawker-content-grid {
+  padding: 10px;
+}
+
+.hawker-header {
+  font-size: 36px;
+  font-family: 'Raleway';
+  font-weight: 700;
+  line-height: 42px;
+}
+
+.hawker-address {
+  margin-top: 10px;
+  font-weight: 500;
+  font-family: 'Raleway';
+  font-size: 18px;
+}
+
+.hawker-description {
+  margin-top: 30px;
+  font-weight: 800;
+  font-family: 'Raleway';
+  font-size: 20px;
+}
+
+.hawker-transport {
+  font-size: 18px;
+  margin-top: 15px;
+  font-weight: 500;
+}
+
+.direction-button {
+  margin-top: 20px;
+  justify-content: space-around;
+}
+
+.separator {
+  background: black;
+  height: 1px;
+  width: 100%;
+  margin-top: 45px;
+}
+
+.stalls-header {
+  margin-top: 70px;
+  padding: 20px;
+  font-size: 30px;
+  font-family: 'Raleway';
+  font-weight: 900;
+  line-height: 42px;
+}
+
+.stalls {
+  padding: 20px;
+}
+
+@media (max-width: $mobileWidth) {
+  .site-content {
+    padding: 0 20px;
+    padding-bottom: 20px;
+  }
+
+  .hawker {
+    display: inline-grid;
+    grid-column-gap: 0px;
+  }
+
+  .hawker-image-grid {
+    width: 200px;
+    height: 200px;
+  }
+
+  .hawker-content-grid {
+    padding: 0px;
+  }
+
+  .hawker-header {
+    font-size: 14px;
+    line-height: 16px;
+  }
+
+  .hawker-address {
+    font-size: 12px;
+    line-height: 12px;
+    font-weight: 400;
+    margin-top: 6px;
+  }
+
+  .hawker-description {
+    margin-top: 10px;
+    font-size: 10px;
+  }
+
+  .hawker-transport {
+    margin-top: 5px;
+    font-size: 8px;
+  }
+
+  .direction-button {
+    margin-top: 10px;
+  }
+
+  .separator {
+    margin-top: 24px;
+  }
+
+  .separator {
+    margin-top: 24px;
+  }
+  .stalls-header {
+    margin-top: 20px;
+    font-size: 24px;
+    line-height: 28px;
+  }
+}

@@ -1,0 +1,68 @@
+@import '../../variables.scss';
+
+.site-content {
+  padding: 0 12% 0 12%;
+  box-sizing: border-box;
+  padding-bottom: 50px;
+  background: #f9f8f4;
+  width: 100%;
+  text-align: center;
+}
+
+.site-content-header {
+  font-family: 'Montserrat';
+  font-size: 48px;
+  padding-top: 58px;
+  height: 24px;
+  margin-bottom: 46px;
+}
+
+.location-filters-row {
+  padding-top: 50px;
+  display: flex;
+  flex-direction: row;
+}
+
+.filter-buttons {
+  margin-top: 58px;
+  height: 24px;
+  margin-left: 100px;
+}
+
+.hawker-list {
+  padding-top: 40px;
+}
+
+@media (max-width: $mobileWidth) {
+  .site-content {
+    padding: 20px;
+  }
+
+  .site-content-filter {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .dropdown {
+    margin-right: 50px;
+    margin-top: 20px;
+    text-align: center;
+  }
+  .separator {
+    background: black;
+    height: 1px;
+    width: 100%;
+  }
+  .site-content-header {
+    font-family: 'Montserrat';
+    font-size: 15px;
+    padding-top: 0px;
+    margin-bottom: 15px;
+    text-align: left;
+    white-space: nowrap;
+  }
+
+  .hawker-list {
+    padding-top: 15px;
+  }
+}

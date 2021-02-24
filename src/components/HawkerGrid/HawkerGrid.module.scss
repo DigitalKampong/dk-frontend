@@ -1,0 +1,38 @@
+.hawker-button {
+  text-align: end;
+  display: flex;
+  width: 100%;
+  height: 60px;
+}
+
+.hawker-content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.hawker-name {
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.hawker-address {
+  font-size: 20px;
+}
+
+@media only screen and (max-width: 900px) {
+  .hawker-content {
+    display: block;
+    text-align: left;
+  }
+  .hawker-name {
+    color: black;
+    font-size: 15px;
+    font-weight: 800;
+  }
+
+  .hawker-address {
+    margin-top: 10px;
+    font-size: 12px;
+    text-decoration: underline;
+  }
+}

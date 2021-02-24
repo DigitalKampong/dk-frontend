@@ -187,7 +187,7 @@ const SearchPage: React.FunctionComponent = () => {
             </div>
             <div className={styles['mobile-grid-div']}>
               {stalls.map((val) => {
-                return <StallCardMobile key={val.id} stall={val} />;
+                return <StallCardMobile key={val.id} stall={val} hawkerCentreName="" />;
               })}
             </div>
           </div>
