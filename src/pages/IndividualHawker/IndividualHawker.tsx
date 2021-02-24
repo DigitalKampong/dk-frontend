@@ -6,7 +6,6 @@ import { getHawker } from '../../services/hawker';
 import HawkerCentre from '../../types/HawkerCentre';
 import styles from './IndividualHawker.module.scss';
 import StallGrid from '../../components/StallGrid/StallGrid';
-import StallCardMobile from '../../components/StallCardMobile/StallCardMobile';
 import isMobile from '../../mobile';
 
 interface StateProps {
@@ -19,7 +18,7 @@ const IndividualHawker: React.FunctionComponent = () => {
   const state = location.state as StateProps;
   const [hawkerData, setHawkerData] = useState(hawkerObject);
 
-  console.log(hawkerData);
+  console.log(hawkerData.Stalls);
 
   useEffect(() => {
     window.scrollTo(0, 0);
