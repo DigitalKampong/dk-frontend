@@ -6,10 +6,12 @@ import styles from './StallCardMobile.module.scss';
 
 interface Props {
   stall: Stall;
+  hawkerCentreName: string;
 }
 
 const StallCardMobile: React.FunctionComponent<Props> = (props: Props) => {
   const { stall } = props;
+  const { hawkerCentreName } = props;
   return (
     <>
       <div className={styles['line']}></div>
@@ -29,7 +31,7 @@ const StallCardMobile: React.FunctionComponent<Props> = (props: Props) => {
               <Rating icon="star" defaultRating={Math.floor(stall.rating)} maxRating={5} disabled />
               <span>({stall.rating ? stall.rating : 'N/A'})</span>
               <div className={styles['stall-hawker']}>
-                <span>{stall.HawkerCentre ? stall.HawkerCentre.name : undefined}</span>
+                <span>{stall.HawkerCentre ? stall.HawkerCentre.name : hawkerCentreName}</span>
               </div>
             </div>
           </div>
