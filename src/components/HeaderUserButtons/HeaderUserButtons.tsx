@@ -52,7 +52,11 @@ const HeaderUserButtons = (props: Props) => {
       )}
       {userIsLoggedIn && (
         <>
-          <Button basic={props.isMainHeader ? undefined : true} className={styles['header-button']} onClick={() => setMyAccountModalOpen(true)}>
+          <Button
+            basic={props.isMainHeader && !isMobile() ? undefined : true}
+            className={styles['header-button']}
+            onClick={() => setMyAccountModalOpen(true)}
+          >
             My account
           </Button>
         </>

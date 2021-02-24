@@ -13,34 +13,45 @@ type Props = {
 
 const LogInModal = (props: Props) => {
   const dispatch = useDispatch();
+  const userEmail = localStorage.getItem('userEmail');
   const { isOpen, setModalOpen, handleSignUpAction } = props;
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState(userEmail ? userEmail : '');
   const [password, setPassword] = useState('');
+  const [rememberMe, setRememberMe] = useState(false);
   const [errorModalOpen, setErrorModalOpen] = useState(false);
   const handleUsernameChange = useCallback((event) => {
-    setUsername(event.target.value);
+    setEmail(event.target.value);
   }, []);
   const handlePasswordChange = useCallback((event) => {
     setPassword(event.target.value);
   }, []);
+  const handleRememberMeChange = useCallback(() => {
+    setRememberMe((prevState) => !prevState);
+  }, []);
   const handleLogInClick = useCallback(() => {
     loginUser({
       data: {
-        email: username,
+        email: email,
         password: password,
       },
     })
       .then((response) => {
-        localStorage.setItem('username', username);
+        localStorage.setItem('username', email);
         localStorage.setItem('loggedIn', 'true');
         localStorage.setItem('authToken', response.data.token);
-        dispatch({ type: UPDATE_CURRENT_USER, payload: { email: username } });
+        console.log(rememberMe);
+        if (rememberMe) {
+          localStorage.setItem('userEmail', email);
+        } else {
+          localStorage.removeItem('userEmail');
+        }
+        dispatch({ type: UPDATE_CURRENT_USER, payload: { email: email } });
         setModalOpen(false);
       })
       .catch((error) => {
         setErrorModalOpen(true);
       });
-  }, [username, password, setModalOpen, dispatch]);
+  }, [email, rememberMe, password, setModalOpen, dispatch]);
   const handleSignUpClick = useCallback(() => {
     handleSignUpAction();
   }, [handleSignUpAction]);
@@ -56,13 +67,13 @@ const LogInModal = (props: Props) => {
     >
       <Modal.Header className={styles['modal-header']}>Log in to Digital Kampung</Modal.Header>
       <Modal.Content className={styles['modal-content']}>
-        <Input className={styles['input-field']} placeholder="Email" value={username} onChange={handleUsernameChange} />
+        <Input className={styles['input-field']} placeholder="Email" value={email} onChange={handleUsernameChange} />
         <Input className={styles['input-field']} placeholder="Password" type="password" value={password} onChange={handlePasswordChange} />
         <Button color="orange" className={styles['login-button']} onClick={handleLogInClick}>
           Log in
         </Button>
         <div className={styles['modal-row']}>
-          <Checkbox className={styles['checkbox']} label="Remember me" />
+          <Checkbox className={styles['checkbox']} label="Remember me" onChange={handleRememberMeChange} checked={rememberMe} />
           <div className={styles['link-text']}>Forgot password?</div>
         </div>
       </Modal.Content>

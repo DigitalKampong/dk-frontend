@@ -1,8 +1,8 @@
 import React, { useCallback } from 'react';
 import styles from './MyAccountModal.module.scss';
 import { Button, Modal } from 'semantic-ui-react';
-import { useDispatch } from 'react-redux';
-import { REMOVE_CURRENT_USER } from '../../store/types';
+import { useDispatch, useSelector } from 'react-redux';
+import { REMOVE_CURRENT_USER, RootState } from '../../store/types';
 
 type Props = {
   isOpen: boolean;
@@ -11,7 +11,7 @@ type Props = {
 
 const MyAccountModal = (props: Props) => {
   const dispatch = useDispatch();
-  const username = localStorage.getItem('username');
+  const currentUser = useSelector((state: RootState) => state.user.currentUser);
   const { setModalOpen } = props;
   const handleLogOut = useCallback(() => {
     localStorage.removeItem('username');
@@ -31,13 +31,13 @@ const MyAccountModal = (props: Props) => {
           <div className={styles['content-header']}>
             <b>Email</b>
           </div>
-          <div>{username}</div>
+          <div>{currentUser?.email}</div>
         </Modal.Description>
         <Modal.Description className={styles['content']}>
           <div className={styles['content-header']}>
             <b>Username</b>
           </div>
-          <div>undefined</div>
+          <div>{currentUser?.username}</div>
         </Modal.Description>
       </Modal.Content>
       <Modal.Actions>
