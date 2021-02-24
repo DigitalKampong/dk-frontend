@@ -8,8 +8,8 @@
 .hawker {
   display: inline-grid;
   grid-template-columns: auto auto auto;
-  grid-column-gap: 50px;
-  padding: 38px;
+  grid-column-gap: 30px;
+  padding: 25px;
 }
 
 .hawker-image-grid {
@@ -111,12 +111,12 @@
 
   .hawker-description {
     margin-top: 10px;
-    font-size: 10px;
+    font-size: 14px;
   }
 
   .hawker-transport {
     margin-top: 5px;
-    font-size: 8px;
+    font-size: 13px;
   }
 
   .direction-button {
