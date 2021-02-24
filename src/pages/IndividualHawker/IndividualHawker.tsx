@@ -6,6 +6,7 @@ import { getHawker } from '../../services/hawker';
 import HawkerCentre from '../../types/HawkerCentre';
 import styles from './IndividualHawker.module.scss';
 import StallGrid from '../../components/StallGrid/StallGrid';
+import StallCardMobile from '../../components/StallCardMobile/StallCardMobile';
 import isMobile from '../../mobile';
 
 interface StateProps {
@@ -62,6 +63,14 @@ const IndividualHawker: React.FunctionComponent = () => {
         {!isMobile() && (
           <div className={styles['stalls']}>
             <StallGrid stallList={hawkerData.id ? hawkerData?.Stalls : []} />
+          </div>
+        )}
+        {isMobile() && (
+          <div className={styles['stalls']}>
+            {hawkerData.Stalls &&
+              hawkerData.Stalls.map((stall) => {
+                return <StallCardMobile key={stall.id} stall={stall} hawkerCentreName={hawkerData.name} />;
+              })}
           </div>
         )}
       </div>
