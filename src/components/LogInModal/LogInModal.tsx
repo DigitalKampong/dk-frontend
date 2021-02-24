@@ -39,7 +39,6 @@ const LogInModal = (props: Props) => {
         localStorage.setItem('username', email);
         localStorage.setItem('loggedIn', 'true');
         localStorage.setItem('authToken', response.data.token);
-        console.log(rememberMe);
         if (rememberMe) {
           localStorage.setItem('userEmail', email);
         } else {

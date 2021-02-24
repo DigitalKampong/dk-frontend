@@ -10,7 +10,7 @@ export type ReviewTransferObject = {
   rating: number;
   description: string;
   updatedAt: string;
-  User: { email: string };
+  User: { email: string; username: string };
   id: number;
 };
 

@@ -33,7 +33,7 @@ const StallPage: React.FunctionComponent = () => {
             rating: x.rating,
             description: x.description,
             updatedAt: Date.parse(x.updatedAt),
-            username: x.User.email,
+            username: x.User.username,
             id: x.id,
           };
         }),
