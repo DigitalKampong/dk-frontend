@@ -48,6 +48,10 @@ const StallPage: React.FunctionComponent = () => {
     fetchReviews();
   }, [params.id, fetchReviews]);
 
+  const onMapButtonClick = () => {
+    window.open(`https://www.google.com.sg/maps/search/${stall?.HawkerCentre.lat},${stall?.HawkerCentre.lng}/`);
+  };
+
   const averageRating = useMemo(() => {
     if (reviews.length !== 0) {
       return reviews.map((x) => x.rating).reduce((a, b) => a + b) / reviews.length;
@@ -102,8 +106,8 @@ const StallPage: React.FunctionComponent = () => {
             <div className={styles['category-container']}>
               {stall?.categories &&
                 stall.categories.map((category) => (
-                  <div className={styles['category-tag']} key={category}>
-                    {category}
+                  <div className={styles['category-tag']} key={category.name}>
+                    {category.name}
                   </div>
                 ))}
             </div>
@@ -141,7 +145,7 @@ const StallPage: React.FunctionComponent = () => {
                 <Button color="orange" className={styles['button-primary']}>
                   Favourite
                 </Button>
-                <Button basic className={styles['button-secondary']}>
+                <Button basic className={styles['button-secondary']} onClick={onMapButtonClick}>
                   How to go
                 </Button>
               </div>
@@ -153,7 +157,7 @@ const StallPage: React.FunctionComponent = () => {
             <Button color="orange" className={styles['button-primary']}>
               Favourite
             </Button>
-            <Button basic className={styles['button-secondary']}>
+            <Button basic className={styles['button-secondary']} onClick={onMapButtonClick}>
               How to go
             </Button>
           </div>
