@@ -14,6 +14,11 @@ interface TimeSpan {
   end: string;
 }
 
+interface Category {
+  id: number;
+  name: string;
+}
+
 export default interface Stall {
   id: number;
   name: string;
@@ -22,7 +27,7 @@ export default interface Stall {
   updatedAt: string;
   Images: ImageData[];
   HawkerCentre: HawkerCentre;
-  categories: string[];
+  categories: Category[];
   rating: number;
   description: string;
   contactNo: string;

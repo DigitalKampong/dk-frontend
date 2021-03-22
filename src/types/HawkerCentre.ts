@@ -13,4 +13,6 @@ export default interface HawkerCentre {
   bus: string;
   mrt: string;
   Images: [];
+  lat: number;
+  lng: number;
 }
