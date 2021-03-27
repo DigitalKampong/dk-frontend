@@ -35,4 +35,5 @@ export default interface Stall {
   Reviews: any[];
   Products: Food[];
   openingHours: Record<string, TimeSpan>;
+  isFeatured: Boolean;
 }
