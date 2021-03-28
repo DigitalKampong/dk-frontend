@@ -28,6 +28,10 @@ const IndividualHawker: React.FunctionComponent = () => {
     });
   }, [state.selectedHawker]);
 
+  const onMapButtonClick = () => {
+    window.open(`https://www.google.com.sg/maps/search/${hawkerData.lat},${hawkerData.lng}/`);
+  };
+
   return (
     <>
       <SearchHeader toggleFilterNavBar={() => {}} isSearchPage={false} setQuery={() => {}}></SearchHeader>
@@ -44,14 +48,14 @@ const IndividualHawker: React.FunctionComponent = () => {
             </div>
             {!isMobile() && (
               <div className={styles['direction-button']}>
-                <Button basic className={styles['button']}>
+                <Button basic className={styles['button']} onClick={onMapButtonClick}>
                   Open in Google Map
                 </Button>
               </div>
             )}
             {isMobile() && (
               <div className={styles['direction-button']}>
-                <Button basic className={styles['button']}>
+                <Button basic className={styles['button']} onClick={onMapButtonClick}>
                   Google Map
                 </Button>
               </div>
