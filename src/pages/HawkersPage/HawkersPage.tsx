@@ -49,12 +49,13 @@ const HawkerLocationPage: React.FunctionComponent = () => {
   const hawkersPerPage = 5;
   const pagesVisited = pageNumber * hawkersPerPage;
   const pageNum = Math.ceil(hawkers.length / hawkersPerPage);
+  const filteredPageNum = Math.ceil(filteredHawkers.length / hawkersPerPage);
 
   const hawkerPagination = hawkers.slice(pagesVisited, pagesVisited + hawkersPerPage);
   const filteredPagination = filteredHawkers.slice(pagesVisited, pagesVisited + hawkersPerPage);
 
   const changePage = (event: any) => {
-    setPageNumber(event.target.id);
+    setPageNumber(event.target.getAttribute('value') - 1);
   };
 
   return (
@@ -113,7 +114,7 @@ const HawkerLocationPage: React.FunctionComponent = () => {
           <HawkerGrid hawkerList={filter === '' ? hawkerPagination : filteredPagination} />
         </div>
         <div className={styles['pagination']}>
-          <Pagination totalPages={pageNum} defaultActivePage={1} onPageChange={changePage}></Pagination>
+          <Pagination totalPages={filter === '' ? pageNum : filteredPageNum} defaultActivePage={1} onPageChange={changePage}></Pagination>
         </div>
       </div>
     </>
