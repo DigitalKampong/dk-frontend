@@ -13,6 +13,8 @@ const HawkerLocationPage: React.FunctionComponent = () => {
   const [isFiltered, changeFilteredStatus] = useState(false);
   const [filteredHawkers, setFilteredHawkers] = useState<HawkerCentre[]>([]);
 
+  window.scrollTo(0, 0);
+
   useEffect(() => {
     if (filter.length === 0) {
       getAllHawkers().then((response) => {

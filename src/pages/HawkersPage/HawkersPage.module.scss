@@ -7,11 +7,13 @@
   background: #f9f8f4;
   width: 100%;
   text-align: center;
+  min-height: 90vh;
 }
 
 .site-content-header {
   font-family: 'Montserrat';
-  font-size: 48px;
+  font-size: 36px;
+  line-height: 36px;
   padding-top: 58px;
   height: 24px;
   margin-bottom: 46px;
@@ -21,16 +23,23 @@
   padding-top: 50px;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 }
 
 .filter-buttons {
   margin-top: 58px;
   height: 24px;
-  margin-left: 100px;
+  margin-left: 50px;
 }
 
 .hawker-list {
   padding-top: 40px;
+}
+
+@media (max-width: $tabletWidth) {
+  .site-content-header {
+    font-size: 24px;
+  }
 }
 
 @media (max-width: $mobileWidth) {
