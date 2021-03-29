@@ -3,18 +3,18 @@
   padding: 0 12%;
   padding-bottom: 50px;
   background: #f9f8f4;
+  min-height: 100vh;
 }
 
 .hawker {
-  display: inline-grid;
-  grid-template-columns: auto auto auto;
-  grid-column-gap: 30px;
+  display: flex;
   padding: 25px;
 }
 
 .hawker-image-grid {
   background: url('https://react.semantic-ui.com/images/wireframe/image.png');
   width: 418px;
+  height: auto;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -23,6 +23,7 @@
 
 .hawker-content-grid {
   padding: 10px;
+  width: 50%;
 }
 
 .hawker-header {
@@ -37,6 +38,15 @@
   font-weight: 500;
   font-family: 'Raleway';
   font-size: 18px;
+}
+
+.hawker-announcement {
+  margin-top: 10px;
+  font-size: 18px;
+  font-family: 'Raleway';
+  line-height: 24px;
+  color: #ff5c38;
+  overflow-wrap: break-word;
 }
 
 .hawker-description {
@@ -65,7 +75,7 @@
 }
 
 .stalls-header {
-  margin-top: 70px;
+  margin-top: 30px;
   padding: 20px;
   font-size: 30px;
   font-family: 'Raleway';
@@ -83,8 +93,12 @@
     padding-bottom: 20px;
   }
 
+  .hawker-announcement {
+    font-size: 14px;
+  }
+
   .hawker {
-    display: inline-grid;
+    display: flex;
     grid-column-gap: 0px;
   }
 
