@@ -12,6 +12,7 @@
 
 .stall-image {
   width: 418px;
+  max-width: 30%;
   background-size: contain;
   background-position: top;
   background-repeat: no-repeat;
@@ -30,6 +31,10 @@
   align-items: center;
   margin-top: 9px;
   flex-wrap: wrap;
+}
+
+.stall-details {
+  min-width: 70%;
 }
 
 .category-tag {
@@ -80,6 +85,14 @@
   font-weight: 700;
   font-family: 'Raleway';
   line-height: 24px;
+}
+
+.announcement-title {
+  font-size: 18px;
+  font-family: 'Raleway';
+  line-height: 24px;
+  color: #ff5c38;
+  overflow-wrap: break-word;
 }
 
 .opening-hours-label {
@@ -230,9 +243,14 @@
   .stall-image {
     width: 162px;
     height: 162px;
+    max-width: 162px;
     background-size: cover;
     margin-right: 12px;
     flex-shrink: 0;
+  }
+
+  .stall-details {
+    min-width: 30%;
   }
 
   .stall-grid {
@@ -279,6 +297,12 @@
     line-height: 16px;
     margin-bottom: 4px;
     margin-top: 6px;
+  }
+
+  .announcement-title {
+    font-size: 13px;
+    font-family: 'Raleway';
+    line-height: 24px;
   }
 
   .opening-hours-label {
