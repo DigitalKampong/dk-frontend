@@ -140,6 +140,7 @@ const StallPage: React.FunctionComponent = () => {
                   )
                 );
               })}
+            <div className={styles['announcement-title']}>{stall?.HawkerCentre?.announcement}</div>
             {!isMobile() && (
               <div className={styles['stall-button-container']}>
                 <Button color="orange" className={styles['button-primary']}>

@@ -8,6 +8,7 @@ export default interface HawkerCentre {
   regionId: number;
   createdAt: string;
   updatedAt: string;
+  announcement: string;
   Region: Region;
   Stalls: Stall[];
   bus: string;
