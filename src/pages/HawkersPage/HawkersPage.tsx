@@ -15,6 +15,7 @@ const HawkerLocationPage: React.FunctionComponent = () => {
   const [pageNumber, setPageNumber] = useState<number>(0);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     if (filter.length === 0) {
       getAllHawkers().then((response) => {
         setHawkers(response.data);
