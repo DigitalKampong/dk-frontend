@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getAllHawkers } from '../../services/hawker';
 import styles from './HawkersPage.module.scss';
-import { Button, Dropdown } from 'semantic-ui-react';
+import { Button, Dropdown, Pagination } from 'semantic-ui-react';
 import HawkerGrid from '../../components/HawkerGrid/HawkerGrid';
 import SearchHeader from '../../components/SearchHeader/SearchHeader';
 import HawkerCentre from '../../types/HawkerCentre';
@@ -12,14 +12,15 @@ const HawkerLocationPage: React.FunctionComponent = () => {
   const [filter, setFilter] = useState('');
   const [isFiltered, changeFilteredStatus] = useState(false);
   const [filteredHawkers, setFilteredHawkers] = useState<HawkerCentre[]>([]);
+  const [pageNumber, setPageNumber] = useState<number>(0);
 
   window.scrollTo(0, 0);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     if (filter.length === 0) {
       getAllHawkers().then((response) => {
         setHawkers(response.data);
-        console.log(response.data);
       });
     } else {
       setFilteredHawkers(filterLocation(filter));
@@ -27,6 +28,7 @@ const HawkerLocationPage: React.FunctionComponent = () => {
     }
   }, [filter, isFiltered]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  //actual filtering of the hawker
   function filterLocation(location: string) {
     const result = hawkers.filter((hawker) => {
       return hawker.Region.name === location;
@@ -34,6 +36,7 @@ const HawkerLocationPage: React.FunctionComponent = () => {
     return result;
   }
 
+  //changing of the status of the filter button
   function handleSetFilter(currentFilter: string) {
     const pressed = currentFilter === filter && isFiltered === true;
     if (pressed) {
@@ -44,6 +47,19 @@ const HawkerLocationPage: React.FunctionComponent = () => {
       changeFilteredStatus(true);
     }
   }
+
+  //Pagination
+  const hawkersPerPage = 5;
+  const pagesVisited = pageNumber * hawkersPerPage;
+  const pageNum = Math.ceil(hawkers.length / hawkersPerPage);
+  const filteredPageNum = Math.ceil(filteredHawkers.length / hawkersPerPage);
+
+  const hawkerPagination = hawkers.slice(pagesVisited, pagesVisited + hawkersPerPage);
+  const filteredPagination = filteredHawkers.slice(pagesVisited, pagesVisited + hawkersPerPage);
+
+  const changePage = (event: any) => {
+    setPageNumber(event.target.getAttribute('value') - 1);
+  };
 
   return (
     <>
@@ -98,7 +114,10 @@ const HawkerLocationPage: React.FunctionComponent = () => {
         )}
 
         <div className={styles['hawker-list']}>
-          <HawkerGrid hawkerList={filter === '' ? hawkers : filteredHawkers} />
+          <HawkerGrid hawkerList={filter === '' ? hawkerPagination : filteredPagination} />
+        </div>
+        <div className={styles['pagination']}>
+          <Pagination totalPages={filter === '' ? pageNum : filteredPageNum} defaultActivePage={1} onPageChange={changePage}></Pagination>
         </div>
       </div>
     </>

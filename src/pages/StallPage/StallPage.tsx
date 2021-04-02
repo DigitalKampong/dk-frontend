@@ -143,7 +143,7 @@ const StallPage: React.FunctionComponent = () => {
             <div className={styles['announcement-title']}>{stall?.HawkerCentre?.announcement}</div>
             {!isMobile() && (
               <div className={styles['stall-button-container']}>
-                <Button color="orange" className={styles['button-primary']}>
+                <Button color="orange" className={styles['button-primary']} disabled={!userIsLoggedIn}>
                   Favourite
                 </Button>
                 <Button basic className={styles['button-secondary']} onClick={onMapButtonClick}>
@@ -155,7 +155,7 @@ const StallPage: React.FunctionComponent = () => {
         </div>
         {isMobile() && (
           <div className={styles['stall-button-container']}>
-            <Button color="orange" className={styles['button-primary']}>
+            <Button color="orange" className={styles['button-primary']} disabled={!userIsLoggedIn}>
               Favourite
             </Button>
             <Button basic className={styles['button-secondary']} onClick={onMapButtonClick}>
