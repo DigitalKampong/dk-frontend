@@ -16,4 +16,5 @@ export default interface HawkerCentre {
   Images: [];
   lat: number;
   lng: number;
+  isClosed: boolean;
 }

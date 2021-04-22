@@ -26,6 +26,25 @@
   width: 50%;
 }
 
+.hawker-header-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hawker-closed {
+  height: 24px;
+  border-radius: 10px;
+  font-family: 'Raleway';
+  color: #f9f8f4;
+  background: #ff5c38;
+  font-size: 20px;
+  line-height: 14px;
+  font-weight: 800;
+  padding: 5px;
+}
+
 .hawker-header {
   font-size: 36px;
   font-family: 'Raleway';
@@ -91,6 +110,23 @@
   .site-content {
     padding: 0 20px;
     padding-bottom: 20px;
+  }
+
+  .hawker-header-div {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hawker-closed {
+    height: 20px;
+    border-radius: 10px;
+    font-family: 'Raleway';
+    color: #f9f8f4;
+    background: #ff5c38;
+    font-size: 12px;
+    line-height: 15px;
+    font-weight: 800;
+    padding: 3px;
   }
 
   .hawker-announcement {
