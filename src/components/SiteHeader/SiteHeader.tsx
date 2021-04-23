@@ -6,7 +6,6 @@ import styles from './SiteHeader.module.scss';
 import whiteLogo from '../../images/dk-white-logo.png';
 import blackLogo from '../../images/black-logo.png';
 import isMobile from '../../mobile';
-import { useSelector } from 'react-redux';
 
 const SiteHeader: React.FunctionComponent = () => {
   const history: any = useHistory();
