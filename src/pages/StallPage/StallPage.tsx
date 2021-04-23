@@ -12,6 +12,7 @@ import styles from './StallPage.module.scss';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/types';
 import isMobile from '../../mobile';
+import { createFavourite, deleteFavouriteStalls } from '../../services/favourite';
 
 const StallPage: React.FunctionComponent = () => {
   const params = useParams<{ id: string }>();
@@ -20,6 +21,8 @@ const StallPage: React.FunctionComponent = () => {
   const [reviews, setReviews] = useState<Review[]>([]);
   const userIsLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);
   const [isGiveReviewModalOpen, setIsGiveReviewModalOpen] = useState(false);
+  const [clickedColor, changeClickedColor] = useState('#FFC448');
+  const [isClicked, changeClickedStatus] = useState(false);
   const setGiveReviewModalOpen = (target: boolean) => {
     setIsGiveReviewModalOpen(target);
     fetchReviews();
@@ -91,6 +94,21 @@ const StallPage: React.FunctionComponent = () => {
     return '';
   }, []);
 
+  const favouriteStall = useCallback(
+    (id) => {
+      if (isClicked === false && clickedColor === '#FFC448') {
+        changeClickedStatus(true);
+        changeClickedColor('#FF5C38');
+        return createFavourite(id);
+      } else {
+        changeClickedStatus(false);
+        changeClickedColor('#FFC448');
+        return deleteFavouriteStalls(id);
+      }
+    },
+    [isClicked, clickedColor],
+  );
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -143,7 +161,12 @@ const StallPage: React.FunctionComponent = () => {
             <div className={styles['announcement-title']}>{stall?.HawkerCentre?.announcement}</div>
             {!isMobile() && (
               <div className={styles['stall-button-container']}>
-                <Button color="orange" className={styles['button-primary']} disabled={!userIsLoggedIn}>
+                <Button
+                  style={{ backgroundColor: clickedColor }}
+                  className={styles['button-primary']}
+                  onClick={() => favouriteStall(parseInt(params.id))}
+                  disabled={!userIsLoggedIn}
+                >
                   Favourite
                 </Button>
                 <Button basic className={styles['button-secondary']} onClick={onMapButtonClick}>
@@ -155,7 +178,12 @@ const StallPage: React.FunctionComponent = () => {
         </div>
         {isMobile() && (
           <div className={styles['stall-button-container']}>
-            <Button color="orange" className={styles['button-primary']} disabled={!userIsLoggedIn}>
+            <Button
+              style={{ backgroundColor: clickedColor }}
+              className={styles['button-primary']}
+              onClick={() => favouriteStall(parseInt(params.id))}
+              disabled={!userIsLoggedIn}
+            >
               Favourite
             </Button>
             <Button basic className={styles['button-secondary']} onClick={onMapButtonClick}>

@@ -9,4 +9,5 @@ export const ENDPOINTS = {
   REVIEWS: 'reviews/',
   CATEGORIES: 'categories/',
   LOCATIONS: 'regions/',
+  FAVOURITES: 'favourites/',
 };
