@@ -95,6 +95,8 @@ const StallPage: React.FunctionComponent = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  const isClosedShown: boolean = !stall?.HawkerCentre.isClosed ? true : false;
+
   return (
     <>
       <SearchHeader toggleFilterNavBar={() => {}} isSearchPage={false} setQuery={() => {}}></SearchHeader>
@@ -102,7 +104,10 @@ const StallPage: React.FunctionComponent = () => {
         <div className={styles['stall-grid']}>
           <div className={styles['stall-image']} style={{ backgroundImage: `url(${stall?.Images[0]?.downloadUrl})` }}></div>
           <div className={styles['stall-details']}>
-            <div className={styles['stall-title']}>{stall?.name}</div>
+            <div className={styles['stall-header']}>
+              <div className={styles['stall-title']}>{stall?.name}</div>
+              {isClosedShown ? <div className={styles['stall-closed']}>CLOSED</div> : null}
+            </div>
             <div className={styles['category-container']}>
               {stall?.categories &&
                 stall.categories.map((category) => (
