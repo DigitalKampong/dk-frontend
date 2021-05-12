@@ -1,9 +1,11 @@
 import React, { useCallback, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Button, Checkbox, Input, Modal } from 'semantic-ui-react';
-import { loginUser } from '../../services/user';
+import { getUserByEmail, loginUser } from '../../services/user';
 import { UPDATE_CURRENT_USER } from '../../store/types';
 import styles from './LogInModal.module.scss';
+import ResetPasswordModal from '../ResetPasswordModal/ResetPasswordModal';
+import User from '../../types/User';
 
 type Props = {
   isOpen: boolean;
@@ -19,6 +21,9 @@ const LogInModal = (props: Props) => {
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
   const [errorModalOpen, setErrorModalOpen] = useState(false);
+  const [error, setError] = useState('');
+  const [resetPasswordModalOpen, setResetPasswordModalOpen] = useState(false);
+  const [userToReset, setUserToReset] = useState<User>();
   const handleUsernameChange = useCallback((event) => {
     setEmail(event.target.value);
   }, []);
@@ -48,12 +53,24 @@ const LogInModal = (props: Props) => {
         setModalOpen(false);
       })
       .catch((error) => {
+        setError('Invalid credentials. Check your email / password and try again.');
         setErrorModalOpen(true);
       });
   }, [email, rememberMe, password, setModalOpen, dispatch]);
   const handleSignUpClick = useCallback(() => {
     handleSignUpAction();
   }, [handleSignUpAction]);
+  const handleResetPasswordClick = useCallback(() => {
+    getUserByEmail(email)
+      .then((res) => {
+        setUserToReset(res.data);
+        setResetPasswordModalOpen(true);
+      })
+      .catch((error) => {
+        setError('Invalid email. Check your email and try again.');
+        setErrorModalOpen(true);
+      });
+  }, [email]);
 
   return (
     <Modal
@@ -73,7 +90,9 @@ const LogInModal = (props: Props) => {
         </Button>
         <div className={styles['modal-row']}>
           <Checkbox className={styles['checkbox']} label="Remember me" onChange={handleRememberMeChange} checked={rememberMe} />
-          <div className={styles['link-text']}>Forgot password?</div>
+          <div className={styles['link-text']} onClick={handleResetPasswordClick}>
+            Forgot password?
+          </div>
         </div>
       </Modal.Content>
       <Modal.Actions className={styles['modal-footer']}>
@@ -87,9 +106,10 @@ const LogInModal = (props: Props) => {
         onClose={() => setErrorModalOpen(false)}
         onOpen={() => setErrorModalOpen(true)}
         open={errorModalOpen}
-        content="Invalid credentials. Check your email / password and try again."
+        content={error}
         actions={['Ok']}
       />
+      {userToReset && <ResetPasswordModal isOpen={resetPasswordModalOpen} setModalOpen={setResetPasswordModalOpen} userToReset={userToReset} />}
     </Modal>
   );
 };

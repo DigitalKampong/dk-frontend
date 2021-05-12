@@ -10,4 +10,7 @@ export const ENDPOINTS = {
   CATEGORIES: 'categories/',
   LOCATIONS: 'regions/',
   FAVOURITES: 'favourites/',
+  ALL_SECURITY_QUESTIONS: 'securityQuestions/all',
+  USER_ANSWERS: 'userAnswers/',
+  USER_ANSWERS_VALIDATE: 'userAnswers/validate',
 };
