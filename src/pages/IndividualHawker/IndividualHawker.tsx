@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { Button } from 'semantic-ui-react';
+import { Button, Image } from 'semantic-ui-react';
 import SearchHeader from '../../components/SearchHeader/SearchHeader';
 import { getHawker } from '../../services/hawker';
 import HawkerCentre from '../../types/HawkerCentre';
@@ -19,14 +19,14 @@ const IndividualHawker: React.FunctionComponent = () => {
   const state = location.state as StateProps;
   const [hawkerData, setHawkerData] = useState(hawkerObject);
 
-  console.log(hawkerData.Stalls);
-
   useEffect(() => {
     window.scrollTo(0, 0);
     getHawker(state.selectedHawker).then((response) => {
       setHawkerData(response.data);
     });
   }, [state.selectedHawker]);
+
+  console.log(hawkerData);
 
   const onMapButtonClick = () => {
     window.open(`https://www.google.com.sg/maps/search/${hawkerData.lat},${hawkerData.lng}/`);

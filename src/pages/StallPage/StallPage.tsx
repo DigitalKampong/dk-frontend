@@ -94,20 +94,18 @@ const StallPage: React.FunctionComponent = () => {
     return '';
   }, []);
 
-  const favouriteStall = useCallback(
-    (id) => {
-      if (isClicked === false && clickedColor === '#FFC448') {
-        changeClickedStatus(true);
-        changeClickedColor('#FF5C38');
-        return createFavourite(id);
-      } else {
-        changeClickedStatus(false);
-        changeClickedColor('#FFC448');
-        return deleteFavouriteStalls(id);
-      }
-    },
-    [isClicked, clickedColor],
-  );
+  const favouriteStall = async (id: number) => {
+    if (isClicked === false && clickedColor === '#FFC448') {
+      changeClickedStatus(true);
+      changeClickedColor('#FF5C38');
+      return createFavourite(id);
+    } else {
+      changeClickedStatus(false);
+      changeClickedColor('#FFC448');
+      return deleteFavouriteStalls(id);
+    }
+  };
+  console.log(isClicked);
 
   useEffect(() => {
     window.scrollTo(0, 0);

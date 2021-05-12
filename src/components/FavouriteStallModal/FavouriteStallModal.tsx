@@ -17,11 +17,6 @@ const FavouriteStallModal = (props: Props) => {
       setFavStall(response.data);
     });
   }, [favStall]);
-  var stallArray = [];
-  favStall.forEach((data: Object) => {
-    stallArray.push(Object.values(data)[5]);
-  });
-
   return (
     <Modal onClose={() => setModalOpen(false)} onOpen={() => setModalOpen(true)} open={props.isOpen} closeIcon>
       <Modal.Header className={styles['modal-header']} style={{ backgroundColor: '#ffc448' }}>
