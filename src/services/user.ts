@@ -38,3 +38,45 @@ export const getLoggedInUser = () => {
     };
   }
 };
+
+export const getUserByEmail = async (email: string) => {
+  return await Axios.get(ENDPOINTS.BASE + `users/email?email=${email}`, {
+    headers: { 'x-auth-token': localStorage.getItem('authToken') },
+  }).catch((error) => {
+    throw error;
+  });
+};
+
+export const getSecurityQuestions = async () => {
+  return await Axios.get(ENDPOINTS.BASE + ENDPOINTS.ALL_SECURITY_QUESTIONS).catch((error) => {
+    throw error;
+  });
+};
+
+export const createSecurityAnswer = async (data: API) => {
+  return await Axios.post(ENDPOINTS.BASE + ENDPOINTS.USER_ANSWERS, data['data'], {
+    headers: { 'x-auth-token': localStorage.getItem('authToken') },
+  }).catch((error) => {
+    throw error;
+  });
+};
+
+export const validateSecurityAnswer = async (data: API) => {
+  return await Axios.post(ENDPOINTS.BASE + ENDPOINTS.USER_ANSWERS_VALIDATE, data['data']).catch((error) => {
+    throw error;
+  });
+};
+
+export const updatePassword = async (resetToken: string, data: API) => {
+  return await Axios.post(ENDPOINTS.BASE + `users/passwordReset?resetToken=${resetToken}`, data['data']).catch((error) => {
+    throw error;
+  });
+};
+
+export const updateUser = async (data: API) => {
+  return await Axios.put(ENDPOINTS.BASE + 'updateUser', data['data'], {
+    headers: { 'x-auth-token': localStorage.getItem('authToken') },
+  }).catch((error) => {
+    throw error;
+  });
+};
