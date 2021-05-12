@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { Button } from 'semantic-ui-react';
+import { Button, Image } from 'semantic-ui-react';
 import SearchHeader from '../../components/SearchHeader/SearchHeader';
 import { getHawker } from '../../services/hawker';
 import HawkerCentre from '../../types/HawkerCentre';
@@ -26,8 +26,6 @@ const IndividualHawker: React.FunctionComponent = () => {
     });
   }, [state.selectedHawker]);
 
-  console.log(hawkerData);
-
   const onMapButtonClick = () => {
     window.open(`https://www.google.com.sg/maps/search/${hawkerData.lat},${hawkerData.lng}/`);
   };
@@ -37,7 +35,13 @@ const IndividualHawker: React.FunctionComponent = () => {
       <SearchHeader toggleFilterNavBar={() => {}} isSearchPage={false} setQuery={() => {}}></SearchHeader>
       <div className={styles['site-content']}>
         <div className={styles['hawker']}>
-          <div className={styles['hawker-image-grid']}></div>
+          <div>
+            <Image
+              className={styles['hawker-image-grid']}
+              src={hawkerData.Images && hawkerData.Images[0] ? hawkerData.Images[0].downloadUrl : null}
+              ui={false}
+            />
+          </div>
           <div className={styles['hawker-content-grid']}>
             <div className={styles['hawker-header']}>{hawkerData.name}</div>
             <div className={styles['hawker-address']}>{hawkerData.address}</div>
