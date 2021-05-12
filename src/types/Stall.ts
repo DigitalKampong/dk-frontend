@@ -7,7 +7,7 @@ interface ImageData {
   fileName: string;
 }
 
-interface TimeSpan {
+export default interface TimeSpan {
   allDay: boolean;
   closed: boolean;
   start: string;

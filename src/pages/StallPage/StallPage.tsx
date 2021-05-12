@@ -6,6 +6,7 @@ import SearchHeader from '../../components/SearchHeader/SearchHeader';
 import { getStall } from '../../services/stall';
 import { getReviewForStall } from '../../services/review';
 import Stall from '../../types/Stall';
+import TimeSpan from '../../types/Stall';
 import Review, { ReviewTransferObject } from '../../types/Review';
 import GiveReviewModal from '../../components/GiveReviewModal/GiveReviewModal';
 import styles from './StallPage.module.scss';
@@ -95,6 +96,25 @@ const StallPage: React.FunctionComponent = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  const checkIsClosed = useCallback((openingHours) => {
+    if (openingHours === undefined || openingHours === null) {
+      return false;
+    }
+    const today: Date = new Date();
+    const totalCurrentMinutes: number = today.getHours() * 60 + today.getMinutes();
+    const days: string[] = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+    const timespan: TimeSpan = openingHours[days[today.getDay() - 1]] ? openingHours[days[today.getDay() - 1]] : null;
+    if (timespan === null || timespan.allDay || timespan.start === null || timespan.end === null) {
+      return false;
+    } else if (timespan.closed) {
+      return true;
+    }
+    const totalStartMinutes: number = parseInt(timespan.start.substring(0, 2)) * 60 + parseInt(timespan.start.substring(3));
+    const totalEndMinutes: number = parseInt(timespan.end.substring(0, 2)) * 60 + parseInt(timespan.end.substring(3));
+    return totalCurrentMinutes < totalStartMinutes || totalCurrentMinutes > totalEndMinutes;
+  }, []);
+
+  const isClosedShown: boolean = checkIsClosed(stall?.openingHours) || stall?.HawkerCentre.isClosed ? true : false;
   return (
     <>
       <SearchHeader toggleFilterNavBar={() => {}} isSearchPage={false} setQuery={() => {}}></SearchHeader>
@@ -102,7 +122,10 @@ const StallPage: React.FunctionComponent = () => {
         <div className={styles['stall-grid']}>
           <div className={styles['stall-image']} style={{ backgroundImage: `url(${stall?.Images[0]?.downloadUrl})` }}></div>
           <div className={styles['stall-details']}>
-            <div className={styles['stall-title']}>{stall?.name}</div>
+            <div className={styles['stall-header']}>
+              <div className={styles['stall-title']}>{stall?.name}</div>
+              {checkIsClosed(stall?.openingHours) || isClosedShown ? <div className={styles['stall-closed']}>CLOSED</div> : null}
+            </div>
             <div className={styles['category-container']}>
               {stall?.categories &&
                 stall.categories.map((category) => (

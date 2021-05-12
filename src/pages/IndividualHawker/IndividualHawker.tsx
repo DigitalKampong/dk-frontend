@@ -39,7 +39,10 @@ const IndividualHawker: React.FunctionComponent = () => {
         <div className={styles['hawker']}>
           <div className={styles['hawker-image-grid']}></div>
           <div className={styles['hawker-content-grid']}>
-            <div className={styles['hawker-header']}>{hawkerData.name}</div>
+            <div className={styles['hawker-header-div']}>
+              <div className={styles['hawker-header']}>{hawkerData.name}</div>
+              {hawkerData?.isClosed && <div className={styles['hawker-closed']}>CLOSED</div>}
+            </div>
             <div className={styles['hawker-address']}>{hawkerData.address}</div>
             <div className={styles['hawker-announcement']}>{!isMobile() ? hawkerData?.announcement : null}</div>
             <div className={styles['hawker-description']}>Getting there:</div>
