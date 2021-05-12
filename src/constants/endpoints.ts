@@ -9,4 +9,7 @@ export const ENDPOINTS = {
   REVIEWS: 'reviews/',
   CATEGORIES: 'categories/',
   LOCATIONS: 'regions/',
+  ALL_SECURITY_QUESTIONS: 'securityQuestions/all',
+  USER_ANSWERS: 'userAnswers/',
+  USER_ANSWERS_VALIDATE: 'userAnswers/validate',
 };
