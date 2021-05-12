@@ -1,8 +1,11 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import styles from './MyAccountModal.module.scss';
 import { Button, Modal } from 'semantic-ui-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { REMOVE_CURRENT_USER, RootState } from '../../store/types';
+import { getUserByEmail } from '../../services/user';
+import ChangePasswordModal from '../ChangePasswordModal/ChangePasswordModal';
+import User from '../../types/User';
 
 type Props = {
   isOpen: boolean;
@@ -12,7 +15,15 @@ type Props = {
 const MyAccountModal = (props: Props) => {
   const dispatch = useDispatch();
   const currentUser = useSelector((state: RootState) => state.user.currentUser);
+  const [retrievedUser, setRetrievedUser] = useState<User>();
   const { setModalOpen } = props;
+  const [changePasswordModalOpen, setChangePasswordModalOpen] = useState(false);
+  useEffect(() => {
+    currentUser?.email &&
+      getUserByEmail(currentUser?.email).then((res) => {
+        setRetrievedUser(res.data);
+      });
+  }, [currentUser]);
   const handleLogOut = useCallback(() => {
     localStorage.removeItem('username');
     localStorage.removeItem('loggedIn');
@@ -37,17 +48,27 @@ const MyAccountModal = (props: Props) => {
           <div className={styles['content-header']}>
             <b>Username</b>
           </div>
-          <div>{currentUser?.username}</div>
+          <div>{retrievedUser?.username}</div>
         </Modal.Description>
       </Modal.Content>
       <Modal.Actions>
-        <Button basic className={styles['button']} color="black">
+        <Button
+          basic
+          className={styles['button']}
+          color="black"
+          onClick={() => {
+            setChangePasswordModalOpen(true);
+          }}
+        >
           Change password
         </Button>
         <Button className={styles['button']} color="orange" onClick={handleLogOut}>
           Log out
         </Button>
       </Modal.Actions>
+      {retrievedUser && (
+        <ChangePasswordModal isOpen={changePasswordModalOpen} setModalOpen={setChangePasswordModalOpen} currentUser={retrievedUser} />
+      )}
     </Modal>
   );
 };
