@@ -27,6 +27,7 @@ const HawkerLocationPage: React.FunctionComponent = () => {
       console.log(filter);
     }
   }, [filter, isFiltered]); // eslint-disable-line react-hooks/exhaustive-deps
+  console.log(hawkers)
 
   //actual filtering of the hawker
   function filterLocation(location: string) {

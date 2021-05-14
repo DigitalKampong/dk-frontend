@@ -1,6 +1,11 @@
 import Region from './Region';
 import Stall from './Stall';
 
+interface ImageData {
+  downloadUrl: string;
+  id: number;
+  fileName: string;
+}
 export default interface HawkerCentre {
   id: number;
   name: string;
@@ -13,7 +18,7 @@ export default interface HawkerCentre {
   Stalls: Stall[];
   bus: string;
   mrt: string;
-  Images: [];
+  Images: ImageData[];
   lat: number;
   lng: number;
   isClosed: boolean;

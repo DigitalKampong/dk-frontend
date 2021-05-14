@@ -34,6 +34,11 @@ const HomePage: React.FunctionComponent = () => {
     });
   }, []);
 
+  function featuredHawkers() {
+    const featuredHawkersArray = stalls.filter((stall) => stall.isFeatured === true);
+    return featuredHawkersArray;
+  }
+
   function handleCategory(cat: number): void {
     history.push({
       pathname: `/search/`,
@@ -58,7 +63,7 @@ const HomePage: React.FunctionComponent = () => {
           </div>
           <div className={styles['section-header-button']}>View more</div>
         </div>
-        {isMobile() ? <FeaturedStallGrid stallList={stalls} /> : <StallGrid stallList={stalls} />}
+        {isMobile() ? <FeaturedStallGrid stallList={featuredHawkers()} /> : <StallGrid stallList={featuredHawkers()} />}
         <div className={styles['section-header-row']}>
           <div className={styles['section-header']}>
             <b>Explore</b> by Categories

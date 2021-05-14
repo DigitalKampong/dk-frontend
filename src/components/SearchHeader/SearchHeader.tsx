@@ -58,11 +58,6 @@ const SearchHeader: React.FunctionComponent<Props> = (props: Props) => {
             </Link>
           </div>
           <div className={styles['header-button-group']}>
-            {!isMobile() && (
-              <Button basic className={styles['header-button']}>
-                Kampung Centre
-              </Button>
-            )}
             {props.isSearchPage && isMobile() ? (
               <Button basic={true} className={styles['filter-button-primary']} onClick={() => props.toggleFilterNavBar()}>
                 Filters

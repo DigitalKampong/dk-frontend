@@ -13,6 +13,7 @@ import styles from './StallPage.module.scss';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/types';
 import isMobile from '../../mobile';
+import { createFavourite, deleteFavouriteStalls, getFavourite } from '../../services/favourite';
 
 const StallPage: React.FunctionComponent = () => {
   const params = useParams<{ id: string }>();
@@ -21,6 +22,7 @@ const StallPage: React.FunctionComponent = () => {
   const [reviews, setReviews] = useState<Review[]>([]);
   const userIsLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);
   const [isGiveReviewModalOpen, setIsGiveReviewModalOpen] = useState(false);
+
   const setGiveReviewModalOpen = (target: boolean) => {
     setIsGiveReviewModalOpen(target);
     fetchReviews();
@@ -42,12 +44,41 @@ const StallPage: React.FunctionComponent = () => {
     });
   }, [params.id]);
 
+  const [favStall, setFavStall] = useState([]);
+  const [isClicked, changeClickedStatus] = useState(false);
+  const [clickedColor, changeClickedColor] = useState('#FFC448');
+
+  const fetchFavStalls = useCallback(() => {
+    getFavourite().then((response) => {
+      setFavStall(response.data);
+    });
+    for (const i in favStall) {
+      if (favStall && parseInt(params.id) === favStall[i]['stallId']) {
+        changeClickedStatus(true);
+        changeClickedColor('#FF5C38');
+      }
+    }
+  }, [favStall, params.id]);
+
   useEffect(() => {
     getStall(parseInt(params.id)).then((response) => {
       setStall(response.data);
     });
     fetchReviews();
-  }, [params.id, fetchReviews]);
+    fetchFavStalls();
+  }, [params.id, fetchReviews, fetchFavStalls]);
+
+  const favouriteStall = (id: number) => {
+    if (isClicked === false && clickedColor === '#FFC448') {
+      createFavourite(id);
+      changeClickedStatus(true);
+      changeClickedColor('#FF5C38');
+    } else {
+      deleteFavouriteStalls(id);
+      changeClickedStatus(false);
+      changeClickedColor('#FFC448');
+    }
+  };
 
   const onMapButtonClick = () => {
     window.open(`https://www.google.com.sg/maps/search/${stall?.HawkerCentre.lat},${stall?.HawkerCentre.lng}/`);
@@ -166,7 +197,12 @@ const StallPage: React.FunctionComponent = () => {
             <div className={styles['announcement-title']}>{stall?.HawkerCentre?.announcement}</div>
             {!isMobile() && (
               <div className={styles['stall-button-container']}>
-                <Button color="orange" className={styles['button-primary']} disabled={!userIsLoggedIn}>
+                <Button
+                  style={{ backgroundColor: clickedColor }}
+                  className={styles['button-primary']}
+                  onClick={() => favouriteStall(parseInt(params.id))}
+                  disabled={!userIsLoggedIn}
+                >
                   Favourite
                 </Button>
                 <Button basic className={styles['button-secondary']} onClick={onMapButtonClick}>
@@ -178,7 +214,12 @@ const StallPage: React.FunctionComponent = () => {
         </div>
         {isMobile() && (
           <div className={styles['stall-button-container']}>
-            <Button color="orange" className={styles['button-primary']} disabled={!userIsLoggedIn}>
+            <Button
+              style={{ backgroundColor: clickedColor }}
+              className={styles['button-primary']}
+              onClick={() => favouriteStall(parseInt(params.id))}
+              disabled={!userIsLoggedIn}
+            >
               Favourite
             </Button>
             <Button basic className={styles['button-secondary']} onClick={onMapButtonClick}>

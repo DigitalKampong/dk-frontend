@@ -47,7 +47,6 @@ const SiteHeader: React.FunctionComponent = () => {
             </Link>
           </div>
           <div className={styles['header-button-group']}>
-            {!isMobile() && <Button className={styles['header-button']}>Kampung Centre</Button>}
             <HeaderUserButtons isMainHeader={true} />
           </div>
         </div>
