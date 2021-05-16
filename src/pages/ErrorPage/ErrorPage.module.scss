@@ -1,0 +1,40 @@
+@import '../../variables.scss';
+
+.wrapper {
+  height: 100vh;
+  padding: 10%;
+  font-family: 'Montserrat';
+  text-align: center;
+  background: #f9f8f4;
+}
+
+.error-title {
+  font-size: 36px;
+  line-height: 72px;
+}
+
+.return-div {
+  margin: 5%;
+}
+
+.return-btn {
+  font-size: 18px;
+  line-height: 18px;
+  text-decoration: underline;
+}
+
+@media (max-width: $mobileWidth) {
+  .error-title {
+    font-size: 18px;
+    line-height: 36px;
+  }
+
+  .return-btn {
+    font-size: 15px;
+    line-height: 15px;
+  }
+
+  .wrapper {
+    padding: 25% 5%;
+  }
+}
