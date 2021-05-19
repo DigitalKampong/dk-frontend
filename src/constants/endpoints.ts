@@ -1,5 +1,5 @@
 export const ENDPOINTS = {
-  BASE: 'https://dk-api-21.herokuapp.com/',
+  BASE: process.env.REACT_APP_API_URL!,
   STALLS: 'stalls/',
   PRODUCTS: 'products/',
   SEARCH: 'search/',
