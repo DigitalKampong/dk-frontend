@@ -4,7 +4,7 @@
   "private": true,
   "homepage": ".",
   "engines": {
-    "node": "^14"
+    "node": "^12"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
