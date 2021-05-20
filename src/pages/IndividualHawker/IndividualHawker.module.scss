@@ -11,13 +11,20 @@
   padding: 25px;
 }
 
-.hawker-image-grid {
+.hawker-image-div {
   width: 418px;
   height: auto;
+  margin-right: 20px;
+}
+
+.hawker-image-grid {
+  width: 100%;
+  height: 100%;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   margin-right: 24px;
+  object-fit: contain;
 }
 
 .hawker-content-grid {
@@ -137,9 +144,14 @@
     grid-column-gap: 0px;
   }
 
+  .hawker-image-div {
+    width: 200px;
+    height: 100px;
+    margin-right: 15px;
+  }
   .hawker-image-grid {
     width: 200px;
-    height: 200px;
+    height: 170px;
   }
 
   .hawker-content-grid {
