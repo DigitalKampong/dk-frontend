@@ -5,3 +5,8 @@
 Link: https://digital-kampung.netlify.app/
 
 Built with React 16.14.0
+
+***Potential features***
+ 
+ **1) View more button at the homepage**
+  <p> Original plan was to include a view more feature at the categories section. However, for now, there are no other categories that the team would like to include and hence, we decided to remove that feature </p>
