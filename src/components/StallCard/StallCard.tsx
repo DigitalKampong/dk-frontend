@@ -18,7 +18,7 @@ const StallCard: React.FunctionComponent<Props> = (props: Props) => {
       }}
     >
       <Card>
-        <img src={stall.Images[0] ? stall.Images[0].downloadUrl : placeholderImg} className={styles['img-stall']} />
+        <img alt="" src={stall.Images[0] ? stall.Images[0].downloadUrl : placeholderImg} className={styles['img-stall']} />
         <Card.Content>
           <Card.Header>{stall.name}</Card.Header>
           <Card.Meta>
