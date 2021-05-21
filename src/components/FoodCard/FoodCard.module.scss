@@ -15,9 +15,18 @@
   margin-bottom: 6px;
 }
 
+.img-food {
+  object-fit: cover;
+  height: 150px;
+}
+
 @media (max-width: $mobileWidth) {
   .foodCard {
     width: initial !important;
+  }
+
+  .img-food {
+    height: 50px;
   }
 
   .cardContent {
