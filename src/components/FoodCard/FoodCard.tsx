@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Image } from 'semantic-ui-react';
+import { Card } from 'semantic-ui-react';
 import Food from '../../types/Food';
 import styles from './FoodCard.module.scss';
 import { placeholderImg } from '../../images/image_modules';

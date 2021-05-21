@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Card, Image, Rating } from 'semantic-ui-react';
+import { Card, Rating } from 'semantic-ui-react';
 import Stall from '../../types/Stall';
 import styles from './StallCard.module.scss';
 import { placeholderImg } from '../../images/image_modules';
