@@ -19,6 +19,7 @@ import {
   locWest,
   allHawkers,
   allStalls,
+
 } from '../../images/image_modules';
 import StallGrid from '../../components/StallGrid/StallGrid';
 import Stall from '../../types/Stall';
@@ -70,14 +71,12 @@ const HomePage: React.FunctionComponent = () => {
           <div className={styles['section-header']}>
             <b>Featured</b> Hawkers
           </div>
-          <div className={styles['section-header-button']}>View more</div>
         </div>
         {isMobile() ? <FeaturedStallGrid stallList={featuredHawkers()} /> : <StallGrid stallList={featuredHawkers()} />}
         <div className={styles['section-header-row']}>
           <div className={styles['section-header']}>
             <b>Explore</b> by Categories
           </div>
-          <div className={styles['section-header-button']}>View more</div>
         </div>
         <div className={styles['category-grid']}>
           <div className={styles['category-grid-cell']} onClick={() => handleCategory(1)} style={{ backgroundImage: `url(${catChinese})` }}>
@@ -142,6 +141,7 @@ const HomePage: React.FunctionComponent = () => {
           </div>
           <Link to="/hawkers">
             <div className={styles['directory-grid-cell']} style={{ backgroundImage: `url(${allHawkers})` }}>
+
               <div className={styles['category-grid-label']}>View all Hawker centres</div>
             </div>
           </Link>

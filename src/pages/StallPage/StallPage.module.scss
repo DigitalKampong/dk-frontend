@@ -10,13 +10,15 @@
   padding-top: 38px;
 }
 
-.stall-image {
+.stall-image-holder {
   width: 418px;
   max-width: 30%;
-  background-size: contain;
-  background-position: top;
-  background-repeat: no-repeat;
   margin-right: 24px;
+}
+
+.stall-image {
+  width: 418px;
+  max-width: 100%;
 }
 
 .stall-title {
@@ -24,6 +26,18 @@
   font-family: 'Raleway';
   font-weight: 700;
   line-height: 42px;
+}
+
+.image-grid {
+  margin-top: 8px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 4px;
+}
+
+.image-cell {
+  max-width: 100%;
+  cursor: pointer;
 }
 
 .category-container {

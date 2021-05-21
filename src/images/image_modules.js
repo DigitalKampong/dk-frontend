@@ -25,9 +25,11 @@ import locNortheast from './loc-northeast.jpg';
 import locWest from './loc-west.jpg';
 import locEast from './loc-east.jpg';
 import menuIcon from './menu-icon.png';
+
 import placeholderImg from './placeholder.png';
 import allHawkers from './all-hawkers.png';
 import allStalls from './all-stalls.png';
+
 
 export {
   blackLogo,
@@ -60,4 +62,5 @@ export {
   placeholderImg,
   allHawkers,
   allStalls,
+
 };
