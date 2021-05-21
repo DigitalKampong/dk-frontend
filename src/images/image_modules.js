@@ -25,6 +25,7 @@ import locNortheast from './loc-northeast.jpg';
 import locWest from './loc-west.jpg';
 import locEast from './loc-east.jpg';
 import menuIcon from './menu-icon.png';
+import placeholderImg from './placeholder.png';
 
 export {
   blackLogo,
@@ -54,4 +55,5 @@ export {
   locEast,
   locNorth,
   menuIcon,
+  placeholderImg,
 };

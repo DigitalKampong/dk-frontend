@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Rating } from 'semantic-ui-react';
 import Stall from '../../types/Stall';
 import styles from './StallCardMobile.module.scss';
+import { placeholderImg } from '../../images/image_modules';
 
 interface Props {
   stall: Stall;
@@ -24,7 +25,7 @@ const StallCardMobile: React.FunctionComponent<Props> = (props: Props) => {
         >
           <div className={styles['stall-div']}>
             <div className={styles['stall-image-div']}>
-              <img src={stall.Images[0] ? stall.Images[0].downloadUrl : undefined} alt="" />
+              <img src={stall.Images[0] ? stall.Images[0].downloadUrl : placeholderImg} alt="" />
             </div>
             <div className={styles['stall-info-div']}>
               <div className={styles['stall-name']}>{stall.name}</div>

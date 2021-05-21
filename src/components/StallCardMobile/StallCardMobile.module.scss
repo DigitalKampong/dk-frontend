@@ -1,6 +1,7 @@
 .wrapper {
   height: fit-content;
   display: flex;
+  width: auto;
 }
 
 .stall-div {
@@ -10,20 +11,23 @@
 
 .line {
   height: 0px;
-  margin: 10px;
+  margin: 10px 0;
   border: solid black 1px;
 }
 
 .stall-image-div {
-  max-width: 30%;
+  max-width: 27%;
   max-height: fit-content;
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 0 10px;
+  min-width: 125px;
   img {
-    width: 100%;
-    height: auto;
+    min-width: inherit;
+    width: inherit;
+    height: 125px;
+    object-fit: cover;
   }
 }
 
