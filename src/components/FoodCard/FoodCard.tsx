@@ -1,7 +1,8 @@
 import React from 'react';
-import { Card, Image } from 'semantic-ui-react';
+import { Card } from 'semantic-ui-react';
 import Food from '../../types/Food';
 import styles from './FoodCard.module.scss';
+import { placeholderImg } from '../../images/image_modules';
 
 interface Props {
   food: Food;
@@ -12,7 +13,7 @@ const FoodCard: React.FunctionComponent<Props> = (props: Props) => {
 
   return (
     <Card className={styles.foodCard}>
-      <Image src={food.Images[0] ? food.Images[0].downloadUrl : undefined} wrapped ui={false} />
+      <img alt="" src={food.Images[0] ? food.Images[0].downloadUrl : placeholderImg} className={styles['img-food']} />
       <Card.Content className={styles.cardContent}>
         <div className={styles['name-label']}>{food.name}</div>
         <div className={styles['price-label']}>${food.price ? food.price.toFixed(2) : 'N/A'}</div>
@@ -22,3 +23,7 @@ const FoodCard: React.FunctionComponent<Props> = (props: Props) => {
 };
 
 export default FoodCard;
+
+/*
+      <Image src={food.Images[0] ? food.Images[0].downloadUrl : placeholderImg} wrapped ui={false} />
+*/

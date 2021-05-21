@@ -13,10 +13,12 @@
 .hawker-name {
   font-size: 20px;
   font-weight: 900;
+  line-height: 20px;
 }
 
 .hawker-address {
   font-size: 20px;
+  line-height: 20px;
 }
 
 @media only screen and (max-width: 900px) {
@@ -28,11 +30,13 @@
     color: black;
     font-size: 15px;
     font-weight: 800;
+    line-height: 15px;
   }
 
   .hawker-address {
     margin-top: 10px;
     font-size: 12px;
+    line-height: 12px;
     text-decoration: underline;
   }
 }
