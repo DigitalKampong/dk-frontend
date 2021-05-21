@@ -53,6 +53,13 @@ const HomePage: React.FunctionComponent = () => {
     });
   }
 
+  function handleAllStalls(): void {
+    history.push({
+      pathname: `/search/`,
+      search: '?limit=20&page=1',
+    });
+  }
+
   return (
     <>
       <SiteHeader></SiteHeader>
@@ -128,11 +135,9 @@ const HomePage: React.FunctionComponent = () => {
           </div>
         </div>
         <div className={styles['directory-grid']}>
-          <Link to={{ pathname: '/search', state: { searchInput: '' } }}>
-            <div className={styles['directory-grid-cell']}>
-              <div className={styles['category-grid-label']}>View all stalls</div>
-            </div>
-          </Link>
+          <div className={styles['directory-grid-cell']} onClick={() => handleAllStalls()}>
+            <div className={styles['category-grid-label']}>View all stalls</div>
+          </div>
           <Link to="/hawkers">
             <div className={styles['directory-grid-cell']}>
               <div className={styles['category-grid-label']}>View all Hawker centres</div>
