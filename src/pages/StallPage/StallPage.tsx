@@ -47,6 +47,7 @@ const StallPage: React.FunctionComponent = () => {
   const [favStall, setFavStall] = useState([]);
   const [isClicked, changeClickedStatus] = useState(false);
   const [clickedColor, changeClickedColor] = useState('#FFC448');
+  const [currentImage, setCurrentImage] = useState(0);
 
   const fetchFavStalls = useCallback(() => {
     getFavourite().then((response) => {
@@ -151,7 +152,23 @@ const StallPage: React.FunctionComponent = () => {
       <SearchHeader toggleFilterNavBar={() => {}} isSearchPage={false} setQuery={() => {}}></SearchHeader>
       <div className={styles['site-content']}>
         <div className={styles['stall-grid']}>
-          <div className={styles['stall-image']} style={{ backgroundImage: `url(${stall?.Images[0]?.downloadUrl})` }}></div>
+          <div className={styles['stall-image-holder']}>
+            <img className={styles['stall-image']} src={stall?.Images[currentImage]?.downloadUrl} alt="stall"></img>
+            <div className={styles['image-grid']}>
+              {stall?.Images[0]?.downloadUrl && (
+                <img className={styles['image-cell']} src={stall?.Images[0]?.downloadUrl} alt="stall" onClick={() => setCurrentImage(0)}></img>
+              )}
+              {stall?.Images[1]?.downloadUrl && (
+                <img className={styles['image-cell']} src={stall?.Images[1]?.downloadUrl} alt="stall" onClick={() => setCurrentImage(1)}></img>
+              )}
+              {stall?.Images[2]?.downloadUrl && (
+                <img className={styles['image-cell']} src={stall?.Images[2]?.downloadUrl} alt="stall" onClick={() => setCurrentImage(2)}></img>
+              )}
+              {stall?.Images[3]?.downloadUrl && (
+                <img className={styles['image-cell']} src={stall?.Images[3]?.downloadUrl} alt="stall" onClick={() => setCurrentImage(3)}></img>
+              )}
+            </div>
+          </div>
           <div className={styles['stall-details']}>
             <div className={styles['stall-header']}>
               <div className={styles['stall-title']}>{stall?.name}</div>
