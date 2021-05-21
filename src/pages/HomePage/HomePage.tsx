@@ -17,6 +17,8 @@ import {
   locCentral,
   locEast,
   locWest,
+  hawker,
+  stall,
 } from '../../images/image_modules';
 import StallGrid from '../../components/StallGrid/StallGrid';
 import Stall from '../../types/Stall';
@@ -61,14 +63,12 @@ const HomePage: React.FunctionComponent = () => {
           <div className={styles['section-header']}>
             <b>Featured</b> Hawkers
           </div>
-          <div className={styles['section-header-button']}>View more</div>
         </div>
         {isMobile() ? <FeaturedStallGrid stallList={featuredHawkers()} /> : <StallGrid stallList={featuredHawkers()} />}
         <div className={styles['section-header-row']}>
           <div className={styles['section-header']}>
             <b>Explore</b> by Categories
           </div>
-          <div className={styles['section-header-button']}>View more</div>
         </div>
         <div className={styles['category-grid']}>
           <div className={styles['category-grid-cell']} onClick={() => handleCategory(1)} style={{ backgroundImage: `url(${catChinese})` }}>
@@ -129,12 +129,12 @@ const HomePage: React.FunctionComponent = () => {
         </div>
         <div className={styles['directory-grid']}>
           <Link to={{ pathname: '/search', state: { searchInput: '' } }}>
-            <div className={styles['directory-grid-cell']}>
+            <div className={styles['directory-grid-cell']} style={{ backgroundImage: `url(${stall})` }}>
               <div className={styles['category-grid-label']}>View all stalls</div>
             </div>
           </Link>
           <Link to="/hawkers">
-            <div className={styles['directory-grid-cell']}>
+            <div className={styles['directory-grid-cell']} style={{ backgroundImage: `url(${hawker})` }}>
               <div className={styles['category-grid-label']}>View all Hawker centres</div>
             </div>
           </Link>

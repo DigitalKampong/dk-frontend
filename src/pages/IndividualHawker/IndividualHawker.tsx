@@ -35,7 +35,7 @@ const IndividualHawker: React.FunctionComponent = () => {
       <SearchHeader toggleFilterNavBar={() => {}} isSearchPage={false} setQuery={() => {}}></SearchHeader>
       <div className={styles['site-content']}>
         <div className={styles['hawker']}>
-          <div>
+          <div className={styles['hawker-image-div']}>
             <Image
               className={styles['hawker-image-grid']}
               src={hawkerData.Images && hawkerData.Images[0] ? hawkerData.Images[0].downloadUrl : null}
