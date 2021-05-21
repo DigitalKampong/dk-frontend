@@ -17,6 +17,8 @@ import {
   locCentral,
   locEast,
   locWest,
+  allHawkers,
+  allStalls,
 } from '../../images/image_modules';
 import StallGrid from '../../components/StallGrid/StallGrid';
 import Stall from '../../types/Stall';
@@ -135,11 +137,11 @@ const HomePage: React.FunctionComponent = () => {
           </div>
         </div>
         <div className={styles['directory-grid']}>
-          <div className={styles['directory-grid-cell']} onClick={() => handleAllStalls()}>
+          <div className={styles['directory-grid-cell']} onClick={() => handleAllStalls()} style={{ backgroundImage: `url(${allStalls})` }}>
             <div className={styles['category-grid-label']}>View all stalls</div>
           </div>
           <Link to="/hawkers">
-            <div className={styles['directory-grid-cell']}>
+            <div className={styles['directory-grid-cell']} style={{ backgroundImage: `url(${allHawkers})` }}>
               <div className={styles['category-grid-label']}>View all Hawker centres</div>
             </div>
           </Link>
