@@ -222,9 +222,11 @@ const StallPage: React.FunctionComponent = () => {
                 >
                   Favourite
                 </Button>
-                <Button basic className={styles['button-secondary']} onClick={onMapButtonClick}>
-                  How to go
-                </Button>
+                {stall?.HawkerCentre.lng !== null && stall?.HawkerCentre.lat !== null && (
+                  <Button basic className={styles['button-secondary']} onClick={onMapButtonClick}>
+                    How to go
+                  </Button>
+                )}
               </div>
             )}
           </div>
