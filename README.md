@@ -4,7 +4,12 @@
 
 Link: https://digital-kampung.netlify.app/
 
-Built with React 16.14.0
+Built with React 16.14.0 running on nvm v12
+
+## ***Initial setup***
+1) Run `yarn install` to install necessary packages
+2) Run `yarn start` to run on local host
+
 
 ## ***Existing features***
 
@@ -50,3 +55,6 @@ Built with React 16.14.0
  
  **1) View more button at the homepage**
   <p> Original plan was to include a view more feature at the categories section. However, for now, there are no other categories that the team would like to include and hence, we decided to remove that feature </p>
+
+ **2)Individual food page**
+  <p> Description for individual food </p>
