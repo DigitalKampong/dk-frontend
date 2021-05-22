@@ -56,16 +56,20 @@ const IndividualHawker: React.FunctionComponent = () => {
             </div>
             {!isMobile() && (
               <div className={styles['direction-button']}>
-                <Button basic className={styles['button']} onClick={onMapButtonClick}>
-                  Open in Google Map
-                </Button>
+                {hawkerData.lng !== null && hawkerData.lat !== null && (
+                  <Button basic className={styles['button']} onClick={onMapButtonClick}>
+                    Open in Google Map
+                  </Button>
+                )}
               </div>
             )}
             {isMobile() && (
               <div className={styles['direction-button']}>
-                <Button basic className={styles['button']} onClick={onMapButtonClick}>
-                  Google Map
-                </Button>
+                {hawkerData.lng !== null && hawkerData.lat !== null && (
+                  <Button basic className={styles['button']} onClick={onMapButtonClick}>
+                    Google Map
+                  </Button>
+                )}
               </div>
             )}
           </div>
